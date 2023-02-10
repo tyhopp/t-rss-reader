@@ -13,7 +13,7 @@ validate:
 	terraform validate
 
 create:
-	zip ./src/feeds-handler.zip ./src/feeds-handler/index.js
+	zip ./src/feeds-handler.zip ./src/feeds-handler/index.mjs
 	terraform -chdir=src apply
 
 destroy:
