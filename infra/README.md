@@ -4,21 +4,16 @@ Set up and tear down resources in AWS via Terraform.
 
 ## Setup
 
-1. `cp auth-example.sh auth.sh` and add the access keys to `auth.sh`
-2. `source ./auth.sh` to export the access keys as env vars
-3. `terraform init` to install the providers
+1. `cp auth-example.sh auth.sh` and add the AWS access keys to `auth.sh`
+2. `. ./auth.sh` to export AWS the access keys as env vars in your current shell session
+3. `make init` to install the Terraform AWS provider
 
-## Create resources
+## Create and delete resources
 
-1. `terraform plan -out plan.out` to output the create resources plan
-2. `terraform apply plan.out` to create resources using the plan
+- `make create` to create the resource plan and apply it
+- `make delete` to create the resource deletion plan and apply it
 
-## Delete resources
-
-1. `terraform plan -destroy -out destroy.out` to output the delete resources plan
-2. `terraform apply destroy.out` to delete resources using the plan
-
-## Resources
+## Useful docs
 
 - [Terraform CLI cheat sheet](https://acloudguru.com/blog/engineering/the-ultimate-terraform-cheatsheet)
 - [Terraform AWS provider docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
