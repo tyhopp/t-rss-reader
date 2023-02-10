@@ -1,7 +1,9 @@
-.PHONY: clean auth init create destroy
+targets = init validate create destroy
 
-clean:
-	rm -f out/plan.out out/destroy.out
+.PHONY: help $(targets)
+
+help:
+	@echo "Available targets: $(targets)"
 
 init:
 	terraform -chdir=src init
