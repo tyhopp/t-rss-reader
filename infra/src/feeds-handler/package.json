@@ -1,0 +1,12 @@
+{
+  "private": "true",
+  "name": "feeds-handler",
+  "description": "Lambda function that handles CRUD operations for the feeds DynamoDB instance",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "clean": "rm feeds-handler.zip",
+    "build": "zip feeds-handler.zip index.js"
+  }
+}

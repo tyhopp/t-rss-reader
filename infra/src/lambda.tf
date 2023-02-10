@@ -1,20 +1,20 @@
-resource "aws_lambda_function" "lambda_db_handler" {
-  filename         = "${path.module}/../../lambda-db-handler/lambda-db-handler.zip"
-  function_name    = "lambda-db-handler"
+resource "aws_lambda_function" "t-rss-reader-feeds-handler" {
+  filename         = "feeds-handler.zip"
+  function_name    = "t-rss-reader-feeds-handler"
   role             = aws_iam_role.iam_for_lambda.arn
   handler          = "index.handler"
-  source_code_hash = filebase64sha256("${path.module}/../../lambda-db-handler/lambda-db-handler.zip")
+  source_code_hash = filebase64sha256("feeds-handler.zip")
   runtime          = "nodejs18.x"
 }
 
-resource "aws_lambda_event_source_mapping" "lambda_dynamodb" {
-  event_source_arn  = aws_dynamodb_table.dynamo_db_feeds.stream_arn
-  function_name     = aws_lambda_function.lambda_db_handler.arn
+resource "aws_lambda_event_source_mapping" "t-rss-reader-db-handler-event-source-mapping" {
+  event_source_arn  = aws_dynamodb_table.t-rss-reader-feeds-table.stream_arn
+  function_name     = aws_lambda_function.t-rss-reader-feeds-handler.arn
   starting_position = "LATEST"
 }
 
-resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
+resource "aws_iam_role" "t-rss-reader-handler-iam" {
+  name = "t-rss-reader-handler-iam"
 
   assume_role_policy = <<EOF
     {
@@ -33,9 +33,9 @@ resource "aws_iam_role" "iam_for_lambda" {
   EOF
 }
 
-resource "aws_iam_role_policy" "dynamodb_lambda_policy" {
-  name   = "lambda-dynamodb-policy"
-  role   = aws_iam_role.iam_for_lambda.id
+resource "aws_iam_role_policy" "t-rss-reader-db-handler-iam" {
+  name   = "t-rss-reader-db-handler-iam"
+  role   = aws_iam_role.t-rss-reader-handler-iam.id
   policy = <<EOF
     {
       "Version": "2012-10-17",
@@ -57,7 +57,7 @@ resource "aws_iam_role_policy" "dynamodb_lambda_policy" {
                 "lambda:InvokeFunction"
             ],
             "Resource": [
-                "${aws_dynamodb_table.dynamo_db_feeds.arn}/stream/*"
+                "${aws_dynamodb_table.t-rss-reader-feeds-table.arn}/stream/*"
             ]
         },
         {
@@ -69,7 +69,7 @@ resource "aws_iam_role_policy" "dynamodb_lambda_policy" {
                 "dynamodb:DescribeStream",
                 "dynamodb:ListStreams"
             ],
-            "Resource": "${aws_dynamodb_table.dynamo_db_feeds.arn}/stream/*"
+            "Resource": "${aws_dynamodb_table.t-rss-reader-feeds-table.arn}/stream/*"
         }
       ]
     }

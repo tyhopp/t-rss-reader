@@ -13,7 +13,7 @@ validate:
 	terraform validate
 
 create:
-	zip ../lambda-db-handler/lambda-db-handler.zip ../lambda-db-handler/index.js
+	zip ./src/feeds-handler.zip ./src/feeds-handler/index.js
 	terraform -chdir=src apply
 
 destroy:

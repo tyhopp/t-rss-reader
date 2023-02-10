@@ -1,4 +1,4 @@
-resource "aws_dynamodb_table" "dynamo_db_feeds" {
+resource "aws_dynamodb_table" "t-rss-reader-feeds-table" {
   name           = "t-rss-reader-feeds-table"
   billing_mode   = "PROVISIONED"
   read_capacity  = 20

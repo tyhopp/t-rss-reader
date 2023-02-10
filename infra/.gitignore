@@ -3,3 +3,5 @@ auth.sh
 *.out
 *.tfstate
 *.tfstate.backup
+*.zip
+node_modules
