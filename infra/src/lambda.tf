@@ -69,3 +69,22 @@ resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-dynamodb" {
     ]
   })
 }
+
+resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-api" {
+  name = "t-rss-reader-handler-iam-policy-api"
+  role = aws_iam_role.t-rss-reader-handler-iam-role.id
+  policy = jsonencode({
+    "Version" = "2012-10-17"
+    "Statement" = [
+      {
+        "Effect" = "Allow",
+        "Action" = [
+          "execute-api:Invoke"
+        ],
+        "Resource" = [
+          "arn:aws:execute-api:ap-southeast-1:${data.aws_caller_identity.current.account_id}:${aws_apigatewayv2_api.t-rss-reader-handler-api.id}/*"
+        ]
+      },
+    ]
+  })
+}

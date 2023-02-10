@@ -12,3 +12,6 @@ terraform {
 provider "aws" {
   region = "ap-southeast-1" # Singapore
 }
+
+# See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity
+data "aws_caller_identity" "current" {}
