@@ -1,0 +1,5 @@
+auth.sh
+.terraform
+*.out
+*.tfstate
+*.tfstate.backup

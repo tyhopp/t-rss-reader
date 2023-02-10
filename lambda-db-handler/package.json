@@ -1,0 +1,12 @@
+{
+  "private": "true",
+  "name": "lambda-db-handler",
+  "description": "Lambda function that handles CRUD operations for the DynamoDB instance",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "clean": "rm lambda-db-handler.zip",
+    "build": "zip lambda-db-handler.zip index.js"
+  }
+}
