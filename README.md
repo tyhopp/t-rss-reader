@@ -1,3 +1,3 @@
 # t-rss-reader (WIP)
 
-An RSS reader implementation.
+An RSS reader. Inclues a serverless backend and clients.
