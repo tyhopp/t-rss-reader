@@ -3,7 +3,6 @@ import {
   DynamoDBDocumentClient,
   ScanCommand,
   PutCommand,
-  GetCommand,
   DeleteCommand,
 } from "@aws-sdk/lib-dynamodb";
 
@@ -13,15 +12,48 @@ const dynamo = DynamoDBDocumentClient.from(client);
 
 const tableName = "t-rss-reader-feeds-table";
 
-export const handler = async (event, context) => {
+export const handler = async (event) => {
   let body;
   let statusCode = 200;
   const headers = {
     "Content-Type": "application/json",
   };
 
+  const requestBody = JSON.parse(event.body);
+
   try {
-    body = await dynamo.send(new ScanCommand({ TableName: tableName }));
+    switch (event.httpMethod) {
+      case "DELETE":
+        await dynamo.send(
+          new DeleteCommand({
+            TableName: tableName,
+            Key: {
+              url: requestBody.url,
+            },
+          })
+        );
+        body = `Deleted item ${requestBody.url}`;
+        break;
+      case "GET":
+        body = await dynamo.send(new ScanCommand({ TableName: tableName }));
+        body = body.Items;
+        break;
+      case "PUT":
+        await dynamo.send(
+          new PutCommand({
+            TableName: tableName,
+            Item: {
+              url: requestBody.url,
+              name: requestBody.name,
+              updatedAt: Date.now(),
+            },
+          })
+        );
+        body = `Put item ${requestBody.url}`;
+        break;
+      default:
+        throw new Error(`Unsupported method: "${event.httpMethod}"`);
+    }
   } catch (err) {
     statusCode = 400;
     body = err.message;
