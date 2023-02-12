@@ -2,6 +2,18 @@
 
 Set up and tear down resources in AWS via Terraform.
 
+## Prerequisites
+
+Assumes a unix-like system (e.g. Linux, macOS).
+
+On Windows use [make for windows](https://gnuwin32.sourceforge.net/packages/make.htm) or run the commands directly without make. Replace zip with [Compress-Archive](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/compress-archive).
+
+- [make](https://www.gnu.org/software/make/)
+- [zip](https://linux.die.net/man/1/zip)
+- [terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+- [aws](https://aws.amazon.com/) account with created [access keys](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/)
+
+
 ## Setup
 
 1. `cp auth-example.sh auth.sh` and add the AWS access keys to `auth.sh`
