@@ -1,4 +1,4 @@
-targets = init validate create destroy
+targets = init validate create delete
 
 .PHONY: help $(targets)
 
@@ -16,5 +16,5 @@ create:
 	zip ./src/feeds-handler.zip ./src/feeds-handler/index.mjs
 	terraform -chdir=src apply
 
-destroy:
+delete:
 	terraform -chdir=src apply -destroy
