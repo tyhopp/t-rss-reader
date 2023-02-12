@@ -29,31 +29,6 @@ resource "aws_iam_role" "t-rss-reader-handler-iam-role" {
   })
 }
 
-resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-logs" {
-  name = "t-rss-reader-handler-iam-policy-logs"
-  role = aws_iam_role.t-rss-reader-handler-iam-role.id
-  policy = jsonencode({
-    "Version" = "2012-10-17"
-    "Statement" = [
-      {
-        "Effect"   = "Allow",
-        "Action"   = "logs:CreateLogGroup",
-        "Resource" = "arn:aws:logs:${var.aws-region}:*:*"
-      },
-      {
-        "Effect" = "Allow",
-        "Action" = [
-          "logs:CreateLogStream",
-          "logs:PutLogEvents"
-        ],
-        "Resource" = [
-          "arn:aws:logs:${var.aws-region}:${aws_dynamodb_table.t-rss-reader-feeds-table.arn}:log-group:/aws/lambda/t-rss-reader-feeds-handler:*"
-        ]
-      }
-    ]
-  })
-}
-
 resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-dynamodb" {
   name = "t-rss-reader-handler-iam-policy-dynamodb"
   role = aws_iam_role.t-rss-reader-handler-iam-role.id
@@ -69,7 +44,22 @@ resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-dynamodb" {
           "dynamodb:Scan",
           "dynamodb:UpdateItem"
         ],
-        "Resource" = "arn:aws:dynamodb:${var.aws-region}:${aws_dynamodb_table.t-rss-reader-feeds-table.arn}:table/*"
+        "Resource" = "arn:aws:dynamodb:${var.aws-region}:${data.aws_caller_identity.current.account_id}:table/*"
+      },
+      {
+        "Effect"   = "Allow",
+        "Action"   = "logs:CreateLogGroup",
+        "Resource" = "*"
+      },
+      {
+        "Effect" = "Allow",
+        "Action" = [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource" = [
+          "arn:aws:logs:${var.aws-region}:${data.aws_caller_identity.current.account_id}:*"
+        ]
       }
     ]
   })
