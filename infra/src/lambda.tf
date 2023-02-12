@@ -38,7 +38,7 @@ resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-logs" {
       {
         "Effect"   = "Allow",
         "Action"   = "logs:CreateLogGroup",
-        "Resource" = "arn:aws:logs:ap-southeast-1:*:*"
+        "Resource" = "arn:aws:logs:${var.aws-region}:*:*"
       },
       {
         "Effect" = "Allow",
@@ -47,7 +47,7 @@ resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-logs" {
           "logs:PutLogEvents"
         ],
         "Resource" = [
-          "arn:aws:logs:ap-southeast-1:${aws_dynamodb_table.t-rss-reader-feeds-table.arn}:log-group:/aws/lambda/t-rss-reader-feeds-handler:*"
+          "arn:aws:logs:${var.aws-region}:${aws_dynamodb_table.t-rss-reader-feeds-table.arn}:log-group:/aws/lambda/t-rss-reader-feeds-handler:*"
         ]
       }
     ]
@@ -69,7 +69,7 @@ resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-dynamodb" {
           "dynamodb:Scan",
           "dynamodb:UpdateItem"
         ],
-        "Resource" = "arn:aws:dynamodb:ap-southeast-1:${aws_dynamodb_table.t-rss-reader-feeds-table.arn}:table/*"
+        "Resource" = "arn:aws:dynamodb:${var.aws-region}:${aws_dynamodb_table.t-rss-reader-feeds-table.arn}:table/*"
       }
     ]
   })
