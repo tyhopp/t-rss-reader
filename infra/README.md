@@ -33,6 +33,12 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 - `make create` to create the resource plan and apply it
 - `make delete` to create the resource deletion plan and apply it
 
+## Authorization
+
+Authorization is implemented via the `T_RSS_READER_TOKEN` environment variable. You will need to create and [add the env var to the lambda function](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-config). Requests then pass the `authorization` header with this value.
+
+Since this application is meant to be used by a single person and does not contain sensitive information, it's a fine enough solution.
+
 ## Useful docs
 
 - [Terraform CLI cheat sheet](https://acloudguru.com/blog/engineering/the-ultimate-terraform-cheatsheet)
