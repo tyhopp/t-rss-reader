@@ -1,6 +1,11 @@
 # infra
 
-Set up and tear down resources in AWS via Terraform.
+Set up and tear down these resources in AWS via Terraform:
+
+- DynamoDB table
+- Lambda function
+- API Gateway
+- IAM roles and policies
 
 ## Prerequisites
 
