@@ -19,6 +19,20 @@ export const handler = async (event) => {
     "Content-Type": "application/json",
   };
 
+  if (
+    !event.headers?.authorization ||
+    event.headers.authorization !== process.env.T_RSS_READER_TOKEN
+  ) {
+    statusCode = 403;
+    body = "Unauthorized";
+
+    return {
+      statusCode,
+      body,
+      headers,
+    };
+  }
+
   const requestBody = JSON.parse(event.body);
 
   try {
