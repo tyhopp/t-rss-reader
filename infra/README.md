@@ -33,9 +33,9 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 - `make create` to create the resource plan and apply it
 - `make delete` to create the resource deletion plan and apply it
 
-## Authorization
+## Authentication
 
-Authorization is implemented via the `T_RSS_READER_PASSWORD` environment variable. You will need to create and [add the env var both lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-config).
+Authentication is against the `T_RSS_READER_PASSWORD` environment variable. You will need to create and [add the env var both lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-config).
 
 This application is meant to be used by one person, so there is only one password.
 
