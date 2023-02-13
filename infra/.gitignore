@@ -1,4 +1,3 @@
-auth.sh
 .terraform
 *.out
 *.tfstate
