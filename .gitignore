@@ -5,3 +5,4 @@
 *.tfstate.lock.info
 *.zip
 node_modules
+.DS_Store

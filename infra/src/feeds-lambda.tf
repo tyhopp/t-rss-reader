@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "t-rss-reader-feeds-handler" {
   filename         = "feeds-handler.zip"
   function_name    = "t-rss-reader-feeds-handler"
-  role             = aws_iam_role.t-rss-reader-handler-iam-role.arn
+  role             = aws_iam_role.t-rss-reader-feeds-handler-iam-role.arn
   handler          = "src/feeds-handler/index.handler"
   source_code_hash = filebase64sha256("feeds-handler.zip")
   runtime          = "nodejs18.x"
@@ -12,8 +12,8 @@ resource "aws_cloudwatch_log_group" "t-rss-reader-feeds-handler-log-group" {
   retention_in_days = 30
 }
 
-resource "aws_iam_role" "t-rss-reader-handler-iam-role" {
-  name = "t-rss-reader-handler-iam"
+resource "aws_iam_role" "t-rss-reader-feeds-handler-iam-role" {
+  name = "t-rss-reader-feeds-handler-iam"
   assume_role_policy = jsonencode({
     "Version" = "2012-10-17"
     "Statement" = [
@@ -29,9 +29,9 @@ resource "aws_iam_role" "t-rss-reader-handler-iam-role" {
   })
 }
 
-resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-dynamodb" {
-  name = "t-rss-reader-handler-iam-policy-dynamodb"
-  role = aws_iam_role.t-rss-reader-handler-iam-role.id
+resource "aws_iam_role_policy" "t-rss-reader-feeds-handler-iam-policy" {
+  name = "t-rss-reader-feeds-handler-iam-policy"
+  role = aws_iam_role.t-rss-reader-feeds-handler-iam-role.id
   policy = jsonencode({
     "Version" = "2012-10-17"
     "Statement" = [
@@ -65,10 +65,10 @@ resource "aws_iam_role_policy" "t-rss-reader-handler-iam-policy-dynamodb" {
   })
 }
 
-resource "aws_lambda_permission" "t-rss-reader-handler-permission-api" {
+resource "aws_lambda_permission" "t-rss-reader-feeds-handler-permission-api" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.t-rss-reader-feeds-handler.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.t-rss-reader-handler-api.execution_arn}/*/*"
+  source_arn    = "${aws_apigatewayv2_api.t-rss-reader-feeds-handler-api.execution_arn}/*/*"
 }

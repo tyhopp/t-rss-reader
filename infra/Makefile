@@ -13,6 +13,7 @@ validate:
 	terraform validate
 
 create:
+	zip ./src/login-handler.zip ./src/login-handler/index.mjs
 	zip ./src/feeds-handler.zip ./src/feeds-handler/index.mjs
 	terraform -chdir=src apply
 
