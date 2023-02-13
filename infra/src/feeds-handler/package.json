@@ -10,5 +10,8 @@
     "//": "Create the zip adjacent to the source",
     "clean": "rm ../feeds-handler.zip",
     "build": "zip ../feeds-handler.zip index.mjs"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0"
   }
 }

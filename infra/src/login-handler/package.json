@@ -1,0 +1,21 @@
+{
+  "private": "true",
+  "name": "login-handler",
+  "description": "Lambda function that handles authentication",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "//": "Create the zip adjacent to the source",
+    "clean": "rm ../login-handler.zip",
+    "build": "zip ../login-handler.zip index.mjs"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.4"
+  }
+}

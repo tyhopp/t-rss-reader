@@ -35,9 +35,9 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 
 ## Authorization
 
-Authorization is implemented via the `T_RSS_READER_TOKEN` environment variable. You will need to create and [add the env var to the lambda function](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-config). Requests then pass the `authorization` header with this value.
+Authorization is implemented via the `T_RSS_READER_PASSWORD` environment variable. You will need to create and [add the env var both lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-config).
 
-Since this application is meant to be used by a single person and does not contain sensitive information, it's a fine enough solution.
+This application is meant to be used by one person, so there is only one password.
 
 ## Useful docs
 

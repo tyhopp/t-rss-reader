@@ -1,35 +1,30 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import {
   DynamoDBDocumentClient,
   ScanCommand,
   PutCommand,
-  DeleteCommand,
-} from "@aws-sdk/lib-dynamodb";
+  DeleteCommand
+} from '@aws-sdk/lib-dynamodb';
+import jwt from 'jsonwebtoken';
 
 const client = new DynamoDBClient({});
 
 const dynamo = DynamoDBDocumentClient.from(client);
 
-const tableName = "t-rss-reader-feeds-table";
+const tableName = 't-rss-reader-feeds-table';
+
+const headers = {
+  'Content-Type': 'application/json'
+};
 
 export const handler = async (event) => {
-  let body;
-  let statusCode = 200;
-  const headers = {
-    "Content-Type": "application/json",
-  };
-
-  if (
-    !event.headers?.authorization ||
-    event.headers.authorization !== process.env.T_RSS_READER_TOKEN
-  ) {
-    statusCode = 403;
-    body = "Unauthorized";
-
+  try {
+    jwt.verify(event.headers?.authorization, process.env.T_RSS_READER_PASSWORD);
+  } catch (_) {
     return {
-      statusCode,
-      body,
-      headers,
+      statusCode: 403,
+      body: 'Unauthorized',
+      headers
     };
   }
 
@@ -37,30 +32,30 @@ export const handler = async (event) => {
 
   try {
     switch (event.httpMethod) {
-      case "DELETE":
+      case 'DELETE':
         await dynamo.send(
           new DeleteCommand({
             TableName: tableName,
             Key: {
-              url: requestBody.url,
-            },
+              url: requestBody.url
+            }
           })
         );
         body = `Deleted item ${requestBody.url}`;
         break;
-      case "GET":
+      case 'GET':
         body = await dynamo.send(new ScanCommand({ TableName: tableName }));
         body = body.Items;
         break;
-      case "PUT":
+      case 'PUT':
         await dynamo.send(
           new PutCommand({
             TableName: tableName,
             Item: {
               url: requestBody.url,
               name: requestBody.name,
-              updatedAt: Date.now(),
-            },
+              updatedAt: Date.now()
+            }
           })
         );
         body = `Put item ${requestBody.url}`;
@@ -78,6 +73,6 @@ export const handler = async (event) => {
   return {
     statusCode,
     body,
-    headers,
+    headers
   };
 };
