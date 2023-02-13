@@ -26,18 +26,14 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 1. Change the Terraform Cloud organization in [`main.tf`](./src/main.tf) to yours
 2. `terraform login`
 3. Create a [Terraform Cloud variable set](https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets) with the AWS access keys and give the workspace access to the variable set
-4. `make init`
+4. Generate a password to use for authenticating client requests and save it somewhere safe
+5. `cp ./src/terraform-example.tfvars ./src/terraform.tfvars` and add the password to the file
+6. `make init`
 
 ## Create and delete resources
 
-- `make create` to create the resource plan and apply it
+- `make create` to create the resource creation plan and apply it
 - `make delete` to create the resource deletion plan and apply it
-
-## Authentication
-
-Authentication is against the `T_RSS_READER_PASSWORD` environment variable. You will need to create and [add the env var both lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-config).
-
-This application is meant to be used by one person, so there is only one password.
 
 ## Useful docs
 

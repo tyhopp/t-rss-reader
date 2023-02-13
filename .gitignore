@@ -4,5 +4,6 @@
 *.tfstate.backup
 *.tfstate.lock.info
 *.zip
+terraform.tfvars
 node_modules
 .DS_Store

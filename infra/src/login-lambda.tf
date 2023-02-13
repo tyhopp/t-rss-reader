@@ -5,6 +5,11 @@ resource "aws_lambda_function" "t-rss-reader-login-handler" {
   handler          = "src/login-handler/index.handler"
   source_code_hash = filebase64sha256("login-handler.zip")
   runtime          = "nodejs18.x"
+  environment {
+    variables = {
+      T_RSS_READER_PASSWORD = var.t-rss-reader-password
+    }
+  }
 }
 
 resource "aws_cloudwatch_log_group" "t-rss-reader-login-handler-log-group" {
