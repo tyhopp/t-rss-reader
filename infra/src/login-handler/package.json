@@ -9,13 +9,15 @@
   "scripts": {
     "//": "Create the zip adjacent to the source",
     "clean": "rm ../login-handler.zip",
-    "build": "zip ../login-handler.zip index.mjs"
+    "build": "zip ../login-handler.zip index.mjs",
+    "test": "node --test"
   },
   "dependencies": {
     "dayjs": "^1.11.7",
     "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
+    "chai": "^4.3.7",
     "prettier": "^2.8.4"
   }
 }

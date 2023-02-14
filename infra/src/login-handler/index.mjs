@@ -7,8 +7,8 @@ const headers = {
 
 export const handler = async (event) => {
   if (
-    !event.headers?.authorization ||
-    event.headers.authorization !== process.env.T_RSS_READER_PASSWORD
+    !event?.headers?.authorization ||
+    event?.headers?.authorization !== process.env.T_RSS_READER_PASSWORD
   ) {
     return {
       statusCode: 401,
