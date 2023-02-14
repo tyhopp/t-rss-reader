@@ -23,12 +23,14 @@ export const handler = async (event) => {
   } catch (_) {
     return {
       statusCode: 403,
-      body: 'Unauthorized',
+      body: JSON.stringify({ message: 'Unauthorized' }),
       headers
     };
   }
 
   const requestBody = JSON.parse(event.body);
+
+  let responseBody = {};
 
   try {
     switch (event.httpMethod) {
@@ -41,11 +43,11 @@ export const handler = async (event) => {
             }
           })
         );
-        body = `Deleted item ${requestBody.url}`;
+        responseBody = { message: `Deleted item ${requestBody.url}` };
         break;
       case 'GET':
-        body = await dynamo.send(new ScanCommand({ TableName: tableName }));
-        body = body.Items;
+        responseBody = await dynamo.send(new ScanCommand({ TableName: tableName }));
+        responseBody = responseBody.Items;
         break;
       case 'PUT':
         await dynamo.send(
@@ -58,21 +60,24 @@ export const handler = async (event) => {
             }
           })
         );
-        body = `Put item ${requestBody.url}`;
+        responseBody = { message: `Put item ${requestBody.url}` };
         break;
       default:
         throw new Error(`Unsupported method: "${event.httpMethod}"`);
     }
   } catch (err) {
-    statusCode = 400;
-    body = err.message;
-  } finally {
-    body = JSON.stringify(body);
+    console.error(err.message);
+
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'Operation failed' }),
+      headers
+    };
   }
 
   return {
-    statusCode,
-    body,
+    statusCode: 200,
+    body: JSON.stringify(responseBody),
     headers
   };
 };
