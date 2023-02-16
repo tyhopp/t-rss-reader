@@ -23,11 +23,11 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 
 ## Setup
 
-1. Change the Terraform Cloud organization in [`main.tf`](./src/main.tf) to yours
+1. Change the Terraform Cloud organization in [`main.tf`](./main.tf) to yours
 2. `terraform login`
 3. Create a [Terraform Cloud variable set](https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets) with the AWS access keys and give the workspace access to the variable set
 4. Generate a password to use for authenticating client requests and save it somewhere safe
-5. `cp ./src/terraform-example.tfvars ./src/terraform.tfvars` and add the password to the file
+5. `cp ./terraform-example.tfvars ./terraform.tfvars` and add the password to the file
 6. `make init`
 
 ## Create and delete resources
