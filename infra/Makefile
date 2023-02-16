@@ -1,6 +1,6 @@
 targets = init validate create delete
-login_handler_path = ./src/lambda-functions/login-handler
-feeds_handler_path = ./src/lambda-functions/feeds-handler
+login_handler_path = ./lambda-functions/login-handler
+feeds_handler_path = ./lambda-functions/feeds-handler
 
 .PHONY: help $(targets)
 
@@ -10,7 +10,7 @@ help:
 init:
 	$(MAKE) -C $(login_handler_path) install
 	$(MAKE) -C $(feeds_handler_path) install
-	terraform -chdir=src init
+	terraform init
 
 validate:
 	terraform fmt
@@ -19,9 +19,9 @@ validate:
 create:
 	$(MAKE) -C $(login_handler_path) prepare
 	$(MAKE) -C $(feeds_handler_path) prepare
-	terraform -chdir=src apply -var-file="terraform.tfvars"
+	terraform apply -var-file="terraform.tfvars"
 
 delete:
-	terraform -chdir=src apply -var-file="terraform.tfvars" -destroy
+	terraform apply -var-file="terraform.tfvars" -destroy
 	$(MAKE) -C $(login_handler_path) clean
 	$(MAKE) -C $(feeds_handler_path) clean
