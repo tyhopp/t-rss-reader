@@ -22,6 +22,18 @@ jobs:
         with:
           node-version: ${{ matrix.nodejs }}
 
+      - name: Install login-handler dependencies
+        working-directory: ./infra/src/lambda-functions/login-handler
+        run: npm install
+
+      - name: Install feeds-handler dependencies
+        working-directory: ./infra/src/lambda-functions/feeds-handler
+        run: npm install
+
       - name: Run login-handler tests
-        working-directory: ./infra/src/login-handler
+        working-directory: ./infra/src/lambda-functions/login-handler
+        run: npm run test
+
+      - name: Run feeds-handler tests
+        working-directory: ./infra/src/lambda-functions/feeds-handler
         run: npm run test

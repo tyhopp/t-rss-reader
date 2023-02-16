@@ -1,9 +1,12 @@
-targets = prepare clean
+targets = install prepare clean
 
 .PHONY: help $(targets)
 
 help:
 	@echo "Available targets: $(targets)"
+
+install:
+	npm install
 
 prepare:
 	npm run build

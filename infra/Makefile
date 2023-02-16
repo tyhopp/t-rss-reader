@@ -1,6 +1,6 @@
 targets = init validate create delete
-login_handler_path = ./src/login-handler
-feeds_handler_path = ./src/feeds-handler
+login_handler_path = ./src/lambda-functions/login-handler
+feeds_handler_path = ./src/lambda-functions/feeds-handler
 
 .PHONY: help $(targets)
 
@@ -8,6 +8,8 @@ help:
 	@echo "Available targets: $(targets)"
 
 init:
+	$(MAKE) -C $(login_handler_path) install
+	$(MAKE) -C $(feeds_handler_path) install
 	terraform -chdir=src init
 
 validate:
