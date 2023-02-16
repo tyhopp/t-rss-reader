@@ -1,6 +1,6 @@
 targets = init validate create delete
-login_handler_path = ./lambda-functions/login-handler
-feeds_handler_path = ./lambda-functions/feeds-handler
+login_handler_path = ./login-handler
+feeds_handler_path = ./feeds-handler
 
 .PHONY: help $(targets)
 
