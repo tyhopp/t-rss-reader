@@ -1,8 +1,8 @@
 resource "aws_lambda_function" "t-rss-reader-feeds-handler" {
-  filename         = "feeds-handler.zip"
+  filename         = "feeds-handler/feeds-handler.zip"
   function_name    = "t-rss-reader-feeds-handler"
   role             = aws_iam_role.t-rss-reader-feeds-handler-iam-role.arn
-  handler          = "src/feeds-handler/index.handler"
+  handler          = "dist/index.handler"
   source_code_hash = filebase64sha256("feeds-handler.zip")
   runtime          = "nodejs18.x"
   environment {

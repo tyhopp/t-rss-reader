@@ -1,4 +1,6 @@
 targets = init validate create delete
+login_handler_path = ./src/login-handler
+feeds_handler_path = ./src/feeds-handler
 
 .PHONY: help $(targets)
 
@@ -13,11 +15,11 @@ validate:
 	terraform validate
 
 create:
-	zip -r ./src/login-handler.zip ./src/login-handler
-	zip -r ./src/feeds-handler.zip ./src/feeds-handler
+	$(MAKE) -C $(login_handler_path) prepare
+	$(MAKE) -C $(feeds_handler_path) prepare
 	terraform -chdir=src apply -var-file="terraform.tfvars"
 
 delete:
 	terraform -chdir=src apply -var-file="terraform.tfvars" -destroy
-	rm -f ./src/login-handler.zip
-	rm -f ./src/feeds-handler.zip
+	$(MAKE) -C $(login_handler_path) clean
+	$(MAKE) -C $(feeds_handler_path) clean

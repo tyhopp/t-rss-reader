@@ -6,4 +6,5 @@
 *.zip
 terraform.tfvars
 node_modules
+dist
 .DS_Store

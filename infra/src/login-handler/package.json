@@ -7,17 +7,22 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "//": "Create the zip adjacent to the source",
-    "clean": "rm ../login-handler.zip",
-    "build": "zip ../login-handler.zip index.mjs",
-    "test": "node --test"
+    "clean": "del dist login-handler.zip",
+    "build": "ncc build ./src/index.ts --out dist --minify",
+    "zip": "zip login-handler.zip ./dist",
+    "test": "vitest"
   },
   "dependencies": {
     "dayjs": "^1.11.7",
     "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
-    "chai": "^4.3.7",
-    "prettier": "^2.8.4"
+    "@types/aws-lambda": "^8.10.110",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@vercel/ncc": "^0.36.1",
+    "del-cli": "^5.0.0",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5",
+    "vitest": "^0.28.5"
   }
 }
