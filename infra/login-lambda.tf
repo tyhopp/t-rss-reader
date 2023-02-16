@@ -1,9 +1,9 @@
 resource "aws_lambda_function" "t-rss-reader-login-handler" {
-  filename         = "./lambda-functions/login-handler/login-handler.zip"
+  filename         = "./login-handler/login-handler.zip"
   function_name    = "t-rss-reader-login-handler"
   role             = aws_iam_role.t-rss-reader-login-handler-iam-role.arn
   handler          = "./dist/index.handler"
-  source_code_hash = filebase64sha256("./lambda-functions/login-handler/login-handler.zip")
+  source_code_hash = filebase64sha256("./login-handler/login-handler.zip")
   runtime          = "nodejs18.x"
   environment {
     variables = {
