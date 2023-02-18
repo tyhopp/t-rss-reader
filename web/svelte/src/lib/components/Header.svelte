@@ -12,6 +12,8 @@
 
 <style>
   h1 {
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 700;
     font-size: 20px;
   }
 

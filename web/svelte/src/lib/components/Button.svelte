@@ -8,7 +8,8 @@
 
 <style>
   button {
-    font-family: 'Okomito Regular', 'sans-serif';
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 500;
     border: 1px dashed var(--line);
     background-color: transparent;
     margin: 0.5em;
