@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let label: string
+  export let label: string;
 </script>
 
 <button type="button">
@@ -14,5 +14,6 @@
     background-color: transparent;
     margin: 0.5em;
     padding: 0.5em 1em;
+    cursor: pointer;
   }
 </style>

@@ -1,5 +1,5 @@
 <script>
-  import Button from "./Button.svelte"
+  import Button from './Button.svelte';
 </script>
 
 <header>
@@ -21,6 +21,7 @@
     display: flex;
     justify-content: space-between;
     height: 50px;
+    padding: 0 1em;
   }
 
   .buttons {

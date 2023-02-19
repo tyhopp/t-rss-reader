@@ -4,22 +4,24 @@
 </script>
 
 <li>
-  <p class="list-item-name">{name}</p>
-  <p class="list-item-url">{url}</p>
+  <p>{name}</p>
+  <p>{url}</p>
 </li>
 
 <style>
   li {
     list-style: none;
-    width: 350px;
-    height: 60px;
+    padding: 1em;
+    border-bottom: 1px dashed var(--line);
+    cursor: pointer;
   }
 
-  .list-item-name {
-    font-weight: 500;
+  li > * {
+    margin: 0.25em 0 0.5em 0;
   }
 
-  .list-item-url {
+  li > p:last-child {
     font-size: 14px;
+    opacity: 75%;
   }
 </style>

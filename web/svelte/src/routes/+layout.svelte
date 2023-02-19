@@ -1,8 +1,14 @@
 <svelte:head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&text=t-rss-reader&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&text=t-rss-reader&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root {
       --text: #363535;
@@ -14,20 +20,31 @@
     html {
       font-family: 'Roboto Slab', sans-serif;
       text: var(--text);
-      background-color: var(--background)
+      background-color: var(--background);
     }
   </style>
 </svelte:head>
 
-<main>
-  <slot />
-</main>
+<slot />
 
 <style>
-  main {
+  :global(body) {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  :global(main#sveltekit-body) {
     display: flex;
     flex-direction: column;
     max-width: 1000px;
+    height: 100%;
     margin: 0 auto;
+  }
+
+  :global(main#sveltekit-body > *) {
+    min-width: 0;
+    min-height: 0;
   }
 </style>
