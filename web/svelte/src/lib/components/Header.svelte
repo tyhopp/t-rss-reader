@@ -7,6 +7,7 @@
   <div class="buttons">
     <Button label="Edit" />
     <Button label="Add" />
+    <Button label="Log in" />
   </div>
 </header>
 
@@ -21,11 +22,11 @@
     display: flex;
     justify-content: space-between;
     height: 50px;
-    padding: 0 1em;
   }
 
   .buttons {
     display: flex;
     align-items: center;
+    margin-right: -0.5em;
   }
 </style>
