@@ -1,13 +1,20 @@
-<script>
+<script lang="ts">
+  import { onMount } from 'svelte';
   import Button from './Button.svelte';
+  import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
+
+  let disabled: boolean = false;
+
+  onMount(() => {
+    disabled = !localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+  });
 </script>
 
 <header>
   <h1>t-rss-reader</h1>
   <div class="buttons">
-    <Button label="Edit" />
-    <Button label="Add" />
-    <Button label="Log in" />
+    <Button label="Edit" {disabled} />
+    <Button label="Add" {disabled} />
   </div>
 </header>
 

@@ -1,1 +1,4 @@
-export type ServiceResponse = Promise<Record<string, unknown>>;
+export interface Feed {
+  name: string;
+  url: string;
+}

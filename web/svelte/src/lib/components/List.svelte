@@ -1,11 +1,8 @@
 <script lang="ts">
   import ListItem from './ListItem.svelte';
+  import type { Feed } from '../types';
 
-  // TODO: Remove
-  let feeds: Array<{ name: string; url: string }> = new Array(100).fill({
-    name: `Ty Hopp's programming blog`,
-    url: `https://tyhopp.com/rss.xml`
-  });
+  export let feeds: Array<Feed>;
 </script>
 
 <ul>
