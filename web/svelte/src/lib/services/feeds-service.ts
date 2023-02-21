@@ -12,9 +12,17 @@ export class FeedsService {
   }
 
   private headersWithAuthorization(): HeadersInit {
+    const token = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+
+    if (!token) {
+      return this.headers;
+    }
+
+    const { accessToken } = JSON.parse(token) || {};
+
     return {
       ...this.headers,
-      authorization: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY) || ''
+      authorization: accessToken
     };
   }
 
