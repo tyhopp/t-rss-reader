@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "del dist login-handler.zip",
     "build": "ncc build ./src/index.ts --out dist --minify",
-    "zip": "zip login-handler.zip ./dist",
+    "zip": "zip -r login-handler.zip ./dist",
     "test": "vitest"
   },
   "dependencies": {

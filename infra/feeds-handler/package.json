@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "del dist feeds-handler.zip",
     "build": "ncc build ./src/index.ts --out dist --external @aws-sdk/client-dynamodb --external @aws-sdk/lib-dynamodb --minify",
-    "zip": "zip feeds-handler.zip ./dist",
+    "zip": "zip -r feeds-handler.zip ./dist",
     "test": "vitest"
   },
   "dependencies": {
