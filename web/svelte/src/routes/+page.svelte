@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { tokenStore } from '$lib/stores/token-store';
-  import ListDetails from '$lib/widgets/ListDetails.svelte';
   import { FeedsService } from '$lib/services/feeds-service';
+  import ListDetails from '$lib/widgets/ListDetails.svelte';
+  import AddFeedModal from '$lib/widgets/AddFeedModal.svelte';
 
   let FeedsServiceInstance: FeedsService;
 
@@ -30,6 +31,8 @@
     There was an error: {error.message}
   {/await}
 {/if}
+
+<AddFeedModal />
 
 <style>
   div {

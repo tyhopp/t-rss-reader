@@ -4,7 +4,7 @@
   export let disabled: boolean = false;
 </script>
 
-<button {type} {disabled}>
+<button {type} {disabled} on:click>
   {label}
 </button>
 
