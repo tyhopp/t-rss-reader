@@ -1,5 +1,6 @@
 <script lang="ts">
   import ListItem from './ListItem.svelte';
+  import Button from './Button.svelte';
   import type { Feeds } from '../types';
 
   export let feeds: Feeds;
@@ -9,6 +10,12 @@
   {#each feeds as { name, url }}
     <ListItem {name} {url} />
   {/each}
+  {#if feeds.length === 0}
+    <div>
+      <p>No feeds yet</p>
+      <Button label="Add" />
+    </div>
+  {/if}
 </ul>
 
 <style>
@@ -29,5 +36,10 @@
     ul {
       max-width: 350px;
     }
+  }
+
+  div {
+    margin: 2em 1em;
+    text-align: center;
   }
 </style>
