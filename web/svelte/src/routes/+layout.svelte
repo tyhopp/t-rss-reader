@@ -1,3 +1,7 @@
+<script>
+  import Header from '$lib/components/Header.svelte';
+</script>
+
 <svelte:head>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
@@ -25,6 +29,7 @@
   </style>
 </svelte:head>
 
+<Header />
 <slot />
 
 <style>

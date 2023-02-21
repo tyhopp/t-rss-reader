@@ -1,9 +1,9 @@
 <script lang="ts">
   import List from '../components/List.svelte';
   import Details from '../components/Details.svelte';
-  import type { Feed } from '../types';
+  import type { Feeds } from '../types';
 
-  export let feeds: Array<Feed>;
+  export let feeds: Feeds;
 </script>
 
 <section>

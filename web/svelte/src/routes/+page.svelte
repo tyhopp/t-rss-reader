@@ -1,25 +1,35 @@
-<script>
-  import Header from '$lib/components/Header.svelte';
-  import LoginForm from '$lib/widgets/LoginForm.svelte';
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import { tokenStore } from '$lib/stores/token-store';
   import ListDetails from '$lib/widgets/ListDetails.svelte';
   import { FeedsService } from '$lib/services/feeds-service';
 
-  let FeedsServiceInstance = new FeedsService();
+  let FeedsServiceInstance: FeedsService;
+
+  onMount(() => {
+    tokenStore.subscribe(({ maybeValid }) => {
+      if (maybeValid) {
+        FeedsServiceInstance = new FeedsService();
+      } else {
+        location.assign('/login');
+      }
+    });
+  });
 </script>
 
-<Header />
-
-{#await FeedsServiceInstance.getFeeds()}
-  <div>Loading...</div>
-{:then response}
-  {#if response?.message === 'Unauthorized'}
-    <LoginForm />
-  {:else if response?.feeds}
-    <ListDetails feeds={response.feeds} />
-  {/if}
-{:catch error}
-  There was an error
-{/await}
+{#if FeedsServiceInstance instanceof FeedsService}
+  {#await FeedsServiceInstance.getFeeds()}
+    <div>Loading...</div>
+  {:then response}
+    {#if 'message' in response && response.message === 'Unauthorized'}
+      {location.assign('/login')}
+    {:else if 'feeds' in response && Array.isArray(response.feeds)}
+      <ListDetails feeds={response.feeds} />
+    {/if}
+  {:catch error}
+    There was an error: {error.message}
+  {/await}
+{/if}
 
 <style>
   div {

@@ -1,30 +1,27 @@
 import { PUBLIC_API_FEEDS } from '$env/static/public';
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
-import type { Feed } from '../types';
+import type { Message, Feeds } from '../types';
 
-interface FeedsServiceResponseBody {
-  message?: string;
-  feeds?: Array<Feed>;
-}
-
-type FeedsServiceResponse = Promise<FeedsServiceResponseBody>;
+type FeedsServiceResponse = Promise<Message | { feeds: Feeds }>;
 
 export class FeedsService {
-  private get accessToken(): string {
-    return localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY) || '';
-  }
-
   private get headers(): HeadersInit {
     return {
-      'content-type': 'application/json',
-      authorization: this.accessToken
+      'content-type': 'application/json'
+    };
+  }
+
+  private headersWithAuthorization(): HeadersInit {
+    return {
+      ...this.headers,
+      authorization: localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY) || ''
     };
   }
 
   async deleteFeed(url: string): FeedsServiceResponse {
     const response = await fetch(PUBLIC_API_FEEDS, {
       method: 'DELETE',
-      headers: this.headers,
+      headers: this.headersWithAuthorization(),
       body: JSON.stringify({ url })
     });
 
@@ -34,7 +31,7 @@ export class FeedsService {
   async getFeeds(): FeedsServiceResponse {
     const response = await fetch(PUBLIC_API_FEEDS, {
       method: 'GET',
-      headers: this.headers
+      headers: this.headersWithAuthorization()
     });
 
     return await response.json();
@@ -43,7 +40,7 @@ export class FeedsService {
   async putFeed(url: string, name: string): FeedsServiceResponse {
     const response = await fetch(PUBLIC_API_FEEDS, {
       method: 'PUT',
-      headers: this.headers,
+      headers: this.headersWithAuthorization(),
       body: JSON.stringify({ url, name })
     });
 

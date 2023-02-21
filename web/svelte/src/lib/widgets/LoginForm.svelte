@@ -1,7 +1,7 @@
 <script lang="ts">
   import Button from '../components/Button.svelte';
   import { LoginService } from '../services/login-service';
-  import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
+  import { tokenStore } from '../stores/token-store';
 
   let LoginServiceInstance = new LoginService();
 
@@ -37,8 +37,9 @@
     password = undefined;
 
     if ('accessToken' in response) {
-      localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY, JSON.stringify(response));
       result = 'success';
+      tokenStore.set(response);
+      location.assign('/');
     } else {
       result = 'failure';
     }

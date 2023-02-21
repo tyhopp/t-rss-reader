@@ -1,12 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { tokenStore } from '../stores/token-store';
   import Button from './Button.svelte';
-  import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
 
-  let disabled: boolean = false;
+  let disabled: boolean = true;
 
   onMount(() => {
-    disabled = !localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+    tokenStore.subscribe(({ maybeValid }) => {
+      if (maybeValid) {
+        disabled = false;
+      }
+    });
   });
 </script>
 

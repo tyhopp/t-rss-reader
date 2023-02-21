@@ -1,8 +1,8 @@
 <script lang="ts">
   import ListItem from './ListItem.svelte';
-  import type { Feed } from '../types';
+  import type { Feeds } from '../types';
 
-  export let feeds: Array<Feed>;
+  export let feeds: Feeds;
 </script>
 
 <ul>

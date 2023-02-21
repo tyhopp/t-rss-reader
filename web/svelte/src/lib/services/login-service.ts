@@ -1,13 +1,5 @@
 import { PUBLIC_API_LOGIN } from '$env/static/public';
-
-interface LoginServiceResponseBody {
-  message?: string;
-  accessToken?: string;
-  tokenType?: string;
-  expiresIn?: number;
-}
-
-type LoginServiceResponse = Promise<LoginServiceResponseBody>;
+import type { Message, Token } from '../types';
 
 export class LoginService {
   private get headers(): HeadersInit {
@@ -16,7 +8,7 @@ export class LoginService {
     };
   }
 
-  async login(password: string): LoginServiceResponse {
+  async login(password: string): Promise<Message | Token> {
     const response = await fetch(PUBLIC_API_LOGIN, {
       method: 'POST',
       cache: 'no-cache',
