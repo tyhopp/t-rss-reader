@@ -7,37 +7,32 @@ const feedsServiceInstance = new FeedsService();
 
 const feedsStoreInstance = writable<Feeds>([]);
 
-function restoreCachedFeeds(): boolean {
+function maybeRestoreCachedFeeds() {
   try {
     const cachedFeeds = localStorage.getItem(LOCAL_STORAGE_FEEDS_CACHE_KEY);
 
     if (!cachedFeeds) {
-      return false;
+      return;
     }
 
     const parsedCachedFeeds: Feeds = JSON.parse(cachedFeeds);
 
     feedsStoreInstance.set(parsedCachedFeeds);
-
-    return true;
   } catch (error) {
     console.warn('Failed to restore cached feeds', { error });
-    return false;
   }
 }
 
 export const feedsStore = {
   init: async () => {
-    const restored = restoreCachedFeeds();
+    maybeRestoreCachedFeeds();
 
     const response = await feedsServiceInstance.getFeeds();
 
     if (response.status === 200) {
       const nextFeeds = await response.json();
 
-      if (!restored) {
-        localStorage.setItem(LOCAL_STORAGE_FEEDS_CACHE_KEY, JSON.stringify(nextFeeds));
-      }
+      localStorage.setItem(LOCAL_STORAGE_FEEDS_CACHE_KEY, JSON.stringify(nextFeeds));
 
       feedsStoreInstance.set(nextFeeds);
     }
