@@ -14,3 +14,5 @@ export interface Token {
 export interface Message {
   message: string;
 }
+
+export type FormResult = 'none' | 'success' | 'failure';

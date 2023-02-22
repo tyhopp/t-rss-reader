@@ -1,8 +1,6 @@
 import { FEEDS_API, LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
 import type { Message, Feeds } from '../types';
 
-type FeedsServiceResponse = Promise<Message | { feeds: Feeds }>;
-
 export class FeedsService {
   private get headers(): HeadersInit {
     return {
@@ -25,7 +23,7 @@ export class FeedsService {
     };
   }
 
-  async deleteFeed(url: string): FeedsServiceResponse {
+  async deleteFeed(url: string): Promise<Message> {
     const response = await fetch(FEEDS_API, {
       method: 'DELETE',
       headers: this.headersWithAuthorization(),
@@ -35,7 +33,7 @@ export class FeedsService {
     return await response.json();
   }
 
-  async getFeeds(): FeedsServiceResponse {
+  async getFeeds(): Promise<Message | { feeds: Feeds }> {
     const response = await fetch(FEEDS_API, {
       method: 'GET',
       headers: this.headersWithAuthorization()
@@ -44,7 +42,7 @@ export class FeedsService {
     return await response.json();
   }
 
-  async putFeed(url: string, name: string): FeedsServiceResponse {
+  async putFeed(url: string, name: string): Promise<Message> {
     const response = await fetch(FEEDS_API, {
       method: 'PUT',
       headers: this.headersWithAuthorization(),

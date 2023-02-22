@@ -1,28 +1,76 @@
-<script>
+<script lang="ts">
   import Modal from '../components/Modal.svelte';
+  import FormResultMessage from '../components/FormResultMessage.svelte';
   import Button from '../components/Button.svelte';
+  import { FeedsService } from '../services/feeds-service';
   import { modalStore } from '../stores/modal-store';
+  import type { FormResult } from '../types';
+
+  let name: string | undefined;
+  let url: string | undefined;
+  let loading: boolean = false;
+  let result: FormResult = 'none';
+
+  modalStore.subscribe((open) => {
+    if (!open) {
+      name = undefined;
+      url = undefined;
+      loading = false;
+      result = 'none';
+    }
+  });
+
+  async function onSubmit(): Promise<void> {
+    loading = true;
+
+    const feedsServiceInstance = new FeedsService();
+
+    if (!name || !url) {
+      loading = false;
+      return;
+    }
+
+    const response = await feedsServiceInstance.putFeed(name, url);
+
+    if (response.message === `Put feed ${url}`) {
+      result = 'success';
+      // TODO: Revalidate list feed
+    } else {
+      result = 'failure';
+    }
+
+    loading = false;
+
+    setTimeout(() => {
+      result = 'none';
+    }, 3000);
+  }
 </script>
 
 <Modal>
   <span slot="title">Add feed</span>
   <span slot="body">
     <div class="add-feed-modal-body">
-      <form>
+      <form on:submit|preventDefault={onSubmit}>
+        <FormResultMessage {result} --margin="0 0 1em 0" />
         <div>
-          <label for="feed-name">Name</label>
+          <label for="name">Name</label>
           <!-- svelte-ignore a11y-autofocus -->
-          <input type="text" name="feed-name" required autofocus />
+          <input bind:value={name} type="text" name="name" required autofocus disabled={loading} />
         </div>
         <div>
-          <label for="feed-url">URL</label>
-          <input type="text" name="feed-url" required />
+          <label for="url">URL</label>
+          <input bind:value={url} type="text" name="url" required disabled={loading} />
+        </div>
+        <div class="add-feed-modal-buttons">
+          <Button label="Cancel" on:click={() => modalStore.toggle()} disabled={loading} />
+          <Button
+            type="submit"
+            label={loading ? 'Adding...' : 'Add'}
+            disabled={loading || !name || !url}
+          />
         </div>
       </form>
-      <div class="add-feed-modal-buttons">
-        <Button label="Cancel" on:click={() => modalStore.toggle()} />
-        <Button label="Add" />
-      </div>
     </div>
   </span>
 </Modal>
@@ -53,9 +101,14 @@
     margin: 0.5rem;
   }
 
+  input[disabled] {
+    opacity: 75%;
+    cursor: not-allowed;
+  }
+
   .add-feed-modal-buttons {
     display: flex;
     justify-content: flex-end;
-    margin-top: 0.5em;
+    margin-top: 1em;
   }
 </style>
