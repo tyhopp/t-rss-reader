@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { modalOpen } from '../stores/modal-store';
+  import { modalStore } from '../stores/modal-store';
 
-  function onBackgroundClick() {
-    modalOpen.update((current) => !current);
+  function onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      modalStore.toggle();
+    }
   }
 </script>
 
-{#if $modalOpen}
-  <!-- TODO: Implement focus handling with keyboard -->
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <div id="modal" on:click={onBackgroundClick}>
-    <div id="modal-content" on:click|stopPropagation>
+{#if $modalStore}
+  <div id="modal" on:click={modalStore.toggle} on:keydown={onKeyDown}>
+    <div id="modal-content" on:click|stopPropagation on:keydown>
       <h1>
         <slot name="title" />
       </h1>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { tokenStore } from '../stores/token-store';
-  import { modalOpen } from '../stores/modal-store';
+  import { modalStore } from '../stores/modal-store';
   import Button from './Button.svelte';
 
   let disabled: boolean = true;
@@ -19,7 +19,7 @@
   <h1>t-rss-reader</h1>
   <div class="buttons">
     <Button label="Edit" {disabled} />
-    <Button label="Add" {disabled} on:click={() => modalOpen.update((current) => !current)} />
+    <Button label="Add" {disabled} on:click={() => modalStore.toggle()} />
   </div>
 </header>
 

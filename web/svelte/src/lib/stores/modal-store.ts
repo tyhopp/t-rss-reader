@@ -1,3 +1,8 @@
 import { writable } from 'svelte/store';
 
-export const modalOpen = writable(false);
+const modalStoreInstance = writable(false);
+
+export const modalStore = {
+  subscribe: modalStoreInstance.subscribe,
+  toggle: () => modalStoreInstance.update((current) => !current)
+};

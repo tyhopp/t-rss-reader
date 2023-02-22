@@ -1,7 +1,7 @@
 <script lang="ts">
   import ListItem from './ListItem.svelte';
   import Button from './Button.svelte';
-  import { modalOpen } from '../stores/modal-store';
+  import { modalStore } from '../stores/modal-store';
   import type { Feeds } from '../types';
 
   export let feeds: Feeds;
@@ -14,7 +14,7 @@
   {#if feeds.length === 0}
     <div>
       <p>No feeds yet</p>
-      <Button label="Add" on:click={() => modalOpen.update((current) => !current)} />
+      <Button label="Add" on:click={() => modalStore.toggle()} />
     </div>
   {/if}
 </ul>

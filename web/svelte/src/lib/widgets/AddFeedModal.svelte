@@ -1,7 +1,7 @@
 <script>
   import Modal from '../components/Modal.svelte';
   import Button from '../components/Button.svelte';
-  import { modalOpen } from '../stores/modal-store';
+  import { modalStore } from '../stores/modal-store';
 </script>
 
 <Modal>
@@ -11,7 +11,8 @@
       <form>
         <div>
           <label for="feed-name">Name</label>
-          <input type="text" name="feed-name" required />
+          <!-- svelte-ignore a11y-autofocus -->
+          <input type="text" name="feed-name" required autofocus />
         </div>
         <div>
           <label for="feed-url">URL</label>
@@ -19,7 +20,7 @@
         </div>
       </form>
       <div class="add-feed-modal-buttons">
-        <Button label="Cancel" on:click={() => modalOpen.update((current) => !current)} />
+        <Button label="Cancel" on:click={() => modalStore.toggle()} />
         <Button label="Add" />
       </div>
     </div>
