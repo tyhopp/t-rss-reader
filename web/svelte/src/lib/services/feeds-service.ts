@@ -1,5 +1,4 @@
-import { PUBLIC_API_FEEDS } from '$env/static/public';
-import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
+import { FEEDS_API, LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
 import type { Message, Feeds } from '../types';
 
 type FeedsServiceResponse = Promise<Message | { feeds: Feeds }>;
@@ -27,7 +26,7 @@ export class FeedsService {
   }
 
   async deleteFeed(url: string): FeedsServiceResponse {
-    const response = await fetch(PUBLIC_API_FEEDS, {
+    const response = await fetch(FEEDS_API, {
       method: 'DELETE',
       headers: this.headersWithAuthorization(),
       body: JSON.stringify({ url })
@@ -37,7 +36,7 @@ export class FeedsService {
   }
 
   async getFeeds(): FeedsServiceResponse {
-    const response = await fetch(PUBLIC_API_FEEDS, {
+    const response = await fetch(FEEDS_API, {
       method: 'GET',
       headers: this.headersWithAuthorization()
     });
@@ -46,7 +45,7 @@ export class FeedsService {
   }
 
   async putFeed(url: string, name: string): FeedsServiceResponse {
-    const response = await fetch(PUBLIC_API_FEEDS, {
+    const response = await fetch(FEEDS_API, {
       method: 'PUT',
       headers: this.headersWithAuthorization(),
       body: JSON.stringify({ url, name })
