@@ -41,16 +41,13 @@ export const handler = async (event: APIGatewayEvent) => {
 
     switch (event.httpMethod) {
       case 'DELETE':
-        await feedsTableInstance.deleteFeed(requestBody.url);
-        responseBody = { message: `Deleted feed ${requestBody.url}` };
+        responseBody = await feedsTableInstance.deleteFeed(requestBody.url);
         break;
       case 'GET':
-        const response = await feedsTableInstance.getFeeds();
-        responseBody = { feeds: response.Items };
+        responseBody = await feedsTableInstance.getFeeds();
         break;
       case 'PUT':
-        await feedsTableInstance.putFeed(requestBody.url, requestBody.name);
-        responseBody = { message: `Put feed ${requestBody.url}` };
+        responseBody = await feedsTableInstance.putFeed(requestBody.url, requestBody.name);
         break;
       default:
         return {

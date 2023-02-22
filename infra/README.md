@@ -39,3 +39,8 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 
 - [Terraform CLI cheat sheet](https://acloudguru.com/blog/engineering/the-ultimate-terraform-cheatsheet)
 - [Terraform AWS provider docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+
+## Gotchas
+
+- Terraform sometimes throws a concurrent modification error when creating routes. It looks like this: `Error: creating API Gateway v2 route: ConflictException: Unable to complete operation due to concurrent modification. Please try again later`. Re-run `make create`.
+- Terraform sometimes doesn't pick up certain changes when diffing, such as DyanmoDB attributes. Run `make destroy` and `make create` if you don't yet have data you care about in the database.

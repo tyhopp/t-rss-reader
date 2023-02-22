@@ -13,6 +13,6 @@ resource "aws_dynamodb_table" "t-rss-reader-feeds-table" {
 
   attribute {
     name = "updatedAt"
-    type = "S"
+    type = "N"
   }
 }
