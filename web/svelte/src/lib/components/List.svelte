@@ -2,20 +2,19 @@
   import ListItem from './ListItem.svelte';
   import Button from './Button.svelte';
   import { modalStore } from '../stores/modal-store';
-  import type { Feeds } from '../types';
-
-  export let feeds: Feeds;
+  import { feedsStore } from '../stores/feeds-store';
 </script>
 
 <ul>
-  {#each feeds as { name, url }}
-    <ListItem {name} {url} />
-  {/each}
-  {#if feeds.length === 0}
+  {#if $feedsStore?.length === 0}
     <div>
       <p>No feeds yet</p>
       <Button label="Add" on:click={() => modalStore.toggle()} />
     </div>
+  {:else}
+    {#each $feedsStore as { name, url }}
+      <ListItem {name} {url} />
+    {/each}
   {/if}
 </ul>
 

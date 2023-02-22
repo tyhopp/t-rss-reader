@@ -4,6 +4,7 @@
   import Button from '../components/Button.svelte';
   import { FeedsService } from '../services/feeds-service';
   import { modalStore } from '../stores/modal-store';
+  import { feedsStore } from '../stores/feeds-store';
   import type { FormResult } from '../types';
 
   let name: string | undefined;
@@ -30,16 +31,21 @@
       return;
     }
 
-    const response = await feedsServiceInstance.putFeed(name, url);
+    const response = await feedsServiceInstance.putFeed(url, name);
 
-    if (response.message === `Put feed ${url}`) {
+    if (response.status === 200) {
       result = 'success';
-      // TODO: Revalidate list feed
+      loading = false;
+
+      const body = await response.json();
+
+      feedsStore.add(body.feed);
+
+      modalStore.toggle();
     } else {
+      loading = false;
       result = 'failure';
     }
-
-    loading = false;
 
     setTimeout(() => {
       result = 'none';
@@ -55,8 +61,7 @@
         <FormResultMessage {result} --margin="0 0 1em 0" />
         <div>
           <label for="name">Name</label>
-          <!-- svelte-ignore a11y-autofocus -->
-          <input bind:value={name} type="text" name="name" required autofocus disabled={loading} />
+          <input bind:value={name} type="text" name="name" required disabled={loading} />
         </div>
         <div>
           <label for="url">URL</label>

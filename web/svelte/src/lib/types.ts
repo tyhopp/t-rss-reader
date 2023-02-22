@@ -11,8 +11,4 @@ export interface Token {
   expiresIn: number;
 }
 
-export interface Message {
-  message: string;
-}
-
 export type FormResult = 'none' | 'success' | 'failure';

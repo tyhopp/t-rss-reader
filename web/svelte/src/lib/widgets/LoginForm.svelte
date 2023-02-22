@@ -3,7 +3,7 @@
   import Button from '../components/Button.svelte';
   import { LoginService } from '../services/login-service';
   import { tokenStore } from '../stores/token-store';
-  import type { FormResult } from '../types';
+  import type { FormResult, Token } from '../types';
 
   let LoginServiceInstance = new LoginService();
 
@@ -20,13 +20,14 @@
     }
 
     const response = await LoginServiceInstance.login(password);
+    const body: Token = await response.json();
 
     loading = false;
     password = undefined;
 
-    if ('accessToken' in response) {
+    if (response.status === 200 && 'accessToken' in body) {
       result = 'success';
-      tokenStore.set(response);
+      tokenStore.set(body);
       location.assign('/');
     } else {
       result = 'failure';
@@ -41,15 +42,7 @@
 <form on:submit|preventDefault={onSubmit}>
   <label for="password">Enter your password</label>
   <FormResultMessage {result} --margin="0.5em" />
-  <!-- svelte-ignore a11y-autofocus -->
-  <input
-    name="password"
-    type="password"
-    required
-    autofocus
-    bind:value={password}
-    disabled={loading}
-  />
+  <input name="password" type="password" required bind:value={password} disabled={loading} />
   <Button
     type="submit"
     label={loading ? 'Authorizing...' : 'Log in'}

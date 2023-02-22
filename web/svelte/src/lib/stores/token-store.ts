@@ -4,14 +4,14 @@ import { tokenMaybeValid } from '../utils/token-maybe-valid';
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
 import type { Token } from '../types';
 
-export interface TokenStoreValue {
+interface TokenStore {
   maybeValid: boolean;
   token?: Token;
 }
 
 const { maybeValid, token } = getAccessToken();
 
-const tokenStoreInstance = writable({ maybeValid, token });
+const tokenStoreInstance = writable<TokenStore>({ maybeValid, token });
 
 export const tokenStore = {
   subscribe: tokenStoreInstance.subscribe,

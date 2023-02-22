@@ -25,7 +25,7 @@ export class FeedsTable {
     this.dbDocClientInstance = DynamoDBDocumentClient.from(this.dbClientInstance);
   }
 
-  async deleteFeed(feedUrl: string): Promise<string> {
+  async deleteFeed(feedUrl: string): Promise<{ message: string }> {
     await this.dbDocClientInstance.send(
       new DeleteCommand({
         TableName: this.tableName,
@@ -35,7 +35,7 @@ export class FeedsTable {
       })
     );
 
-    return `Successfully deleted ${feedUrl}`;
+    return { message: `Successfully deleted ${feedUrl}` };
   }
 
   async getFeeds(): Promise<FeedItems> {
@@ -45,8 +45,8 @@ export class FeedsTable {
     return response?.Items as FeedItems;
   }
 
-  async putFeed(feedUrl: string, feedName: string): Promise<FeedItem> {
-    const feedItem: FeedItem = {
+  async putFeed(feedUrl: string, feedName: string): Promise<{ message: string; feed: FeedItem }> {
+    const item: FeedItem = {
       url: feedUrl,
       name: feedName,
       createdAt: Date.now(),
@@ -56,10 +56,13 @@ export class FeedsTable {
     await this.dbDocClientInstance.send(
       new PutCommand({
         TableName: this.tableName,
-        Item: feedItem
+        Item: item
       })
     );
 
-    return feedItem;
+    return {
+      message: `Successfully put ${item.url}`,
+      feed: item
+    };
   }
 }

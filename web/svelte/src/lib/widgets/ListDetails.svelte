@@ -1,13 +1,16 @@
 <script lang="ts">
   import List from '../components/List.svelte';
   import Details from '../components/Details.svelte';
-  import type { Feeds } from '../types';
+  import { feedsStore } from '../stores/feeds-store';
+  import { onMount } from 'svelte';
 
-  export let feeds: Feeds;
+  onMount(() => {
+    feedsStore.init();
+  });
 </script>
 
 <section>
-  <List {feeds} />
+  <List />
   <Details />
 </section>
 
