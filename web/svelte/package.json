@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "clean": "del .svelte-kit",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.1",
     "@sveltejs/kit": "^1.5.0",
+    "del-cli": "^5.0.0",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.8.1",
     "svelte": "^3.54.0",
