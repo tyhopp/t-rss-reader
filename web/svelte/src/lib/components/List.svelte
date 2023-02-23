@@ -1,12 +1,20 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import ListItem from './ListItem.svelte';
   import Button from './Button.svelte';
   import { modalStore } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
+
+  let cacheLoaded: boolean;
+
+  onMount(() => {
+    cacheLoaded = feedsStore.loadCache();
+    feedsStore.revalidate();
+  });
 </script>
 
 <ul>
-  {#if $feedsStore?.length === 0}
+  {#if cacheLoaded && $feedsStore?.length === 0}
     <div>
       <p>No feeds yet</p>
       <Button label="Add" on:click={() => modalStore.toggle()} />
