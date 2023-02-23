@@ -30,3 +30,12 @@ body {
   min-width: 0;
   min-height: 0;
 }
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+a:visited {
+  opacity: 85%;
+}

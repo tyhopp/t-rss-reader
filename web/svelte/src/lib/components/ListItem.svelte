@@ -1,9 +1,10 @@
 <script lang="ts">
   export let name: string;
   export let url: string;
+  export let selected: boolean;
 </script>
 
-<li>
+<li data-elem="list-item" data-url={url} data-selected={selected}>
   <p>{name}</p>
   <p>{url}</p>
 </li>
@@ -14,6 +15,10 @@
     padding: 1em;
     border-bottom: 1px dashed var(--line);
     cursor: pointer;
+  }
+
+  li[data-selected='true'] {
+    border: 1px dashed var(--accent);
   }
 
   li > * {

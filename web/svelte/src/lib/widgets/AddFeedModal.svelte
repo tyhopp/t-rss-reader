@@ -6,11 +6,15 @@
   import { modalStore } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
   import type { FormResult } from '../types';
+  import FormValidationMessage from '$lib/components/FormValidationMessage.svelte';
 
   let name: string | undefined;
   let url: string | undefined;
   let loading: boolean = false;
+  let validationMessage: string | undefined;
   let result: FormResult = 'none';
+
+  $: maySubmit = validate(name, url, loading);
 
   modalStore.subscribe((open) => {
     if (!open) {
@@ -20,6 +24,28 @@
       result = 'none';
     }
   });
+
+  function validate(name: string | undefined, url: string | undefined, loading: boolean) {
+    validationMessage = '';
+
+    if (loading || !name || !url) {
+      return false;
+    }
+
+    if (!url.startsWith('https://')) {
+      validationMessage = 'URL must start with https';
+      return false;
+    }
+
+    const cachedFeeds = feedsStore.get();
+
+    if (cachedFeeds.some((cachedFeed) => cachedFeed.url === url)) {
+      validationMessage = 'URL must be unique';
+      return false;
+    }
+
+    return true;
+  }
 
   async function onSubmit(): Promise<void> {
     loading = true;
@@ -58,6 +84,7 @@
   <span slot="body">
     <div class="add-feed-modal-body">
       <form on:submit|preventDefault={onSubmit}>
+        <FormValidationMessage {validationMessage} --margin="0 0 1em 0" />
         <FormResultMessage {result} --margin="0 0 1em 0" />
         <div>
           <label for="name">Name</label>
@@ -69,11 +96,7 @@
         </div>
         <div class="add-feed-modal-buttons">
           <Button label="Cancel" on:click={() => modalStore.toggle()} disabled={loading} />
-          <Button
-            type="submit"
-            label={loading ? 'Adding...' : 'Add'}
-            disabled={loading || !name || !url}
-          />
+          <Button type="submit" label={loading ? 'Adding...' : 'Add'} disabled={!maySubmit} />
         </div>
       </form>
     </div>

@@ -1,11 +1,15 @@
 <script lang="ts">
-  export let title: string;
-  export let date: string;
+  import type { RssFeedEntry } from '../types';
+
+  export let entry: RssFeedEntry;
 </script>
 
 <li>
-  <p>{title}</p>
-  <time datetime={date}>{date}</time>
+  <a href={entry.id} target="_blank" rel="noopener noreferrer">
+    <p class="details-item-title">{entry.title}</p>
+    <p class="details-item-published">Published: {entry.published}</p>
+    <p class="details-item-updated">Updated: {entry.updated}</p>
+  </a>
 </li>
 
 <style>
@@ -19,13 +23,13 @@
     margin: 0.25em 0 0.5em 0;
   }
 
-  p {
+  .details-item-title {
     font-size: 20px;
     margin: 0.25em 0 0.5em 0;
   }
 
-  time {
-    display: block;
+  .details-item-published,
+  .details-item-updated {
     font-size: 14px;
     opacity: 75%;
     margin: 0.7f5em 0;

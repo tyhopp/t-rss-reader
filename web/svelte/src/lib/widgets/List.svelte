@@ -1,9 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import ListItem from './ListItem.svelte';
-  import Button from './Button.svelte';
+  import ListItem from '../components/ListItem.svelte';
+  import Button from '../components/Button.svelte';
   import { modalStore } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
+  import { selectedFeedStore } from '../stores/selected-feed-store';
 
   let cacheLoaded: boolean;
 
@@ -13,7 +14,8 @@
   });
 </script>
 
-<ul>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<ul on:click>
   {#if cacheLoaded && $feedsStore?.length === 0}
     <div>
       <p>No feeds yet</p>
@@ -21,7 +23,7 @@
     </div>
   {:else}
     {#each $feedsStore as { name, url }}
-      <ListItem {name} {url} />
+      <ListItem {name} {url} selected={url === $selectedFeedStore} />
     {/each}
   {/if}
 </ul>

@@ -12,3 +12,12 @@ export interface Token {
 }
 
 export type FormResult = 'none' | 'success' | 'failure';
+
+export interface RssFeedEntry {
+  id: string | null | undefined;
+  title: string | null | undefined;
+  published: string | null | undefined;
+  updated: string | null | undefined;
+}
+
+export type RssFeedEntries = Array<RssFeedEntry>;
