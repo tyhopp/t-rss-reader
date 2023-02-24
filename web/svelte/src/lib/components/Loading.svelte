@@ -11,7 +11,9 @@
 
   div {
     position: relative;
-    margin: var(--margin);
+    margin: var(--margin, 4em auto);
+    width: 20px;
+    height: 20px;
   }
 
   span:before {

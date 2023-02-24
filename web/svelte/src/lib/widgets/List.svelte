@@ -9,33 +9,35 @@
   import { Result } from '../types';
 
   let initialized: Result = Result.none;
-  let disabled: boolean = false;
-  let attempts: number = 0;
+  let loading: boolean = false;
+  let attempts: number = 1;
 
   onMount(async () => {
     initialized = await feedsStore.init();
+
+    feedsStore.subscribe(([firstFeed]) => selectedFeedStore.set(firstFeed?.url));
   });
 
   async function retry() {
+    loading = true;
     initialized = await feedsStore.init();
 
     if (initialized === Result.failure) {
       attempts++;
     }
+    loading = false;
   }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <ul on:click>
   {#if initialized === Result.none}
-    <div>
-      <Loading --margin="4em" />
-    </div>
+    <Loading />
   {:else if initialized === Result.failure}
     <div>
       <p>Failed to get feeds</p>
-      <p>Attempts: {attempts}</p>
-      <Button label="Retry" on:click={async () => retry()} {disabled} />
+      <p class="attempts">Attempts: {attempts}</p>
+      <Button label="Retry" on:click={async () => retry()} disabled={loading} />
     </div>
   {:else if initialized === Result.success && $feedsStore?.length === 0}
     <div>
@@ -72,5 +74,10 @@
   div {
     margin: 2em 1em;
     text-align: center;
+  }
+
+  .attempts {
+    font-size: 14px;
+    opacity: 75%;
   }
 </style>

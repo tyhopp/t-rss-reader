@@ -1,12 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import DetailsItem from '../components/DetailsItem.svelte';
+  import Loading from '../components/Loading.svelte';
   import { FeedEntriesService } from '../services/feed-entries-service';
   import { selectedFeedStore } from '../stores/selected-feed-store';
   import { parseRssXml } from '../utils/parse-rss-xml';
   import { extractFeedEntries } from '../utils/extract-feed-entries';
   import type { RssFeedEntries } from '../types';
 
+  let loading: boolean = false;
   let entries: RssFeedEntries = [];
 
   onMount(() => {
@@ -14,6 +16,8 @@
       if (!selectedFeed) {
         return;
       }
+
+      loading = true;
 
       const feedEntriesServiceInstance = new FeedEntriesService();
 
@@ -34,32 +38,44 @@
         })
         .catch((error) => {
           console.error(error);
+        })
+        .finally(() => {
+          loading = false;
         });
     });
   });
 </script>
 
-<ul>
-  {#each entries as entry}
-    <DetailsItem {entry} />
-  {/each}
-</ul>
+<div>
+  {#if loading}
+    <Loading />
+  {:else}
+    <ul>
+      {#each entries as entry}
+        <DetailsItem {entry} />
+      {/each}
+    </ul>
+  {/if}
+</div>
 
 <style>
-  ul {
+  div {
     display: none;
   }
 
   @media (min-width: 600px) {
-    ul {
+    div {
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
-      padding: 0;
-      margin: 0;
       border-top: 1px dashed var(--line);
       border-right: 1px dashed var(--line);
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      overflow-y: auto;
     }
   }
 </style>

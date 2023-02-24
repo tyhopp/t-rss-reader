@@ -32,6 +32,6 @@
   .details-item-updated {
     font-size: 14px;
     opacity: 75%;
-    margin: 0.7f5em 0;
+    margin: 0.75em 0;
   }
 </style>
