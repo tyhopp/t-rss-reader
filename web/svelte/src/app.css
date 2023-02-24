@@ -4,6 +4,7 @@
   --background: #fffbf4;
   --hover: #fdf6ea;
   --active: #fdf3e2;
+  --scroll: #f1ece2;
   --accent: #3c8ec9;
 }
 
@@ -40,4 +41,14 @@ a {
 
 a:visited {
   opacity: 85%;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  height: 12px;
+  border-left: 1px dashed var(--line);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll);
 }

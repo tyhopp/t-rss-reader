@@ -15,7 +15,6 @@
 <style>
   li {
     list-style: none;
-    padding: 1em;
     border-bottom: 1px dashed var(--line);
   }
 
@@ -27,8 +26,9 @@
     background-color: var(--active);
   }
 
-  li > * {
-    margin: 0.25em 0 0.5em 0;
+  a {
+    display: block;
+    padding: 1em;
   }
 
   .details-item-title {
