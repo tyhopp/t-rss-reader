@@ -11,7 +11,11 @@ export interface Token {
   expiresIn: number;
 }
 
-export type FormResult = 'none' | 'success' | 'failure';
+export enum Result {
+  none = 'none',
+  success = 'success',
+  failure = 'failure'
+}
 
 export interface RssFeedEntry {
   id: string | null | undefined;

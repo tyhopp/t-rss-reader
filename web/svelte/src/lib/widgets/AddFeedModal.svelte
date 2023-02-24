@@ -5,14 +5,16 @@
   import { FeedsService } from '../services/feeds-service';
   import { modalStore } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
-  import type { FormResult } from '../types';
+  import { Result } from '../types';
+  import type { Feeds } from '../types';
   import FormValidationMessage from '$lib/components/FormValidationMessage.svelte';
 
   let name: string | undefined;
   let url: string | undefined;
   let loading: boolean = false;
   let validationMessage: string | undefined;
-  let result: FormResult = 'none';
+  let result: Result = Result.none;
+  let feeds: Feeds;
 
   $: maySubmit = validate(name, url, loading);
 
@@ -21,9 +23,11 @@
       name = undefined;
       url = undefined;
       loading = false;
-      result = 'none';
+      result = Result.none;
     }
   });
+
+  feedsStore.subscribe((currentFeeds) => (feeds = currentFeeds));
 
   function validate(name: string | undefined, url: string | undefined, loading: boolean) {
     validationMessage = '';
@@ -37,9 +41,7 @@
       return false;
     }
 
-    const cachedFeeds = feedsStore.get();
-
-    if (cachedFeeds.some((cachedFeed) => cachedFeed.url === url)) {
+    if (feeds.some((feed) => feed.url === url)) {
       validationMessage = 'URL must be unique';
       return false;
     }
@@ -60,7 +62,7 @@
     const response = await feedsServiceInstance.putFeed(url, name);
 
     if (response.status === 200) {
-      result = 'success';
+      result = Result.success;
       loading = false;
 
       const body = await response.json();
@@ -70,11 +72,11 @@
       modalStore.toggle();
     } else {
       loading = false;
-      result = 'failure';
+      result = Result.failure;
     }
 
     setTimeout(() => {
-      result = 'none';
+      result = Result.none;
     }, 3000);
   }
 </script>

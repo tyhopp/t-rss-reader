@@ -1,22 +1,22 @@
 <script lang="ts">
-  import type { FormResult } from '../types';
+  import { Result } from '../types';
 
-  export let result: FormResult = 'none';
+  export let result: Result = Result.none;
 
-  const resultMessages: Record<FormResult, string> = {
-    none: '',
-    success: 'Request successful',
-    failure: 'Request failed'
+  const resultMessages: Record<Result, string> = {
+    [Result.none]: '',
+    [Result.success]: 'Request successful',
+    [Result.failure]: 'Request failed'
   };
 
-  function getResultMessage(result: FormResult): string {
+  function getResultMessage(result: Result): string {
     return resultMessages[result];
   }
 
   $: resultMessage = getResultMessage(result);
 </script>
 
-{#if result !== 'none'}
+{#if result !== Result.none}
   <div data-result={result}>{resultMessage}</div>
 {/if}
 

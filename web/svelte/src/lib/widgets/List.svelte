@@ -2,21 +2,42 @@
   import { onMount } from 'svelte';
   import ListItem from '../components/ListItem.svelte';
   import Button from '../components/Button.svelte';
+  import Loading from '../components/Loading.svelte';
   import { modalStore } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
+  import { Result } from '../types';
 
-  let cacheLoaded: boolean;
+  let initialized: Result = Result.none;
+  let disabled: boolean = false;
+  let attempts: number = 0;
 
-  onMount(() => {
-    cacheLoaded = feedsStore.loadCache();
-    feedsStore.revalidate();
+  onMount(async () => {
+    initialized = await feedsStore.init();
   });
+
+  async function retry() {
+    initialized = await feedsStore.init();
+
+    if (initialized === Result.failure) {
+      attempts++;
+    }
+  }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <ul on:click>
-  {#if cacheLoaded && $feedsStore?.length === 0}
+  {#if initialized === Result.none}
+    <div>
+      <Loading --margin="4em" />
+    </div>
+  {:else if initialized === Result.failure}
+    <div>
+      <p>Failed to get feeds</p>
+      <p>Attempts: {attempts}</p>
+      <Button label="Retry" on:click={async () => retry()} {disabled} />
+    </div>
+  {:else if initialized === Result.success && $feedsStore?.length === 0}
     <div>
       <p>No feeds yet</p>
       <Button label="Add" on:click={() => modalStore.toggle()} />

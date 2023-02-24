@@ -3,13 +3,13 @@
   import Button from '../components/Button.svelte';
   import { LoginService } from '../services/login-service';
   import { tokenStore } from '../stores/token-store';
-  import type { FormResult, Token } from '../types';
+  import { Result, type Token } from '../types';
 
   let LoginServiceInstance = new LoginService();
 
   let password: string | undefined;
   let loading: boolean = false;
-  let result: FormResult = 'none';
+  let result: Result = Result.none;
 
   async function onSubmit(): Promise<void> {
     loading = true;
@@ -26,15 +26,15 @@
     password = undefined;
 
     if (response.status === 200 && 'accessToken' in body) {
-      result = 'success';
+      result = Result.success;
       tokenStore.set(body);
       location.assign('/');
     } else {
-      result = 'failure';
+      result = Result.failure;
     }
 
     setTimeout(() => {
-      result = 'none';
+      result = Result.none;
     }, 3000);
   }
 </script>

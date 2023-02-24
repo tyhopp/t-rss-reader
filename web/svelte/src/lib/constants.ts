@@ -9,5 +9,3 @@ export const LOGIN_API = [env.PUBLIC_LOGIN_ORIGIN, env.PUBLIC_LOGIN_STAGE, env.P
   .join('/');
 
 export const LOCAL_STORAGE_ACCESS_TOKEN_KEY = 't-rss-reader-access-token';
-
-export const LOCAL_STORAGE_FEEDS_CACHE_KEY = 't-rss-reader-feeds';
