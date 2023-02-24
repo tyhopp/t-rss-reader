@@ -19,11 +19,11 @@
   }
 
   button:not([disabled]):hover {
-    filter: brightness(95%);
+    background-color: var(--hover);
   }
 
   button:not([disabled]):active {
-    filter: brightness(90%);
+    background-color: var(--active);
   }
 
   button[disabled] {

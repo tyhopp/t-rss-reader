@@ -19,6 +19,14 @@
     border-bottom: 1px dashed var(--line);
   }
 
+  li:hover {
+    background-color: var(--hover);
+  }
+
+  li:active {
+    background-color: var(--active);
+  }
+
   li > * {
     margin: 0.25em 0 0.5em 0;
   }

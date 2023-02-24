@@ -17,8 +17,16 @@
     cursor: pointer;
   }
 
+  li:hover {
+    background-color: var(--hover);
+  }
+
+  li:active {
+    background-color: var(--active);
+  }
+
   li[data-selected='true'] {
-    border: 1px dashed var(--accent);
+    background-color: var(--hover);
   }
 
   li > * {
