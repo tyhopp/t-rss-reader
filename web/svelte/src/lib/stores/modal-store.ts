@@ -1,32 +1,41 @@
 import { writable } from 'svelte/store';
 
+export enum ModalMode {
+  edit = 'edit',
+  add = 'add'
+}
+
 interface ModalStore {
   open: boolean;
-  editing: boolean;
+  mode: ModalMode;
   name: string | undefined;
   url: string | undefined;
 }
 
 const modalStoreInstance = writable<ModalStore>({
   open: false,
-  editing: false,
+  mode: ModalMode.add,
   name: undefined,
   url: undefined
 });
 
 export const modalStore = {
   subscribe: modalStoreInstance.subscribe,
-  open: ({ editing = false, name, url }: { editing?: boolean; name?: string; url?: string } = {}) =>
+  open: ({
+    mode = ModalMode.add,
+    name,
+    url
+  }: { mode?: ModalMode; name?: string; url?: string } = {}) =>
     modalStoreInstance.set({
       open: true,
-      editing,
+      mode,
       name,
       url
     }),
   close: () =>
     modalStoreInstance.set({
       open: false,
-      editing: false,
+      mode: ModalMode.add,
       name: undefined,
       url: undefined
     }),

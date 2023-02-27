@@ -3,7 +3,7 @@
   import FormResultMessage from '../components/FormResultMessage.svelte';
   import Button from '../components/Button.svelte';
   import { FeedsService } from '../services/feeds-service';
-  import { modalStore } from '../stores/modal-store';
+  import { modalStore, ModalMode } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
   import { Result } from '../types';
   import type { Feeds } from '../types';
@@ -14,6 +14,10 @@
   let result: Result = Result.none;
   let feeds: Feeds;
 
+  $: title = $modalStore.mode === ModalMode.edit ? 'Edit feed' : 'Add feed';
+  $: submitButtonLabel = getSubmitButtonLabel($modalStore.mode, loading);
+  $: maySubmit = validate($modalStore.name, $modalStore.url, $modalStore.mode, loading);
+
   modalStore.subscribe(({ open }) => {
     if (!open) {
       loading = false;
@@ -21,18 +25,14 @@
     }
   });
 
-  $: title = $modalStore.editing ? 'Edit feed' : 'Add feed';
-  $: submitButtonLabel = getSubmitButtonLabel(loading, $modalStore.editing);
-  $: maySubmit = validate($modalStore.name, $modalStore.url, loading, $modalStore.editing);
-
   feedsStore.subscribe((currentFeeds) => (feeds = currentFeeds));
 
-  function getSubmitButtonLabel(loading: boolean, editing: boolean): string {
-    if (loading && editing) {
+  function getSubmitButtonLabel(mode: ModalMode, loading: boolean): string {
+    if (mode === ModalMode.edit && loading) {
       return 'Editing...';
     }
 
-    if (loading && !editing) {
+    if (mode === ModalMode.add && loading) {
       return 'Adding...';
     }
 
@@ -42,8 +42,8 @@
   function validate(
     name: string | undefined,
     url: string | undefined,
-    loading: boolean,
-    editing: boolean
+    mode: ModalMode,
+    loading: boolean
   ): boolean {
     validationMessage = '';
 
@@ -56,12 +56,43 @@
       return false;
     }
 
-    if (!editing && feeds.some((feed) => feed.url === url)) {
+    if (mode === ModalMode.add && feeds.some((feed) => feed.url === url)) {
       validationMessage = 'URL must be unique';
       return false;
     }
 
     return true;
+  }
+
+  async function onDelete(): Promise<void> {
+    loading = true;
+
+    const feedsServiceInstance = new FeedsService();
+
+    if (!$modalStore.url) {
+      loading = false;
+      return;
+    }
+
+    const response = await feedsServiceInstance.deleteFeed($modalStore.url);
+
+    if (response.status) {
+      result = Result.success;
+      loading = false;
+
+      feedsStore.update((prevFeeds) => {
+        return prevFeeds.filter((prevFeed) => prevFeed.url !== $modalStore.url);
+      });
+
+      modalStore.close();
+    } else {
+      loading = false;
+      result = Result.failure;
+    }
+
+    setTimeout(() => {
+      result = Result.none;
+    }, 3000);
   }
 
   async function onSubmit(): Promise<void> {
@@ -83,7 +114,7 @@
       const body = await response.json();
 
       feedsStore.update((prevFeeds) => {
-        if ($modalStore.editing) {
+        if ($modalStore.mode === ModalMode.edit) {
           return prevFeeds.map((prevFeed) =>
             prevFeed.url === body.feed.url ? body.feed : prevFeed
           );
@@ -128,11 +159,14 @@
             type="text"
             name="url"
             required
-            disabled={loading || $modalStore.editing}
+            disabled={loading || $modalStore.mode === ModalMode.edit}
           />
         </div>
         <div class="add-feed-modal-buttons">
           <Button label="Cancel" on:click={() => modalStore.close()} disabled={loading} />
+          {#if $modalStore.mode === ModalMode.edit}
+            <Button label="Delete" on:click={onDelete} disabled={loading} />
+          {/if}
           <Button type="submit" label={submitButtonLabel} disabled={!maySubmit} />
         </div>
       </form>

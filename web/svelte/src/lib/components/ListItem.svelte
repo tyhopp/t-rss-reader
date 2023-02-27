@@ -1,13 +1,13 @@
 <script lang="ts">
   import Button from './Button.svelte';
-  import { modalStore } from '../stores/modal-store';
+  import { modalStore, ModalMode } from '../stores/modal-store';
 
   export let name: string;
   export let url: string;
   export let selected: boolean;
 
   function edit() {
-    modalStore.open({ editing: true, name, url });
+    modalStore.open({ mode: ModalMode.edit, name, url });
   }
 </script>
 
