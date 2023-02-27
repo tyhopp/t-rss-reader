@@ -2,7 +2,7 @@
   import Modal from '../components/Modal.svelte';
   import FormResultMessage from '../components/FormResultMessage.svelte';
   import Button from '../components/Button.svelte';
-  import { FeedsService } from '../services/feeds-service';
+  import FeedsService from '../services/feeds-service';
   import { modalStore, ModalMode } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
@@ -80,14 +80,12 @@
   async function onDelete(): Promise<void> {
     inFlightAction = InFlightAction.deleting;
 
-    const feedsServiceInstance = new FeedsService();
-
     if (!$modalStore.url) {
       inFlightAction = InFlightAction.none;
       return;
     }
 
-    const response = await feedsServiceInstance.deleteFeed($modalStore.url);
+    const response = await FeedsService.deleteFeed($modalStore.url);
 
     if (response.status) {
       result = Result.success;
@@ -114,14 +112,12 @@
     inFlightAction =
       $modalStore.mode === ModalMode.edit ? InFlightAction.editing : InFlightAction.adding;
 
-    const feedsServiceInstance = new FeedsService();
-
     if (!$modalStore.name || !$modalStore.url) {
       inFlightAction = InFlightAction.none;
       return;
     }
 
-    const response = await feedsServiceInstance.putFeed($modalStore.url, $modalStore.name);
+    const response = await FeedsService.putFeed($modalStore.url, $modalStore.name);
 
     if (response.status === 200) {
       result = Result.success;

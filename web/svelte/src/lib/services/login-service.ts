@@ -1,6 +1,6 @@
 import { LOGIN_API } from '../constants';
 
-export class LoginService {
+export class LoginServiceImpl {
   private get headers(): HeadersInit {
     return {
       'content-type': 'application/json'
@@ -15,3 +15,8 @@ export class LoginService {
     });
   }
 }
+
+const LoginServiceInstance = new LoginServiceImpl();
+const LoginServiceSingleton = Object.freeze(LoginServiceInstance);
+
+export default LoginServiceSingleton;

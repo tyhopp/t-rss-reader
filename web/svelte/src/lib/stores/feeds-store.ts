@@ -1,15 +1,13 @@
 import { writable } from 'svelte/store';
-import { FeedsService } from '../services/feeds-service';
+import FeedsService from '../services/feeds-service';
 import { Result } from '../types';
 import type { Feed, Feeds } from '../types';
-
-const feedsServiceInstance = new FeedsService();
 
 const feedsStoreInstance = writable<Feeds>([]);
 
 export const feedsStore = {
   init: async (): Promise<Result> => {
-    const response = await feedsServiceInstance.getFeeds();
+    const response = await FeedsService.getFeeds();
 
     if (response.status === 200) {
       const nextFeeds = await response.json();

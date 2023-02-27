@@ -1,4 +1,4 @@
-export class FeedEntriesService {
+export class FeedEntriesServiceImpl {
   async getEntries(url: string): Promise<string | undefined> {
     let xml;
 
@@ -15,3 +15,8 @@ export class FeedEntriesService {
     return xml;
   }
 }
+
+const FeedEntriesServiceInstance = new FeedEntriesServiceImpl();
+const FeedEntriesServiceSingleton = Object.freeze(FeedEntriesServiceInstance);
+
+export default FeedEntriesServiceSingleton;

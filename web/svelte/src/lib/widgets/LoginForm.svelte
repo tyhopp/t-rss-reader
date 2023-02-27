@@ -1,11 +1,9 @@
 <script lang="ts">
   import FormResultMessage from '../components/FormResultMessage.svelte';
   import Button from '../components/Button.svelte';
-  import { LoginService } from '../services/login-service';
+  import LoginService from '../services/login-service';
   import { tokenStore } from '../stores/token-store';
   import { Result, type Token } from '../types';
-
-  let LoginServiceInstance = new LoginService();
 
   let password: string | undefined;
   let loading: boolean = false;
@@ -19,7 +17,7 @@
       return;
     }
 
-    const response = await LoginServiceInstance.login(password);
+    const response = await LoginService.login(password);
     const body: Token = await response.json();
 
     loading = false;

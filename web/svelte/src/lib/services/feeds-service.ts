@@ -1,6 +1,6 @@
 import { FEEDS_API, LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
 
-export class FeedsService {
+export class FeedsServiceImpl {
   private get headers(): HeadersInit {
     return {
       'content-type': 'application/json'
@@ -45,3 +45,8 @@ export class FeedsService {
     });
   }
 }
+
+const FeedsServiceInstance = new FeedsServiceImpl();
+const FeedsServiceSingleton = Object.freeze(FeedsServiceInstance);
+
+export default FeedsServiceSingleton;

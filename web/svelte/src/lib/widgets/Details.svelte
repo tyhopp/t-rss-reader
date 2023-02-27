@@ -3,7 +3,7 @@
   import DetailsItem from '../components/DetailsItem.svelte';
   import Loading from '../components/Loading.svelte';
   import Button from '../components/Button.svelte';
-  import { FeedEntriesService } from '../services/feed-entries-service';
+  import FeedEntriesService from '../services/feed-entries-service';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
   import { parseRssXml } from '../utils/parse-rss-xml';
@@ -19,7 +19,9 @@
   onMount(() => {
     selectedFeedStore.subscribe((selectedFeed) => {
       if (!selectedFeed) {
+        loading = false;
         selected = false;
+        entriesFailed = false;
         entries = [];
         return;
       }
@@ -27,10 +29,7 @@
       selected = true;
       loading = true;
 
-      const feedEntriesServiceInstance = new FeedEntriesService();
-
-      feedEntriesServiceInstance
-        .getEntries(selectedFeed)
+      FeedEntriesService.getEntries(selectedFeed)
         .then((xml) => {
           if (!xml) {
             entriesFailed = true;
