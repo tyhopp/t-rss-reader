@@ -57,7 +57,7 @@
   });
 
   function onSelectRandom() {
-    const randomInt = getRandomIntInclusive(0, $feedsStore.length);
+    const randomInt = getRandomIntInclusive(0, $feedsStore.length - 1);
     const { url } = $feedsStore[randomInt];
     selectedFeedStore.set(url);
   }
