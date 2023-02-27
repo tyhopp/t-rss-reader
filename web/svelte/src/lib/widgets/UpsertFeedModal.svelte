@@ -9,45 +9,53 @@
   import type { Feeds } from '../types';
   import FormValidationMessage from '$lib/components/FormValidationMessage.svelte';
 
-  let loading: boolean = false;
-  let validationMessage: string | undefined;
-  let result: Result = Result.none;
+  enum InFlightAction {
+    none = 'none',
+    editing = 'editing',
+    deleting = 'deleting',
+    adding = 'adding'
+  }
+
   let feeds: Feeds;
+  let inFlightAction: InFlightAction = InFlightAction.none;
+  let result: Result = Result.none;
+  let validationMessage: string | undefined;
 
   $: title = $modalStore.mode === ModalMode.edit ? 'Edit feed' : 'Add feed';
-  $: submitButtonLabel = getSubmitButtonLabel($modalStore.mode, loading);
-  $: maySubmit = validate($modalStore.name, $modalStore.url, $modalStore.mode, loading);
+  $: deleteButtonLabel = getDeleteButtonLabel(inFlightAction);
+  $: submitButtonLabel = getSubmitButtonLabel($modalStore.mode, inFlightAction);
+  $: maySubmit = validate($modalStore.name, $modalStore.url, $modalStore.mode, inFlightAction);
 
   modalStore.subscribe(({ open }) => {
     if (!open) {
-      loading = false;
+      inFlightAction = InFlightAction.none;
       result = Result.none;
     }
   });
 
   feedsStore.subscribe((currentFeeds) => (feeds = currentFeeds));
 
-  function getSubmitButtonLabel(mode: ModalMode, loading: boolean): string {
-    if (mode === ModalMode.edit && loading) {
-      return 'Editing...';
+  function getDeleteButtonLabel(inFlightAction: InFlightAction): string {
+    return inFlightAction === InFlightAction.deleting ? 'Deleting...' : 'Delete';
+  }
+
+  function getSubmitButtonLabel(mode: ModalMode, inFlightAction: InFlightAction): string {
+    if (mode === ModalMode.edit) {
+      return inFlightAction === InFlightAction.editing ? 'Editing...' : 'Edit';
     }
 
-    if (mode === ModalMode.add && loading) {
-      return 'Adding...';
-    }
-
-    return 'Submit';
+    return inFlightAction === InFlightAction.adding ? 'Adding...' : 'Add';
   }
 
   function validate(
     name: string | undefined,
     url: string | undefined,
     mode: ModalMode,
-    loading: boolean
+    inFlightAction: InFlightAction
   ): boolean {
     validationMessage = '';
 
-    if (loading || !name || !url) {
+    if (!name || !url) {
       return false;
     }
 
@@ -61,16 +69,20 @@
       return false;
     }
 
+    if (inFlightAction !== InFlightAction.none) {
+      return false;
+    }
+
     return true;
   }
 
   async function onDelete(): Promise<void> {
-    loading = true;
+    inFlightAction = InFlightAction.deleting;
 
     const feedsServiceInstance = new FeedsService();
 
     if (!$modalStore.url) {
-      loading = false;
+      inFlightAction = InFlightAction.none;
       return;
     }
 
@@ -78,7 +90,7 @@
 
     if (response.status) {
       result = Result.success;
-      loading = false;
+      inFlightAction = InFlightAction.none;
 
       feedsStore.update((prevFeeds) => {
         return prevFeeds.filter((prevFeed) => prevFeed.url !== $modalStore.url);
@@ -86,7 +98,7 @@
 
       modalStore.close();
     } else {
-      loading = false;
+      inFlightAction = InFlightAction.none;
       result = Result.failure;
     }
 
@@ -96,12 +108,13 @@
   }
 
   async function onSubmit(): Promise<void> {
-    loading = true;
+    inFlightAction =
+      $modalStore.mode === ModalMode.edit ? InFlightAction.editing : InFlightAction.adding;
 
     const feedsServiceInstance = new FeedsService();
 
     if (!$modalStore.name || !$modalStore.url) {
-      loading = false;
+      inFlightAction = InFlightAction.none;
       return;
     }
 
@@ -109,7 +122,7 @@
 
     if (response.status === 200) {
       result = Result.success;
-      loading = false;
+      inFlightAction = InFlightAction.none;
 
       const body = await response.json();
 
@@ -125,7 +138,7 @@
 
       modalStore.close();
     } else {
-      loading = false;
+      inFlightAction = InFlightAction.none;
       result = Result.failure;
     }
 
@@ -149,7 +162,7 @@
             type="text"
             name="name"
             required
-            disabled={loading}
+            disabled={inFlightAction !== InFlightAction.none}
           />
         </div>
         <div>
@@ -159,13 +172,21 @@
             type="text"
             name="url"
             required
-            disabled={loading || $modalStore.mode === ModalMode.edit}
+            disabled={inFlightAction !== InFlightAction.none || $modalStore.mode === ModalMode.edit}
           />
         </div>
         <div class="add-feed-modal-buttons">
-          <Button label="Cancel" on:click={() => modalStore.close()} disabled={loading} />
+          <Button
+            label="Cancel"
+            on:click={() => modalStore.close()}
+            disabled={inFlightAction !== InFlightAction.none}
+          />
           {#if $modalStore.mode === ModalMode.edit}
-            <Button label="Delete" on:click={onDelete} disabled={loading} />
+            <Button
+              label={deleteButtonLabel}
+              on:click={onDelete}
+              disabled={inFlightAction !== InFlightAction.none}
+            />
           {/if}
           <Button type="submit" label={submitButtonLabel} disabled={!maySubmit} />
         </div>
