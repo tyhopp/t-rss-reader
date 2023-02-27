@@ -8,8 +8,7 @@ const feedName = `Ty Hopp's feed`;
 const feed = {
   name: feedName,
   url: feedUrl,
-  createdAt: 123,
-  updatedAt: 123
+  createdAt: 123
 };
 
 vi.mock('../src/lib/verify-token', () => ({

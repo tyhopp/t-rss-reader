@@ -22,10 +22,5 @@ export const feedsStore = {
     return Result.failure;
   },
   subscribe: feedsStoreInstance.subscribe,
-  add: (feed: Feed): void => {
-    feedsStoreInstance.update((prevFeeds) => {
-      const nextFeeds = [...prevFeeds, feed];
-      return nextFeeds;
-    });
-  }
+  update: feedsStoreInstance.update
 };

@@ -42,7 +42,7 @@
   {:else if initialized === Result.success && $feedsStore?.length === 0}
     <div>
       <p>No feeds yet</p>
-      <Button label="Add" on:click={() => modalStore.toggle()} />
+      <Button label="Add" on:click={() => modalStore.open()} />
     </div>
   {:else}
     {#each $feedsStore as { name, url }}

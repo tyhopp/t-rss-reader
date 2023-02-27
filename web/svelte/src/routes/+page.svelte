@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { tokenStore } from '$lib/stores/token-store';
   import ListDetails from '$lib/widgets/ListDetails.svelte';
-  import AddFeedModal from '$lib/widgets/AddFeedModal.svelte';
+  import UpsertFeedModal from '$lib/widgets/UpsertFeedModal.svelte';
 
   onMount(() => {
     tokenStore.subscribe(({ maybeValid }) => {
@@ -14,4 +14,4 @@
 </script>
 
 <ListDetails />
-<AddFeedModal />
+<UpsertFeedModal />

@@ -10,7 +10,6 @@ interface FeedItem {
   url: string;
   name: string;
   createdAt: number;
-  updatedAt: number;
 }
 
 type FeedItems = Array<FeedItem>;
@@ -49,8 +48,7 @@ export class FeedsTable {
     const item: FeedItem = {
       url: feedUrl,
       name: feedName,
-      createdAt: Date.now(),
-      updatedAt: Date.now()
+      createdAt: Date.now()
     };
 
     await this.dbDocClientInstance.send(

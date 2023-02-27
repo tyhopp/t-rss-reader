@@ -18,8 +18,7 @@
 <header>
   <h1>t-rss-reader</h1>
   <div class="buttons">
-    <Button label="Edit" {disabled} />
-    <Button label="Add" {disabled} on:click={() => modalStore.toggle()} />
+    <Button label="Add" {disabled} on:click={() => modalStore.open()} />
   </div>
 </header>
 

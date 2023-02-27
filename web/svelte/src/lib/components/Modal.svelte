@@ -3,13 +3,13 @@
 
   function onKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
-      modalStore.toggle();
+      modalStore.close();
     }
   }
 </script>
 
-{#if $modalStore}
-  <div id="modal" on:click={modalStore.toggle} on:keydown={onKeyDown}>
+{#if $modalStore.open}
+  <div id="modal" on:click={() => modalStore.close()} on:keydown={onKeyDown}>
     <div id="modal-content" on:click|stopPropagation on:keydown>
       <h1>
         <slot name="title" />

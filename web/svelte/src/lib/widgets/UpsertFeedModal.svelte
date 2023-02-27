@@ -9,27 +9,42 @@
   import type { Feeds } from '../types';
   import FormValidationMessage from '$lib/components/FormValidationMessage.svelte';
 
-  let name: string | undefined;
-  let url: string | undefined;
   let loading: boolean = false;
   let validationMessage: string | undefined;
   let result: Result = Result.none;
   let feeds: Feeds;
 
-  $: maySubmit = validate(name, url, loading);
-
-  modalStore.subscribe((open) => {
+  modalStore.subscribe(({ open }) => {
     if (!open) {
-      name = undefined;
-      url = undefined;
       loading = false;
       result = Result.none;
     }
   });
 
+  $: title = $modalStore.editing ? 'Edit feed' : 'Add feed';
+  $: submitButtonLabel = getSubmitButtonLabel(loading, $modalStore.editing);
+  $: maySubmit = validate($modalStore.name, $modalStore.url, loading, $modalStore.editing);
+
   feedsStore.subscribe((currentFeeds) => (feeds = currentFeeds));
 
-  function validate(name: string | undefined, url: string | undefined, loading: boolean) {
+  function getSubmitButtonLabel(loading: boolean, editing: boolean): string {
+    if (loading && editing) {
+      return 'Editing...';
+    }
+
+    if (loading && !editing) {
+      return 'Adding...';
+    }
+
+    return 'Submit';
+  }
+
+  function validate(
+    name: string | undefined,
+    url: string | undefined,
+    loading: boolean,
+    editing: boolean
+  ): boolean {
     validationMessage = '';
 
     if (loading || !name || !url) {
@@ -37,11 +52,11 @@
     }
 
     if (!url.startsWith('https://')) {
-      validationMessage = 'URL must start with https';
+      validationMessage = 'URL must start with https://';
       return false;
     }
 
-    if (feeds.some((feed) => feed.url === url)) {
+    if (!editing && feeds.some((feed) => feed.url === url)) {
       validationMessage = 'URL must be unique';
       return false;
     }
@@ -54,12 +69,12 @@
 
     const feedsServiceInstance = new FeedsService();
 
-    if (!name || !url) {
+    if (!$modalStore.name || !$modalStore.url) {
       loading = false;
       return;
     }
 
-    const response = await feedsServiceInstance.putFeed(url, name);
+    const response = await feedsServiceInstance.putFeed($modalStore.url, $modalStore.name);
 
     if (response.status === 200) {
       result = Result.success;
@@ -67,9 +82,17 @@
 
       const body = await response.json();
 
-      feedsStore.add(body.feed);
+      feedsStore.update((prevFeeds) => {
+        if ($modalStore.editing) {
+          return prevFeeds.map((prevFeed) =>
+            prevFeed.url === body.feed.url ? body.feed : prevFeed
+          );
+        } else {
+          return [...prevFeeds, body.feed];
+        }
+      });
 
-      modalStore.toggle();
+      modalStore.close();
     } else {
       loading = false;
       result = Result.failure;
@@ -82,7 +105,7 @@
 </script>
 
 <Modal>
-  <span slot="title">Add feed</span>
+  <span slot="title">{title}</span>
   <span slot="body">
     <div class="add-feed-modal-body">
       <form on:submit|preventDefault={onSubmit}>
@@ -90,15 +113,27 @@
         <FormResultMessage {result} --margin="0 0 1em 0" />
         <div>
           <label for="name">Name</label>
-          <input bind:value={name} type="text" name="name" required disabled={loading} />
+          <input
+            bind:value={$modalStore.name}
+            type="text"
+            name="name"
+            required
+            disabled={loading}
+          />
         </div>
         <div>
           <label for="url">URL</label>
-          <input bind:value={url} type="text" name="url" required disabled={loading} />
+          <input
+            bind:value={$modalStore.url}
+            type="text"
+            name="url"
+            required
+            disabled={loading || $modalStore.editing}
+          />
         </div>
         <div class="add-feed-modal-buttons">
-          <Button label="Cancel" on:click={() => modalStore.toggle()} disabled={loading} />
-          <Button type="submit" label={loading ? 'Adding...' : 'Add'} disabled={!maySubmit} />
+          <Button label="Cancel" on:click={() => modalStore.close()} disabled={loading} />
+          <Button type="submit" label={submitButtonLabel} disabled={!maySubmit} />
         </div>
       </form>
     </div>
