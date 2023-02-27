@@ -23,11 +23,11 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 
 ## Setup
 
-1. Change the Terraform Cloud organization in [`main.tf`](./main.tf) to yours
+1. Change the Terraform Cloud organization in [`main.tf`](./main.tf) to yours (this value is not possible to declare as a variable)
 2. `terraform login`
-3. Create a [Terraform Cloud variable set](https://developer.hashicorp.com/terraform/tutorials/cloud/cloud-multiple-variable-sets) with the AWS access keys and give the workspace access to the variable set
-4. Generate a password to use for authenticating client requests and save it somewhere safe
-5. `cp ./terraform-example.tfvars ./terraform.tfvars` and add the password to the file
+3. Generate a password to use for authenticating client requests in the application
+4. `cp ./terraform-example.tfvars ./terraform.tfvars`
+5. Add your generated password and access keys to the `terraform.tfvars` file
 6. `make init`
 
 ## Create and delete resources
@@ -39,3 +39,8 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 
 - [Terraform CLI cheat sheet](https://acloudguru.com/blog/engineering/the-ultimate-terraform-cheatsheet)
 - [Terraform AWS provider docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+
+## Gotchas
+
+- Terraform sometimes throws a concurrent modification error when creating routes. It looks like this: `Error: creating API Gateway v2 route: ConflictException: Unable to complete operation due to concurrent modification. Please try again later`. Re-run `make create`.
+- Terraform sometimes doesn't pick up certain changes when diffing, such as DyanmoDB attributes. Run `make destroy` and `make create` if you don't yet have data you care about in the database.

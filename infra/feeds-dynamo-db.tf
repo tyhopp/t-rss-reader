@@ -4,15 +4,9 @@ resource "aws_dynamodb_table" "t-rss-reader-feeds-table" {
   read_capacity  = 20
   write_capacity = 20
   hash_key       = "url"
-  range_key      = "updatedAt"
 
   attribute {
     name = "url"
-    type = "S"
-  }
-
-  attribute {
-    name = "updatedAt"
     type = "S"
   }
 }

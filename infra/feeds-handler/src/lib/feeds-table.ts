@@ -1,15 +1,18 @@
-import {
-  DeleteItemOutput,
-  DynamoDBClient,
-  PutItemCommandOutput,
-  ScanOutput
-} from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import {
   DynamoDBDocumentClient,
   ScanCommand,
   PutCommand,
   DeleteCommand
 } from '@aws-sdk/lib-dynamodb';
+
+interface FeedItem {
+  url: string;
+  name: string;
+  createdAt: number;
+}
+
+type FeedItems = Array<FeedItem>;
 
 export class FeedsTable {
   private tableName: string = 't-rss-reader-feeds-table';
@@ -21,8 +24,8 @@ export class FeedsTable {
     this.dbDocClientInstance = DynamoDBDocumentClient.from(this.dbClientInstance);
   }
 
-  async deleteFeed(feedUrl: string): Promise<DeleteItemOutput> {
-    return await this.dbDocClientInstance.send(
+  async deleteFeed(feedUrl: string): Promise<{ message: string }> {
+    await this.dbDocClientInstance.send(
       new DeleteCommand({
         TableName: this.tableName,
         Key: {
@@ -30,22 +33,34 @@ export class FeedsTable {
         }
       })
     );
+
+    return { message: `Successfully deleted ${feedUrl}` };
   }
 
-  async getFeeds(): Promise<ScanOutput> {
-    return await this.dbDocClientInstance.send(new ScanCommand({ TableName: this.tableName }));
+  async getFeeds(): Promise<FeedItems> {
+    const response = await this.dbDocClientInstance.send(
+      new ScanCommand({ TableName: this.tableName })
+    );
+    return response?.Items as FeedItems;
   }
 
-  async putFeed(feedUrl: string, feedName: string): Promise<PutItemCommandOutput> {
-    return await this.dbDocClientInstance.send(
+  async putFeed(feedUrl: string, feedName: string): Promise<{ message: string; feed: FeedItem }> {
+    const item: FeedItem = {
+      url: feedUrl,
+      name: feedName,
+      createdAt: Date.now()
+    };
+
+    await this.dbDocClientInstance.send(
       new PutCommand({
         TableName: this.tableName,
-        Item: {
-          url: feedUrl,
-          name: feedName,
-          updatedAt: Date.now()
-        }
+        Item: item
       })
     );
+
+    return {
+      message: `Successfully put ${item.url}`,
+      feed: item
+    };
   }
 }

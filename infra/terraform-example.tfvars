@@ -1,2 +1,6 @@
-t-rss-reader-password=""
-t-rss-reader-origin="" # Used for CORS, default is http://localhost:8000
+t-rss-reader-password = ""
+t-rss-reader-origin   = "http://localhost:8000" # Used for CORS
+
+aws-access-key        = ""
+aws-secret-access-key = ""
+aws-region            = ""
