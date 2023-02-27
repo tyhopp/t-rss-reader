@@ -5,6 +5,7 @@
   import { FeedsService } from '../services/feeds-service';
   import { modalStore, ModalMode } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
+  import { selectedFeedStore } from '../stores/selected-feed-store';
   import { Result } from '../types';
   import type { Feeds } from '../types';
   import FormValidationMessage from '$lib/components/FormValidationMessage.svelte';
@@ -96,6 +97,8 @@
         return prevFeeds.filter((prevFeed) => prevFeed.url !== $modalStore.url);
       });
 
+      selectedFeedStore.set(undefined);
+
       modalStore.close();
     } else {
       inFlightAction = InFlightAction.none;
@@ -135,6 +138,8 @@
           return [...prevFeeds, body.feed];
         }
       });
+
+      selectedFeedStore.set(body.feed.url);
 
       modalStore.close();
     } else {

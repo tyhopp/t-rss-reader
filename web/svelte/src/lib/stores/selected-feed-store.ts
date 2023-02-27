@@ -1,3 +1,3 @@
 import { writable } from 'svelte/store';
 
-export const selectedFeedStore = writable<string>();
+export const selectedFeedStore = writable<string | undefined>();
