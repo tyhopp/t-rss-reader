@@ -1,9 +1,9 @@
-# infra
+# t-rss-reader infra
 
 Set up and tear down these resources in AWS via Terraform:
 
 - DynamoDB table
-- Lambda function
+- Lambda functions
 - API Gateway
 - IAM roles and policies
 
@@ -26,7 +26,7 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 1. Change the Terraform Cloud organization in [`main.tf`](./main.tf) to yours (this value is not possible to declare as a variable)
 2. `terraform login`
 3. Generate a password to use for authenticating client requests in the application
-4. `cp ./terraform-example.tfvars ./terraform.tfvars`
+4. Create a `terraform.tfvars` file from the `terraform-example.tfvars` file
 5. Add your generated password and access keys to the `terraform.tfvars` file
 6. `make init`
 
