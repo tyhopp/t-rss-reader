@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { tokenStore } from '$lib/stores/token-store';
-  import ListDetails from '$lib/widgets/ListDetails.svelte';
+  import List from '$lib/widgets/List.svelte';
+  import Details from '$lib/widgets/Details.svelte';
   import UpsertFeedModal from '$lib/widgets/UpsertFeedModal.svelte';
 
   onMount(() => {
@@ -13,5 +14,16 @@
   });
 </script>
 
-<ListDetails />
+<section>
+  <List />
+  <Details />
+</section>
+
 <UpsertFeedModal />
+
+<style>
+  section {
+    display: flex;
+    flex: 1;
+  }
+</style>
