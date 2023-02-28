@@ -2,15 +2,12 @@
 
 Client built with [SvelteKit](https://kit.svelte.dev/), which relies on [Svelte](https://svelte.dev/) and [Vite](https://vitejs.dev/).
 
-## Prerequisites
+## Setup
 
 1. Set up [infra](../../infra/README.md)
 2. Create a `.env` file from the `.env.example` file
 3. Add the env vars
-
-## Setup
-
-- `npm install` to install dependencies
+4. `npm install` to install dependencies
 
 ## Usage
 
