@@ -11,12 +11,21 @@
   let initialized: Result = Result.none;
   let loading: boolean = false;
   let attempts: number = 1;
+  let selected: boolean;
 
   onMount(async () => {
     initialized = await feedsStore.init();
 
-    feedsStore.subscribe(([firstFeed]) => selectedFeedStore.set(firstFeed?.url));
+    feedsStore.subscribe(([firstFeed]) => selectedFeedStore.set(firstFeed));
+
+    selectedFeedStore.subscribe((selectedFeed) => (selected = !!selectedFeed));
   });
+
+  function onSelect(event: CustomEvent) {
+    if (event.detail) {
+      selectedFeedStore.set(event.detail);
+    }
+  }
 
   async function retry() {
     loading = true;
@@ -29,8 +38,7 @@
   }
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<ul on:click>
+<ul data-selected={selected}>
   {#if initialized === Result.none}
     <Loading />
   {:else if initialized === Result.failure}
@@ -45,8 +53,8 @@
       <Button label="Add" on:click={() => modalStore.open()} />
     </div>
   {:else}
-    {#each $feedsStore as { name, url }}
-      <ListItem {name} {url} selected={url === $selectedFeedStore} />
+    {#each $feedsStore as feed}
+      <ListItem on:select={onSelect} {feed} selected={feed?.url === $selectedFeedStore?.url} />
     {/each}
   {/if}
 </ul>
@@ -60,14 +68,22 @@
     overflow-y: auto;
     padding: 0;
     margin: 0;
-    border-top: 1px dashed var(--line);
     border-left: 1px dashed var(--line);
     border-right: 1px dashed var(--line);
+  }
+
+  ul[data-selected='true'] {
+    display: none;
   }
 
   @media (min-width: 600px) {
     ul {
       max-width: 350px;
+      border-top: 1px dashed var(--line);
+    }
+
+    ul[data-selected='true'] {
+      display: flex;
     }
   }
 

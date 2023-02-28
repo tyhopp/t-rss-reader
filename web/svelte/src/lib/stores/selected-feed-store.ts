@@ -1,3 +1,4 @@
 import { writable } from 'svelte/store';
+import type { Feed } from '../types';
 
-export const selectedFeedStore = writable<string | undefined>();
+export const selectedFeedStore = writable<Feed | undefined>();

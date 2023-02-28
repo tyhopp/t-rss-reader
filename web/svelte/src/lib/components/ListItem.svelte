@@ -1,20 +1,28 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import Button from './Button.svelte';
   import { modalStore, ModalMode } from '../stores/modal-store';
+  import type { Feed } from '../types';
 
-  export let name: string;
-  export let url: string;
+  const dispatch = createEventDispatcher();
+
+  export let feed: Feed;
   export let selected: boolean;
 
+  function onSelect() {
+    dispatch('select', feed);
+  }
+
   function edit() {
-    modalStore.open({ mode: ModalMode.edit, name, url });
+    modalStore.open({ mode: ModalMode.edit, ...feed });
   }
 </script>
 
-<li data-elem="list-item" data-url={url} data-selected={selected}>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<li data-elem="list-item" data-selected={selected} on:click={onSelect}>
   <div class="list-item-info">
-    <p>{name}</p>
-    <p>{url}</p>
+    <p>{feed?.name}</p>
+    <p>{feed?.url}</p>
   </div>
   <div class="list-item-actions">
     <Button label="Edit" size="small" on:click={edit} />

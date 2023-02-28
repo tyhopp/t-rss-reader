@@ -16,27 +16,31 @@
   let entriesFailed: boolean = false;
   let entries: RssFeedEntries = [];
 
+  function reset() {
+    loading = false;
+    selected = false;
+    entriesFailed = false;
+    entries = [];
+  }
+
   onMount(() => {
     selectedFeedStore.subscribe((selectedFeed) => {
       if (!selectedFeed) {
-        loading = false;
-        selected = false;
-        entriesFailed = false;
-        entries = [];
+        reset();
         return;
       }
 
       selected = true;
       loading = true;
 
-      FeedEntriesService.getEntries(selectedFeed)
+      FeedEntriesService.getEntries(selectedFeed.url)
         .then((xml) => {
           if (!xml) {
             entriesFailed = true;
             return;
           }
 
-          const doc = parseRssXml(selectedFeed, xml);
+          const doc = parseRssXml(selectedFeed.url, xml);
 
           if (!doc) {
             entriesFailed = true;
@@ -58,12 +62,12 @@
 
   function onSelectRandom() {
     const randomInt = getRandomIntInclusive(0, $feedsStore.length - 1);
-    const { url } = $feedsStore[randomInt];
-    selectedFeedStore.set(url);
+    const newSelectedFeed = $feedsStore[randomInt];
+    selectedFeedStore.set(newSelectedFeed);
   }
 </script>
 
-<div>
+<div data-selected={selected}>
   {#if loading}
     <Loading />
   {:else if !selected && !entriesFailed && $feedsStore.length}
@@ -87,6 +91,11 @@
 <style>
   div {
     display: none;
+  }
+
+  div[data-selected='true'] {
+    flex: 1;
+    display: flex;
   }
 
   @media (min-width: 600px) {

@@ -43,6 +43,11 @@ a:visited {
   opacity: 85%;
 }
 
+input,
+button {
+  font-family: 'Roboto Slab', sans-serif;
+}
+
 ::-webkit-scrollbar {
   width: 14px;
   height: 12px;

@@ -2,9 +2,12 @@
   import { onMount } from 'svelte';
   import { tokenStore } from '../stores/token-store';
   import { modalStore } from '../stores/modal-store';
+  import { selectedFeedStore } from '../stores/selected-feed-store';
   import Button from './Button.svelte';
+  import type { Feed } from '../types';
 
   let disabled: boolean = true;
+  let selectedFeed: Feed | undefined;
 
   onMount(() => {
     tokenStore.subscribe(({ maybeValid }) => {
@@ -12,19 +15,24 @@
         disabled = false;
       }
     });
+
+    selectedFeedStore.subscribe((currentSelectedFeed) => (selectedFeed = currentSelectedFeed));
   });
 </script>
 
-<header>
-  <h1>t-rss-reader</h1>
-  <div class="buttons">
+<header data-selected={!!selectedFeed}>
+  <h1 class="header-title-desktop">t-rss-reader</h1>
+  <div class="header-buttons-left-mobile">
+    <Button label="🡸 Feeds" on:click={() => selectedFeedStore.set(undefined)} />
+  </div>
+  <h1 class="header-title-mobile">{selectedFeed?.name}</h1>
+  <div class="header-buttons-right">
     <Button label="Add" {disabled} on:click={() => modalStore.open()} />
   </div>
 </header>
 
 <style>
   h1 {
-    font-family: 'Roboto Slab', sans-serif;
     font-weight: 700;
     font-size: 20px;
   }
@@ -32,12 +40,65 @@
   header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 50px;
+    padding: 0 1em;
+    border-bottom: 1px dashed var(--line);
   }
 
-  .buttons {
+  .header-title-mobile {
+    flex: 1;
+    padding: 0 1em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header-buttons-left-mobile {
+    flex: 1;
+    margin-left: -1em;
+  }
+
+  .header-buttons-right {
+    flex: 1;
     display: flex;
     align-items: center;
-    margin-right: -0.5em;
+    justify-content: flex-end;
+    margin-right: -1em;
+  }
+
+  header[data-selected='false'] .header-buttons-left-mobile,
+  header[data-selected='false'] .header-title-mobile {
+    display: none;
+  }
+
+  header[data-selected='true'] .header-title-desktop {
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    header {
+      border-bottom: none;
+    }
+
+    .header-title-desktop {
+      display: initial !important;
+    }
+
+    .header-buttons-left-mobile,
+    .header-title-mobile {
+      display: none;
+    }
+
+    .header-buttons-right {
+      margin-right: -0.5em;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    header {
+      padding: 0;
+    }
   }
 </style>

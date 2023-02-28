@@ -135,7 +135,7 @@
         }
       });
 
-      selectedFeedStore.set(body.feed.url);
+      selectedFeedStore.set(body.feed);
 
       modalStore.close();
     } else {
@@ -215,7 +215,6 @@
 
   input {
     font-size: 14px;
-    font-family: 'Roboto Slab', sans-serif;
     background-color: var(--background);
     border: 1px solid var(--line);
     padding: 0.5em 1em;
