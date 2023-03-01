@@ -1,25 +1,24 @@
 # t-rss-reader
 
-An RSS reader with a serverless backend and multiple native clients.
+A personal [RSS](https://en.wikipedia.org/wiki/RSS) reader you can self-host.
 
-## Goals
+![Screenshot of the t-rss-reader design file](./design/t-rss-reader-design.webp)
 
-I've always wanted to use an RSS reader regularly, but never been happy with the clients available. The main goal is to fill this gap for me personally.
+## Project
 
-A secondary goal is to have a small project that gives me a reason to build native clients for several platforms. Some targets I'd like to work on are:
+The project is arranged in three parts:
 
-- Web
-  - [Svelte](./web/svelte/README.md)
-  - Vue
-  - React
-- iOS
-- macOS
-- Android
-- Windows
+- [Backend infrastructure](./infra/README.md) built with Terraform and AWS. After setup you only need to run `make create` to build all cloud resources.
+- Frontend clients that run natively on each platform:
 
-It may take years to build it all, and that's fine. I intend to explore slowly. Some platforms I know much better than others, so there will be much learning involved.
+  - Web ([Svelte](./web/svelte/README.md), Vue (TBD), React (TBD))
+  - iOS (TBD)
+  - macOS (TBD)
+  - Windows (TBD)
+
+- A [Figma design file](./design/README.md) that you can view or duplicate.
 
 ## Usage
 
-1. Set up the [infra](./infra/README.md) first, the output of which will be two endpoints (`/login` and `/feeds`) that clients consume
-2. Pick a client, run it locally and deploy it to production if you want
+1. Set up the [infra](./infra/README.md). Output will show the invoke URLs for the `/login` and `/feeds` endpoints.
+2. Run one of the clients, such as the [Svelte](./web/svelte/README.md) client. Provide the invoke URLs as env vars for each client.
