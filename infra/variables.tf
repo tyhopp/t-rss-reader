@@ -5,10 +5,10 @@ variable "t-rss-reader-password" {
   nullable    = false
 }
 
-variable "t-rss-reader-origin" {
-  description = "The origin to configure CORS with"
-  type        = string
-  default     = "http://localhost:8000"
+variable "t-rss-reader-allow-origins" {
+  description = "The allowed origins for CORS"
+  type        = list(string)
+  default     = ["http://localhost:8000"]
 }
 
 variable "aws-access-key" {

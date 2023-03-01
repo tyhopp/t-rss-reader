@@ -3,9 +3,9 @@ resource "aws_apigatewayv2_api" "t-rss-reader-feeds-handler-api" {
   protocol_type = "HTTP"
 
   cors_configuration {
-    allow_origins = [var.t-rss-reader-origin]
-    allow_methods = ["DELETE", "GET", "PUT"]
-    allow_headers = ["content-type", "authorization"]
+    allow_origins     = var.t-rss-reader-allow-origins
+    allow_methods     = ["DELETE", "GET", "PUT"]
+    allow_headers     = ["content-type", "authorization"]
     allow_credentials = true
   }
 }
