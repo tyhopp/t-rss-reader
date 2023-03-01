@@ -17,11 +17,15 @@ export enum Result {
   failure = 'failure'
 }
 
+export enum RssFeedFormat {
+  rss = 'rss',
+  atom = 'atom'
+}
+
 export interface RssFeedEntry {
-  id: string | null | undefined;
+  url: string | null | undefined;
   title: string | null | undefined;
   published: string | null | undefined;
-  updated: string | null | undefined;
 }
 
 export type RssFeedEntries = Array<RssFeedEntry>;

@@ -6,9 +6,8 @@
   import FeedEntriesService from '../services/feed-entries-service';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
-  import { parseRssXml } from '../utils/parse-rss-xml';
-  import { extractFeedEntries } from '../utils/extract-feed-entries';
-  import { getRandomIntInclusive } from '../utils/get-random-inclusive';
+  import { parseFeed } from '../utils/parse-feed';
+  import { getRandomNumber } from '../utils/get-random-number';
   import type { RssFeedEntries } from '../types';
 
   let loading: boolean = false;
@@ -40,19 +39,13 @@
             return;
           }
 
-          const doc = parseRssXml(selectedFeed.url, xml);
-
-          if (!doc) {
+          try {
+            entries = parseFeed(selectedFeed.url, xml);
+            entriesFailed = !entries.length;
+          } catch (error) {
+            console.error(error);
             entriesFailed = true;
-            return;
           }
-
-          entries = extractFeedEntries(doc);
-          entriesFailed = !entries.length;
-        })
-        .catch((error) => {
-          entriesFailed = true;
-          console.error(error);
         })
         .finally(() => {
           loading = false;
@@ -61,7 +54,7 @@
   });
 
   function onSelectRandom() {
-    const randomInt = getRandomIntInclusive(0, $feedsStore.length - 1);
+    const randomInt = getRandomNumber(0, $feedsStore.length - 1);
     const newSelectedFeed = $feedsStore[randomInt];
     selectedFeedStore.set(newSelectedFeed);
   }

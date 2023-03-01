@@ -13,10 +13,9 @@
 </script>
 
 <li>
-  <a href={entry.id} target="_blank" rel="noopener noreferrer">
+  <a href={entry.url} target="_blank" rel="noopener noreferrer">
     <p class="details-item-title">{entry.title}</p>
-    <p class="details-item-published">Published: {formatDate(entry.published)}</p>
-    <p class="details-item-updated">Updated: {formatDate(entry.updated)}</p>
+    <p class="details-item-published">{formatDate(entry.published)}</p>
   </a>
 </li>
 
