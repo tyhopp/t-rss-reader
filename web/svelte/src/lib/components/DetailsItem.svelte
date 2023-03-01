@@ -2,13 +2,21 @@
   import type { RssFeedEntry } from '../types';
 
   export let entry: RssFeedEntry;
+
+  function formatDate(dateString: string | null | undefined): string {
+    if (!dateString) {
+      return 'Unknown';
+    }
+    const date = new Date(dateString);
+    return date.toDateString();
+  }
 </script>
 
 <li>
   <a href={entry.id} target="_blank" rel="noopener noreferrer">
     <p class="details-item-title">{entry.title}</p>
-    <p class="details-item-published">Published: {entry.published}</p>
-    <p class="details-item-updated">Updated: {entry.updated}</p>
+    <p class="details-item-published">Published: {formatDate(entry.published)}</p>
+    <p class="details-item-updated">Updated: {formatDate(entry.updated)}</p>
   </a>
 </li>
 
