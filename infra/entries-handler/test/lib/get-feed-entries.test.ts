@@ -32,32 +32,32 @@ const rssEntry = {
   published: 'rss-published'
 };
 
-test('should handle atom feeds', async () => {
+test('should handle atom feeds', () => {
   const entries = getFeedEntries(atomDoc, RssFeedFormat.atom);
   expect(entries).toEqual([atomEntry]);
 });
 
-test('should handle rss feeds', async () => {
+test('should handle rss feeds', () => {
   const entries = getFeedEntries(rssDoc, RssFeedFormat.rss);
   expect(entries).toEqual([rssEntry]);
 });
 
-test('should return no atom feed entries if there are none', async () => {
+test('should return no atom feed entries if there are none', () => {
   const entries = getFeedEntries(emptyAtomDoc, RssFeedFormat.atom);
   expect(entries).toEqual([]);
 });
 
-test('should return no rss feed entries if there are none', async () => {
+test('should return no rss feed entries if there are none', () => {
   const entries = getFeedEntries(emptyRssDoc, RssFeedFormat.rss);
   expect(entries).toEqual([]);
 });
 
-test('should return no atom feed entries if the document is not an atom document', async () => {
+test('should return no atom feed entries if the document is not an atom document', () => {
   const entries = getFeedEntries(emptyRandomDoc, RssFeedFormat.atom);
   expect(entries).toEqual([]);
 });
 
-test('should return no rss feed entries if the document is not an rss document', async () => {
+test('should return no rss feed entries if the document is not an rss document', () => {
   const entries = getFeedEntries(emptyRandomDoc, RssFeedFormat.rss);
   expect(entries).toEqual([]);
 });

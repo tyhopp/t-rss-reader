@@ -18,17 +18,17 @@ const rssDoc = parser.parseFromString(rssXml, 'text/xml');
 
 const randomDoc = parser.parseFromString('<hello></hello>', 'text/xml');
 
-test('should identify atom feeds', async () => {
+test('should identify atom feeds', () => {
   const format = getFeedFormat(atomDoc);
   expect(format).toEqual(RssFeedFormat.atom);
 });
 
-test('should identify rss feeds', async () => {
+test('should identify rss feeds', () => {
   const format = getFeedFormat(rssDoc);
   expect(format).toEqual(RssFeedFormat.rss);
 });
 
-test('should not identify unknown feeds', async () => {
+test('should not identify unknown feeds', () => {
   const format = getFeedFormat(randomDoc);
   expect(format).toEqual(undefined);
 });
