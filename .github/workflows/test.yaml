@@ -30,10 +30,18 @@ jobs:
         working-directory: ./infra/feeds-handler
         run: npm install
 
+      - name: Install entries-handler dependencies
+        working-directory: ./infra/entries-handler
+        run: npm install
+
       - name: Run login-handler tests
         working-directory: ./infra/login-handler
         run: npm run test
 
       - name: Run feeds-handler tests
         working-directory: ./infra/feeds-handler
+        run: npm run test
+
+      - name: Run entries-handler tests
+        working-directory: ./infra/entries-handler
         run: npm run test
