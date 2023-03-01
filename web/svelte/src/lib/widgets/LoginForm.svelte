@@ -17,17 +17,21 @@
       return;
     }
 
-    const response = await LoginService.login(password);
-    const body: Token = await response.json();
+    try {
+      const response = await LoginService.login(password);
+      const body: Token = await response.json();
 
-    loading = false;
-    password = undefined;
+      loading = false;
+      password = undefined;
 
-    if (response.status === 200 && 'accessToken' in body) {
-      result = Result.success;
-      tokenStore.set(body);
-      location.assign('/');
-    } else {
+      if (response.status === 200 && 'accessToken' in body) {
+        result = Result.success;
+        tokenStore.set(body);
+        location.assign('/');
+      } else {
+        result = Result.failure;
+      }
+    } catch (_) {
       result = Result.failure;
     }
 
