@@ -18,6 +18,15 @@ Client built with [SvelteKit](https://kit.svelte.dev/), which relies on [Svelte]
 - `npm run build` to build production site
 - `npm run preview` to view production site
 
+## Deployment
+
+I use [Firebase Hosting](https://firebase.google.com/docs/hosting), but you can host wherever you want.
+
+To use Firebase Hosting:
+
+1. Install the [Firebase CLI](https://firebase.google.com/docs/cli)
+2. Deploy with `npm run deploy`
+
 ## Disclaimer
 
 An access token with a 1 month expiry is stored in local storage. Reasons:
