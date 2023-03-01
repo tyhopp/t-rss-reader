@@ -1,11 +1,12 @@
+import { DOMParser } from 'linkedom';
 import { getFeedFormat } from './get-feed-format';
-import { RssFeedFormat } from '../types';
+import { RssFeedFormat } from './types';
 import { getFeedEntries } from './get-feed-entries';
-import type { RssFeedEntries } from '../types';
+import type { RssFeedEntries } from './types';
 
 export function parseFeed(url: string, xml: string): RssFeedEntries {
   const parser = new DOMParser();
-  const doc = parser.parseFromString(xml, 'application/xml');
+  const doc = parser.parseFromString(xml, 'text/xml');
 
   if (doc.querySelector('parsererror')) {
     throw new Error(`Failed to parse xml of RSS feed '${url}'.`);

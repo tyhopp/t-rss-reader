@@ -1,0 +1,7 @@
+<rss xmlns="http://www.w3.org/2005/Atom" version="2.0">
+  <item>
+    <link>rss-url</link>
+    <title>rss-title</title>
+    <pubDate>rss-published</pubDate>
+  </item>
+</rss>

@@ -1,6 +1,7 @@
 targets = init validate create delete
 login_handler_path = ./login-handler
 feeds_handler_path = ./feeds-handler
+entries_handler_path = ./entries_handler_path
 
 .PHONY: help $(targets)
 
@@ -10,6 +11,7 @@ help:
 init:
 	$(MAKE) -C $(login_handler_path) install
 	$(MAKE) -C $(feeds_handler_path) install
+	$(MAKE) -C $(entries_handler_path) install
 	terraform init
 
 validate:
@@ -19,9 +21,11 @@ validate:
 create:
 	$(MAKE) -C $(login_handler_path) prepare
 	$(MAKE) -C $(feeds_handler_path) prepare
+	$(MAKE) -C $(entries_handler_path) prepare
 	terraform apply -var-file="terraform.tfvars"
 
 delete:
 	terraform apply -var-file="terraform.tfvars" -destroy
 	$(MAKE) -C $(login_handler_path) clean
 	$(MAKE) -C $(feeds_handler_path) clean
+	$(MAKE) -C $(entries_handler_path) clean
