@@ -3,7 +3,7 @@ import type { APIGatewayEvent, APIGatewayEventRequestContext } from 'aws-lambda'
 const event: APIGatewayEvent = {
   path: 'entries',
   resource: 'entries',
-  httpMethod: 'GET',
+  httpMethod: 'POST',
   body: '{}',
   headers: {
     'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ const event: APIGatewayEvent = {
 };
 
 export function createEvent(
-  httpMethod: string = 'GET',
+  httpMethod: string = 'POST',
   body: Record<string, unknown> = {}
 ): APIGatewayEvent {
   const stringifiedBody = JSON.stringify(body);

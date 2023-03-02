@@ -1,7 +1,7 @@
 targets = init validate create delete
 login_handler_path = ./login-handler
 feeds_handler_path = ./feeds-handler
-entries_handler_path = ./entries_handler_path
+entries_handler_path = ./entries-handler
 
 .PHONY: help $(targets)
 

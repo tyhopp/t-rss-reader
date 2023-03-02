@@ -37,7 +37,7 @@ export const handler = async (event: APIGatewayEvent) => {
 
   try {
     switch (event.httpMethod) {
-      case 'GET':
+      case 'POST':
         const response = await fetch(requestBody.url);
 
         if (response.status >= 400) {

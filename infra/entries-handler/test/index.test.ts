@@ -44,10 +44,10 @@ test('should return early if request body is malformed', async () => {
   expect(body).toMatch('Malformed request body');
 });
 
-test('should handle GET requests', async () => {
+test('should handle POST requests', async () => {
   vi.mocked(verifyToken).mockReturnValueOnce(true);
   vi.mocked(parseFeed).mockReturnValueOnce([entry]);
-  const event = createEvent('GET', {
+  const event = createEvent('POST', {
     url: ''
   });
 
