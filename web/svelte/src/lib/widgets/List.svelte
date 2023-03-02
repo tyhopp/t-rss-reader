@@ -16,8 +16,6 @@
   onMount(async () => {
     initialized = await feedsStore.init();
 
-    feedsStore.subscribe(([firstFeed]) => selectedFeedStore.set(firstFeed));
-
     selectedFeedStore.subscribe((selectedFeed) => (selected = !!selectedFeed));
   });
 

@@ -14,22 +14,20 @@
   let entriesFailed: boolean = false;
   let entries: RssFeedEntries = [];
 
-  function reset() {
-    loading = false;
-    selected = false;
-    entriesFailed = false;
-    entries = [];
-  }
-
   onMount(() => {
     selectedFeedStore.subscribe((selectedFeed) => {
       if (!selectedFeed) {
-        reset();
+        loading = false;
+        selected = false;
+        entriesFailed = false;
+        entries = [];
         return;
       }
 
-      selected = true;
       loading = true;
+      selected = true;
+      entriesFailed = false;
+      entries = [];
 
       EntriesService.getEntries(selectedFeed.url)
         .then((response) => response.json())
