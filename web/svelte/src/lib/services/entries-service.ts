@@ -23,14 +23,20 @@ export class EntriesServiceImpl {
     };
   }
 
-  async getEntries(url: string): Promise<Response> {
-    return await fetch(PUBLIC_ENTRIES_API, {
+  async getEntries(url: string, abortController?: AbortController): Promise<Response> {
+    const options: RequestInit = {
       method: 'POST',
       headers: this.headersWithAuthorization(),
       body: JSON.stringify({
         url
       })
-    });
+    };
+
+    if (abortController) {
+      options.signal = abortController.signal;
+    }
+
+    return await fetch(PUBLIC_ENTRIES_API, options);
   }
 }
 

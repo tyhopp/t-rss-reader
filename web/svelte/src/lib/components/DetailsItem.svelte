@@ -43,8 +43,7 @@
     margin: 0.25em 0 0.5em 0;
   }
 
-  .details-item-published,
-  .details-item-updated {
+  .details-item-published {
     font-size: 14px;
     opacity: 75%;
     margin: 0.75em 0;

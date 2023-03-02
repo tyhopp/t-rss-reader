@@ -18,13 +18,13 @@
   }
 
   button[data-size='regular'] {
-    margin: 0.5em;
+    margin: var(--regularMargin, 0.5em);
     padding: 0.5em 1em;
   }
 
   button[data-size='small'] {
     font-size: 12px;
-    margin: 0.25em;
+    margin: var(--smallMargin, 0.25em);
     padding: 0.5em 0.75em;
   }
 

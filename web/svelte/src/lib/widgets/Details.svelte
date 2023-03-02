@@ -13,15 +13,27 @@
   let selected: boolean = false;
   let entriesFailed: boolean = false;
   let entries: RssFeedEntries = [];
+  let prevSelected: string | undefined;
+  let abortController: AbortController | undefined;
+
+  function reset(): void {
+    loading = false;
+    selected = false;
+    entriesFailed = false;
+    entries = [];
+    prevSelected = undefined;
+    abortController = undefined;
+  }
 
   onMount(() => {
-    selectedFeedStore.subscribe((selectedFeed) => {
-      if (!selectedFeed) {
-        loading = false;
-        selected = false;
-        entriesFailed = false;
-        entries = [];
+    selectedFeedStore.subscribe((nextSelected) => {
+      if (!nextSelected) {
+        reset();
         return;
+      }
+
+      if (prevSelected !== nextSelected.url && abortController) {
+        abortController.abort();
       }
 
       loading = true;
@@ -29,7 +41,9 @@
       entriesFailed = false;
       entries = [];
 
-      EntriesService.getEntries(selectedFeed.url)
+      abortController = new AbortController();
+
+      EntriesService.getEntries(nextSelected.url, abortController)
         .then((response) => response.json())
         .then((nextEntries) => {
           if (!nextEntries) {
@@ -38,12 +52,18 @@
           }
 
           entries = nextEntries;
+          loading = false;
+          abortController = undefined;
         })
-        .catch(() => {
-          entriesFailed = true;
+        .catch((error) => {
+          if (error.name !== 'AbortError') {
+            entriesFailed = true;
+            loading = false;
+            abortController = undefined;
+          }
         })
         .finally(() => {
-          loading = false;
+          prevSelected = nextSelected.url;
         });
     });
   });
