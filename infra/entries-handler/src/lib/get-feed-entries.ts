@@ -1,5 +1,7 @@
-import { RssFeedFormat } from '../types';
-import type { RssFeedEntry, RssFeedEntries } from '../types';
+import { RssFeedFormat } from './types';
+import type { RssFeedEntry, RssFeedEntries } from './types';
+import type { XMLDocument } from 'linkedom/types/xml/document';
+import type { NodeList } from 'linkedom/types/interface/node-list';
 
 function getTextContent(element: Element, selector: string): string | null | undefined {
   return element.querySelector(selector)?.textContent;
@@ -21,7 +23,7 @@ function getEntry({
   };
 }
 
-function getEntryElements(doc: XMLDocument, format: RssFeedFormat): NodeListOf<HTMLElement> {
+function getEntryElements(doc: XMLDocument, format: RssFeedFormat): NodeList {
   return doc.querySelectorAll(format === RssFeedFormat.rss ? 'item' : 'entry');
 }
 

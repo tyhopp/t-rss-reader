@@ -1,8 +1,8 @@
-import dayjs from 'dayjs';
+import * as dayjs from 'dayjs';
 
 export interface TimeStamps {
-  now: number
-  expiry: number
+  now: number;
+  expiry: number;
 }
 
 export function getTimestamp(): TimeStamps {

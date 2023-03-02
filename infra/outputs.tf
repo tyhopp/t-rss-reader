@@ -7,3 +7,8 @@ output "t-rss-reader-feeds-handler-invoke-url" {
   description = "Feeds handler invoke url"
   value       = "https://${aws_apigatewayv2_api.t-rss-reader-feeds-handler-api.id}.execute-api.${var.aws-region}.amazonaws.com/default/feeds"
 }
+
+output "t-rss-reader-entries-handler-invoke-url" {
+  description = "Entries handler invoke url"
+  value       = "https://${aws_apigatewayv2_api.t-rss-reader-entries-handler-api.id}.execute-api.${var.aws-region}.amazonaws.com/default/entries"
+}
