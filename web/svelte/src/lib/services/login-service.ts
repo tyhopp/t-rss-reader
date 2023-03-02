@@ -1,4 +1,4 @@
-import { LOGIN_API } from '../constants';
+import { PUBLIC_LOGIN_API } from '$env/static/public';
 
 export class LoginServiceImpl {
   private get headers(): HeadersInit {
@@ -8,7 +8,7 @@ export class LoginServiceImpl {
   }
 
   async login(password: string): Promise<Response> {
-    return await fetch(LOGIN_API, {
+    return await fetch(PUBLIC_LOGIN_API, {
       method: 'POST',
       cache: 'no-cache',
       headers: { ...this.headers, authorization: password }

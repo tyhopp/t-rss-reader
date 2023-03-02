@@ -1,4 +1,5 @@
-import { FEEDS_API, LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
+import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
+import { PUBLIC_FEEDS_API } from '$env/static/public';
 
 export class FeedsServiceImpl {
   private get headers(): HeadersInit {
@@ -23,7 +24,7 @@ export class FeedsServiceImpl {
   }
 
   async deleteFeed(url: string): Promise<Response> {
-    return await fetch(FEEDS_API, {
+    return await fetch(PUBLIC_FEEDS_API, {
       method: 'DELETE',
       headers: this.headersWithAuthorization(),
       body: JSON.stringify({ url })
@@ -31,14 +32,14 @@ export class FeedsServiceImpl {
   }
 
   async getFeeds(): Promise<Response> {
-    return await fetch(FEEDS_API, {
+    return await fetch(PUBLIC_FEEDS_API, {
       method: 'GET',
       headers: this.headersWithAuthorization()
     });
   }
 
   async putFeed(url: string, name: string): Promise<Response> {
-    return await fetch(FEEDS_API, {
+    return await fetch(PUBLIC_FEEDS_API, {
       method: 'PUT',
       headers: this.headersWithAuthorization(),
       body: JSON.stringify({ url, name })

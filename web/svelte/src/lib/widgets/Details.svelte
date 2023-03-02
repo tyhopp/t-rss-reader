@@ -3,10 +3,9 @@
   import DetailsItem from '../components/DetailsItem.svelte';
   import Loading from '../components/Loading.svelte';
   import Button from '../components/Button.svelte';
-  import FeedEntriesService from '../services/feed-entries-service';
+  import EntriesService from '../services/entries-service';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
-  import { parseFeed } from '../utils/parse-feed';
   import { getRandomNumber } from '../utils/get-random-number';
   import type { RssFeedEntries } from '../types';
 
@@ -32,20 +31,18 @@
       selected = true;
       loading = true;
 
-      FeedEntriesService.getEntries(selectedFeed.url)
-        .then((xml) => {
-          if (!xml) {
+      EntriesService.getEntries(selectedFeed.url)
+        .then((response) => response.json())
+        .then((nextEntries) => {
+          if (!nextEntries) {
             entriesFailed = true;
             return;
           }
 
-          try {
-            entries = parseFeed(selectedFeed.url, xml);
-            entriesFailed = !entries.length;
-          } catch (error) {
-            console.error(error);
-            entriesFailed = true;
-          }
+          entries = nextEntries;
+        })
+        .catch(() => {
+          entriesFailed = true;
         })
         .finally(() => {
           loading = false;
