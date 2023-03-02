@@ -7,6 +7,21 @@ Set up and tear down these resources in AWS via Terraform:
 - API Gateway
 - IAM roles and policies
 
+## Endpoints
+
+After creating all the resources you end up with three endpoints:
+
+- `/login`
+  - `POST` takes your password and returns a [JSON Web Token](https://jwt.io/) to use with subsequent requests
+- `/feeds`
+  - `GET` gets all feeds
+  - `PUT` upserts a feed
+  - `DELETE` deletes a feed
+- `/entries`
+  - `POST` takes a feed url and fetches its entries. Necessary because most feeds in the wild do not respond with a permissive `Access-Control-Allow-Origin` header, which makes requests to those resources in the browser fail with a CORS error
+
+See lambda function handler code for the exact signatures.
+
 ## Prerequisites
 
 Assumes a Unix-like system (e.g. Linux, macOS).

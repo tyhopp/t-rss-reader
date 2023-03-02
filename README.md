@@ -20,5 +20,5 @@ The project is arranged in three parts:
 
 ## Usage
 
-1. Set up the [infra](./infra/README.md). Output will show the invoke URLs for the `/login` and `/feeds` endpoints.
+1. Set up the [backend infrastructure](./infra/README.md). The output will show the invoke URLs for the endpoints.
 2. Run one of the clients, such as the [Svelte](./web/svelte/README.md) client. Provide the invoke URLs as env vars for each client.
