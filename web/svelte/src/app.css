@@ -8,6 +8,18 @@
   --accent: #3c8ec9;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #f8f9fa;
+    --line: #424464;
+    --background: #1f1f22;
+    --hover: #18181a;
+    --active: #070707;
+    --scroll: #2a2a2e;
+    --accent: #3c8ec9;
+  }
+}
+
 html {
   font-family: 'Roboto Slab', sans-serif;
   color: var(--text);
