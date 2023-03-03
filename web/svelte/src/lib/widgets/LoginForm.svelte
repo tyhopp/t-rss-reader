@@ -57,7 +57,7 @@
     display: flex;
     flex-direction: column;
     max-width: 300px;
-    margin: 0 auto;
+    margin: 2em auto;
   }
 
   label {
@@ -65,15 +65,7 @@
   }
 
   input {
-    font-size: 14px;
-    background-color: var(--background);
-    border: 1px solid var(--line);
     padding: 0.5em 1em;
     margin: 0.75em 0.5em 1em 0.5em;
-  }
-
-  input[disabled] {
-    opacity: 75%;
-    cursor: not-allowed;
   }
 </style>

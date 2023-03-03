@@ -32,6 +32,7 @@
     height: 100vh;
     transition: all 0.2s linear;
     backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
   }
 
   #modal-content {
@@ -40,9 +41,15 @@
     min-width: 300px;
     max-width: 450px;
     padding: 2em;
-    margin-top: 20%;
+    margin-top: 1em;
     border: 1px solid var(--line);
     background-color: var(--background);
+  }
+
+  @media (min-width: 1000px) {
+    #modal-content {
+      margin-top: 5em;
+    }
   }
 
   h1 {

@@ -42,7 +42,7 @@
 
   function getSubmitButtonLabel(mode: ModalMode, inFlightAction: InFlightAction): string {
     if (mode === ModalMode.edit) {
-      return inFlightAction === InFlightAction.editing ? 'Editing...' : 'Edit';
+      return inFlightAction === InFlightAction.editing ? 'Editing...' : 'Submit';
     }
 
     return inFlightAction === InFlightAction.adding ? 'Adding...' : 'Add';
@@ -135,8 +135,6 @@
         }
       });
 
-      selectedFeedStore.set(body.feed);
-
       modalStore.close();
     } else {
       inFlightAction = InFlightAction.none;
@@ -152,7 +150,7 @@
 <Modal>
   <span slot="title">{title}</span>
   <span slot="body">
-    <div class="add-feed-modal-body">
+    <div class="upsert-feed-modal-body">
       <form on:submit|preventDefault={onSubmit}>
         <FormValidationMessage {validationMessage} --margin="0 0 1em 0" />
         <FormResultMessage {result} --margin="0 0 1em 0" />
@@ -176,7 +174,7 @@
             disabled={inFlightAction !== InFlightAction.none || $modalStore.mode === ModalMode.edit}
           />
         </div>
-        <div class="add-feed-modal-buttons">
+        <div class="upsert-feed-modal-buttons">
           <Button
             label="Cancel"
             on:click={() => modalStore.close()}
@@ -197,7 +195,7 @@
 </Modal>
 
 <style>
-  .add-feed-modal-body {
+  .upsert-feed-modal-body {
     display: flex;
     flex-direction: column;
   }
@@ -214,19 +212,11 @@
   }
 
   input {
-    font-size: 14px;
-    background-color: var(--background);
-    border: 1px solid var(--line);
     padding: 0.5em 1em;
     margin: 0.5rem;
   }
 
-  input[disabled] {
-    opacity: 75%;
-    cursor: not-allowed;
-  }
-
-  .add-feed-modal-buttons {
+  .upsert-feed-modal-buttons {
     display: flex;
     justify-content: flex-end;
     margin-top: 1em;

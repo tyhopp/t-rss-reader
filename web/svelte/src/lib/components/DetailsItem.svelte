@@ -25,10 +25,6 @@
     border-bottom: 1px dashed var(--line);
   }
 
-  li:hover {
-    background-color: var(--hover);
-  }
-
   li:active {
     background-color: var(--active);
   }
@@ -47,5 +43,11 @@
     font-size: 14px;
     opacity: 75%;
     margin: 0.75em 0;
+  }
+
+  @media (min-width: 600px) {
+    li:hover {
+      background-color: var(--hover);
+    }
   }
 </style>

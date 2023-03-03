@@ -17,13 +17,18 @@
     cursor: pointer;
   }
 
+  button[type='submit'] {
+    font-weight: initial;
+  }
+
   button[data-size='regular'] {
+    font-size: 16px;
     margin: var(--regularMargin, 0.5em);
     padding: 0.5em 1em;
   }
 
   button[data-size='small'] {
-    font-size: 12px;
+    font-size: 14px;
     margin: var(--smallMargin, 0.25em);
     padding: 0.5em 0.75em;
   }
@@ -37,6 +42,17 @@
   }
 
   button[disabled] {
+    opacity: 50%;
     cursor: not-allowed;
+  }
+
+  @media (min-width: 1000px) {
+    button[data-size='regular'] {
+      font-size: 14px;
+    }
+
+    button[data-size='small'] {
+      font-size: 12px;
+    }
   }
 </style>

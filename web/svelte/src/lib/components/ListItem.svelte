@@ -38,10 +38,6 @@
     cursor: pointer;
   }
 
-  li:hover {
-    background-color: var(--hover);
-  }
-
   li:active {
     background-color: var(--active);
   }
@@ -73,5 +69,11 @@
     justify-content: flex-end;
     align-items: flex-end;
     margin-bottom: 1em;
+  }
+
+  @media (min-width: 600px) {
+    li:hover {
+      background-color: var(--hover);
+    }
   }
 </style>

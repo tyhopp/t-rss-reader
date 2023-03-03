@@ -23,7 +23,7 @@
 <header data-selected={!!selectedFeed}>
   <h1 class="header-title-desktop">t-rss-reader</h1>
   <div class="header-buttons-left-mobile">
-    <Button label="🡸 Feeds" on:click={() => selectedFeedStore.set(undefined)} />
+    <Button label="Feeds" on:click={() => selectedFeedStore.set(undefined)} />
   </div>
   <h1 class="header-title-mobile">{selectedFeed?.name}</h1>
   <div class="header-buttons-right">
@@ -65,7 +65,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-right: -1em;
+    margin-right: -0.75em;
   }
 
   header[data-selected='false'] .header-buttons-left-mobile,

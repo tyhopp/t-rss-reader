@@ -43,11 +43,6 @@ a:visited {
   opacity: 85%;
 }
 
-input,
-button {
-  font-family: 'Roboto Slab', sans-serif;
-}
-
 ::-webkit-scrollbar {
   width: 14px;
   height: 12px;
@@ -56,4 +51,27 @@ button {
 
 ::-webkit-scrollbar-thumb {
   background: var(--scroll);
+}
+
+input,
+button {
+  font-family: 'Roboto Slab', sans-serif;
+  color: var(--text);
+}
+
+input {
+  font-size: 16px;
+  background-color: var(--background);
+  border: 1px solid var(--line);
+}
+
+input[disabled] {
+  opacity: 50%;
+  cursor: not-allowed;
+}
+
+@media (min-width: 1000px) {
+  input {
+    font-size: 14px;
+  }
 }
