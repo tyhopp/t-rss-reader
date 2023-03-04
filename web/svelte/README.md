@@ -4,7 +4,7 @@ Client built with [SvelteKit](https://kit.svelte.dev/), which relies on [Svelte]
 
 ## Prerequisites
 
-- [Backend resources](../../infra/README.md) are created and you have the `/login` and `/feeds` invoke URLs in hand.
+- Backend [infrastructure](../../infra/README.md) is created and you have the `/login`, `/feeds` and `/entries` invoke URLs in hand.
 
 ## Setup
 

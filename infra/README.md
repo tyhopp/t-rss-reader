@@ -17,8 +17,8 @@ After creating all the resources you end up with three endpoints:
   - `GET` gets all feeds
   - `PUT` upserts a feed
   - `DELETE` deletes a feed
-- `/entries`
-  - `POST` takes a feed url and fetches its entries. Necessary because most feeds in the wild do not respond with a permissive `Access-Control-Allow-Origin` header, which makes requests to those resources in the browser fail with a CORS error
+- `/entries?url=[FEED_URL]`
+  - `GET` gets a feed url's entries. Necessary because most feeds in the wild do not respond with a permissive `Access-Control-Allow-Origin` header, which makes requests to those resources in the browser fail with a CORS error
 
 See lambda function handler code for the exact signatures.
 
