@@ -1,6 +1,7 @@
 resource "aws_lambda_function" "t-rss-reader-login-handler" {
   filename         = "./login-handler/login-handler.zip"
   function_name    = "t-rss-reader-login-handler"
+  memory_size      = 7076 # 1,769 per vCPU, so ~4 vCPUs
   role             = aws_iam_role.t-rss-reader-login-handler-iam-role.arn
   handler          = "./dist/index.handler"
   source_code_hash = filebase64sha256("./login-handler/dist/index.js")
