@@ -4,9 +4,10 @@ resource "aws_apigatewayv2_api" "t-rss-reader-entries-handler-api" {
 
   cors_configuration {
     allow_origins     = var.t-rss-reader-allow-origins
-    allow_methods     = ["POST"]
+    allow_methods     = ["GET"]
     allow_headers     = ["content-type", "authorization"]
     allow_credentials = true
+    max_age           = 600
   }
 }
 
@@ -45,8 +46,8 @@ resource "aws_apigatewayv2_integration" "t-rss-reader-entries-handler-api-integr
   integration_uri    = aws_lambda_function.t-rss-reader-entries-handler.invoke_arn
 }
 
-resource "aws_apigatewayv2_route" "t-rss-reader-entries-handler-api-route-post" {
+resource "aws_apigatewayv2_route" "t-rss-reader-entries-handler-api-route-get" {
   api_id    = aws_apigatewayv2_api.t-rss-reader-entries-handler-api.id
-  route_key = "POST /entries"
+  route_key = "GET /entries"
   target    = "integrations/${aws_apigatewayv2_integration.t-rss-reader-entries-handler-api-integration.id}"
 }
