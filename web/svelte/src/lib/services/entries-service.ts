@@ -25,18 +25,15 @@ export class EntriesServiceImpl {
 
   async getEntries(url: string, abortController?: AbortController): Promise<Response> {
     const options: RequestInit = {
-      method: 'POST',
-      headers: this.headersWithAuthorization(),
-      body: JSON.stringify({
-        url
-      })
+      method: 'GET',
+      headers: this.headersWithAuthorization()
     };
 
     if (abortController) {
       options.signal = abortController.signal;
     }
 
-    return await fetch(PUBLIC_ENTRIES_API, options);
+    return await fetch(`${PUBLIC_ENTRIES_API}?url=${encodeURIComponent(url)}`, options);
   }
 }
 

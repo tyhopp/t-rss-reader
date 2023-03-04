@@ -11,6 +11,8 @@ const headers = {
   'Content-Type': 'application/json'
 };
 
+const monthInSeconds = 60 * 60 * 24 * 7 * 4;
+
 export const handler = async (event: APIGatewayEvent) => {
   const verified = verifyToken(event?.headers?.authorization);
 
@@ -35,6 +37,7 @@ export const handler = async (event: APIGatewayEvent) => {
   }
 
   let responseBody = {};
+  let responseHeaders = headers;
 
   try {
     const feedsTableInstance = new FeedsTable();
@@ -45,6 +48,7 @@ export const handler = async (event: APIGatewayEvent) => {
         break;
       case 'GET':
         responseBody = await feedsTableInstance.getFeeds();
+        responseHeaders['Cache-Control'] = `max-age=5, stale-while-revalidate=${monthInSeconds}`;
         break;
       case 'PUT':
         responseBody = await feedsTableInstance.putFeed(requestBody.url, requestBody.name);
@@ -53,14 +57,14 @@ export const handler = async (event: APIGatewayEvent) => {
         return {
           statusCode: 405,
           body: JSON.stringify({ message: `Unsupported method ${event.httpMethod}` }),
-          headers
+          headers: responseHeaders
         };
     }
 
     return {
       statusCode: 200,
       body: JSON.stringify(responseBody),
-      headers
+      headers: responseHeaders
     };
   } catch (err) {
     console.error(err.message);
@@ -68,7 +72,7 @@ export const handler = async (event: APIGatewayEvent) => {
     return {
       statusCode: 500,
       body: JSON.stringify({ message: 'Operation failed' }),
-      headers
+      headers: responseHeaders
     };
   }
 };

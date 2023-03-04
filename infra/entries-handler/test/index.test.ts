@@ -33,23 +33,20 @@ test('should return early if user is not authorized', async () => {
   expect(body).toMatch('Unauthorized');
 });
 
-test('should return early if request body is malformed', async () => {
+test('should return early if url query param is malformed', async () => {
   vi.mocked(verifyToken).mockReturnValueOnce(true);
-  const event = createEvent();
-  event.body = 'invalid-json';
+  const event = createEvent({ url: '%' });
 
   const { statusCode, body } = await handler(event);
 
   expect(statusCode).toEqual(400);
-  expect(body).toMatch('Malformed request body');
+  expect(body).toMatch('Malformed url query parameter');
 });
 
-test('should handle POST requests', async () => {
+test('should handle GET requests', async () => {
   vi.mocked(verifyToken).mockReturnValueOnce(true);
   vi.mocked(parseFeed).mockReturnValueOnce([entry]);
-  const event = createEvent('POST', {
-    url: ''
-  });
+  const event = createEvent();
 
   const { statusCode, body } = await handler(event);
   const parsedBody = JSON.parse(body);
@@ -60,7 +57,7 @@ test('should handle POST requests', async () => {
 
 test('should reject unsupported methods', async () => {
   vi.mocked(verifyToken).mockReturnValueOnce(true);
-  const event = createEvent('PATCH', {});
+  const event = createEvent(undefined, 'PATCH');
 
   const { statusCode, body } = await handler(event);
 

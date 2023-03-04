@@ -2,13 +2,12 @@ import { verifyToken } from './lib/verify-token';
 import { parseFeed } from './lib/parse-feed';
 import type { APIGatewayEvent } from 'aws-lambda';
 
-interface RequestBody {
-  url?: string;
-}
-
 const headers = {
   'Content-Type': 'application/json'
 };
+
+const minuteInSeconds = 60;
+const monthInSeconds = minuteInSeconds * 60 * 24 * 7 * 4;
 
 export const handler = async (event: APIGatewayEvent) => {
   const verified = verifyToken(event?.headers?.authorization);
@@ -21,35 +20,39 @@ export const handler = async (event: APIGatewayEvent) => {
     };
   }
 
-  let requestBody: RequestBody;
+  let url: string;
 
   try {
-    requestBody = JSON.parse(event.body);
+    url = decodeURI(event.queryStringParameters.url);
   } catch (error) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ message: 'Malformed request body' }),
+      body: JSON.stringify({ message: 'Malformed url query parameter' }),
       headers
     };
   }
 
   let responseBody = {};
+  let responseHeaders = headers;
 
   try {
     switch (event.httpMethod) {
-      case 'POST':
-        const response = await fetch(requestBody.url);
+      case 'GET':
+        const response = await fetch(url);
 
         if (response.status >= 400) {
           return {
             statusCode: 400,
-            body: JSON.stringify({ message: `Failed to fetch feed ${requestBody.url}` })
+            body: JSON.stringify({ message: `Failed to fetch feed ${url}` })
           };
         }
 
         const xml = await response.text();
 
-        responseBody = parseFeed(requestBody.url, xml);
+        responseBody = parseFeed(url, xml);
+        responseHeaders[
+          'Cache-Control'
+        ] = `max-age=${minuteInSeconds}, stale-while-revalidate=${monthInSeconds}`;
         break;
       default:
         return {
@@ -62,7 +65,7 @@ export const handler = async (event: APIGatewayEvent) => {
     return {
       statusCode: 200,
       body: JSON.stringify(responseBody),
-      headers
+      headers: responseHeaders
     };
   } catch (err) {
     console.error(err.message);
@@ -70,7 +73,7 @@ export const handler = async (event: APIGatewayEvent) => {
     return {
       statusCode: 500,
       body: JSON.stringify({ message: 'Operation failed' }),
-      headers
+      headers: responseHeaders
     };
   }
 };
