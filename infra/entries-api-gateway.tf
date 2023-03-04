@@ -7,7 +7,7 @@ resource "aws_apigatewayv2_api" "t-rss-reader-entries-handler-api" {
     allow_methods     = ["GET"]
     allow_headers     = ["content-type", "authorization"]
     allow_credentials = true
-    max_age           = 600
+    max_age           = 7200
   }
 }
 
