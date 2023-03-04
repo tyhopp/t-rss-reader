@@ -57,5 +57,6 @@ Assumes a Unix-like system (e.g. Linux, macOS).
 
 ## Gotchas
 
-- Terraform sometimes throws a concurrent modification error when creating routes. It looks like this: `Error: creating API Gateway v2 route: ConflictException: Unable to complete operation due to concurrent modification. Please try again later`. Re-run `make create`.
-- Terraform sometimes doesn't pick up certain changes when diffing, such as DyanmoDB attributes. Run `make destroy` and `make create` if you don't yet have data you care about in the database.
+- Terraform always updates the lambda functions despite the hash of the output files not changing. It's a [known issue](https://github.com/hashicorp/terraform-provider-aws/issues/17989) that's not a big deal at this scale.
+- Terraform sometimes throws a concurrent modification error when creating routes. It looks like this: `Error: creating API Gateway v2 route: ConflictException: Unable to complete operation due to concurrent modification. Please try again later`. Re-run `make create` and the routes not created from the last run will be created. This only happens when all routes are created at once so it doesn't happen enough to make it worth fixing.
+- Terraform sometimes doesn't pick up certain changes when diffing, such as DyanmoDB attributes. Run `make destroy` and `make create` to have them applied. This will erase all database items, so beware. Also doesn't happen enough to make it worth fixing.
