@@ -10,7 +10,9 @@
   let selectedFeed: Feed | undefined;
 
   onMount(() => {
-    tokenStore.subscribe(({ maybeValid }) => {
+    tokenStore.subscribe((store) => {
+      const { maybeValid } = store || {};
+
       if (maybeValid) {
         disabled = false;
       }

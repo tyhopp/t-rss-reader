@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
+import { getAccessToken } from '../utils/get-access-token';
 import { PUBLIC_ENTRIES_API } from '$env/static/public';
 
 export class EntriesServiceImpl {
@@ -8,8 +8,8 @@ export class EntriesServiceImpl {
     };
   }
 
-  private headersWithAuthorization(): HeadersInit {
-    const token = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+  private async headersWithAuthorization(): Promise<HeadersInit> {
+    const token = await getAccessToken();
 
     if (!token) {
       return this.headers;
@@ -26,7 +26,7 @@ export class EntriesServiceImpl {
   async getEntries(url: string, abortController?: AbortController): Promise<Response> {
     const options: RequestInit = {
       method: 'GET',
-      headers: this.headersWithAuthorization()
+      headers: await this.headersWithAuthorization()
     };
 
     if (abortController) {
