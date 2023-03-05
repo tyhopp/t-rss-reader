@@ -6,6 +6,7 @@
   import Details from '$lib/widgets/Details.svelte';
   import UpsertFeedModal from '$lib/widgets/UpsertFeedModal.svelte';
   import AllEntriesWorker from '$lib/workers/all-entries-worker?worker';
+  import { PUBLIC_ENTRIES_API } from '$env/static/public';
 
   onMount(async () => {
     const initialized = await tokenStore.init();
@@ -22,7 +23,7 @@
       if (feeds.length) {
         const urls = feeds.map((feed) => feed.url);
         const allEntriesWorker = new AllEntriesWorker();
-        allEntriesWorker.postMessage(urls);
+        allEntriesWorker.postMessage({ api: PUBLIC_ENTRIES_API, urls });
       }
     });
   });

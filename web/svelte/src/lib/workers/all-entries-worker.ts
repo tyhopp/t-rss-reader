@@ -1,4 +1,4 @@
-import EntiesService from '../services/entries-service';
+import EntriesService from '../services/entries-service';
 
 class AbortTimeoutController extends AbortController {
   get signal() {
@@ -7,9 +7,10 @@ class AbortTimeoutController extends AbortController {
 }
 
 onmessage = async (event: MessageEvent): Promise<void> => {
-  const urls: Array<string> = event.data;
+  const { api, urls }: { api: string; urls: Array<string> } = event.data || {};
   const controller: AbortController = new AbortTimeoutController();
-  const requests = urls.map((url: string) => EntiesService.getEntries(url, controller));
+  const service: EntriesService = new EntriesService(api);
+  const requests = urls.map((url: string) => service.getEntries(url, controller));
   await Promise.allSettled(requests);
 };
 

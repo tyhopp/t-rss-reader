@@ -8,6 +8,7 @@
   import { selectedFeedStore } from '../stores/selected-feed-store';
   import { getRandomNumber } from '../utils/get-random-number';
   import type { RssFeedEntries } from '../types';
+  import { PUBLIC_ENTRIES_API } from '$env/static/public';
 
   let loading: boolean = false;
   let selected: boolean = false;
@@ -41,9 +42,11 @@
       entriesFailed = false;
       entries = [];
 
+      const entriesService = new EntriesService(PUBLIC_ENTRIES_API);
       abortController = new AbortController();
 
-      EntriesService.getEntries(nextSelected.url, abortController)
+      entriesService
+        .getEntries(nextSelected.url, abortController)
         .then((response) => response.json())
         .then((nextEntries) => {
           if (!nextEntries) {
