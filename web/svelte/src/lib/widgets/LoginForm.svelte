@@ -26,7 +26,7 @@
 
       if (response.status === 200 && 'accessToken' in body) {
         result = Result.success;
-        tokenStore.set(body);
+        await tokenStore.set(body);
         location.assign('/');
       } else {
         result = Result.failure;

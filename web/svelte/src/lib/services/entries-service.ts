@@ -1,15 +1,26 @@
-import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
-import { PUBLIC_ENTRIES_API } from '$env/static/public';
+import { getAccessToken } from '../utils/get-access-token';
 
-export class EntriesServiceImpl {
+/**
+ * This service does not export a singleton like the others because it
+ * is also used in a worker context that does not have access to env vars.
+ *
+ * Instead the endpoint should be provided when the service is constructed.
+ */
+export default class EntriesService {
+  constructor(api: string) {
+    this.api = api;
+  }
+
+  private api: string;
+
   private get headers(): HeadersInit {
     return {
       'content-type': 'application/json'
     };
   }
 
-  private headersWithAuthorization(): HeadersInit {
-    const token = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+  private async headersWithAuthorization(): Promise<HeadersInit> {
+    const token = await getAccessToken();
 
     if (!token) {
       return this.headers;
@@ -26,18 +37,15 @@ export class EntriesServiceImpl {
   async getEntries(url: string, abortController?: AbortController): Promise<Response> {
     const options: RequestInit = {
       method: 'GET',
-      headers: this.headersWithAuthorization()
+      headers: await this.headersWithAuthorization()
     };
 
     if (abortController) {
       options.signal = abortController.signal;
     }
 
-    return await fetch(`${PUBLIC_ENTRIES_API}?url=${encodeURIComponent(url)}`, options);
+    const composedUrl = `${this.api}?url=${encodeURIComponent(url)}`;
+
+    return await fetch(composedUrl, options);
   }
 }
-
-const EntriesServiceInstance = new EntriesServiceImpl();
-const EntriesServiceSingleton = Object.freeze(EntriesServiceInstance);
-
-export default EntriesServiceSingleton;

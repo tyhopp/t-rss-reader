@@ -1,13 +1,18 @@
-import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from '../constants';
+import { ACCESS_TOKEN_KEY } from '../constants';
+import { get } from 'idb-keyval';
 import { tokenMaybeValid } from './token-maybe-valid';
 import type { Token } from '../types';
 
-export function getAccessToken(): {
+export async function getAccessToken(): Promise<string | undefined> {
+  return await get(ACCESS_TOKEN_KEY);
+}
+
+export async function getAccessTokenWithCheck(): Promise<{
   maybeValid: boolean;
   token?: Token;
-} {
+}> {
   try {
-    const token = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+    const token = await getAccessToken();
 
     if (token) {
       const parsedToken: Token = JSON.parse(token) || {};
