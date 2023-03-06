@@ -23,9 +23,10 @@ export enum RssFeedFormat {
 }
 
 export interface RssFeedEntry {
-  url: string | null | undefined;
-  title: string | null | undefined;
-  published: string | null | undefined;
+  url?: string;
+  title?: string;
+  published?: string;
+  isNew?: boolean;
 }
 
 export type RssFeedEntries = Array<RssFeedEntry>;

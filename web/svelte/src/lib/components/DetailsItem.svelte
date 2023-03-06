@@ -12,9 +12,12 @@
   }
 </script>
 
-<li>
+<li data-new={entry?.isNew ? 'yes' : 'no'}>
   <a href={entry.url} target="_blank" rel="noopener noreferrer">
-    <p class="details-item-title">{entry.title}</p>
+    <p class="details-item-title">
+      <span class="details-item-is-new" />
+      <span>{entry.title}</span>
+    </p>
     <p class="details-item-published">{formatDate(entry.published)}</p>
   </a>
 </li>
@@ -35,14 +38,32 @@
   }
 
   .details-item-title {
+    display: flex;
     font-size: 20px;
     margin: 0.25em 0 0.5em 0;
+  }
+
+  li[data-new='no'] .details-item-is-new {
+    display: none;
+  }
+
+  li[data-new='yes'] .details-item-is-new {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    margin: 10px 10px 0 0;
+    border-radius: 100%;
+    background-color: var(--accent);
   }
 
   .details-item-published {
     font-size: 14px;
     opacity: 75%;
     margin: 0.75em 0;
+  }
+
+  li[data-new='yes'] .details-item-published {
+    margin-left: 18px;
   }
 
   @media (min-width: 600px) {
