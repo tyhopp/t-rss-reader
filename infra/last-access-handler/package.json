@@ -1,0 +1,29 @@
+{
+  "private": "true",
+  "name": "last-access-handler",
+  "description": "Lambda function used to store the last access time of the application in DynamoDB",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "clean": "del dist last-access-handler.zip",
+    "build": "ncc build ./src/index.ts --out dist --external @aws-sdk/client-dynamodb --external @aws-sdk/lib-dynamodb --minify",
+    "zip": "zip -r last-access-handler.zip ./dist",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.284.0",
+    "@aws-sdk/lib-dynamodb": "^3.284.0",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.110",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@vercel/ncc": "^0.36.1",
+    "del-cli": "^5.0.0",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5",
+    "vitest": "^0.28.5"
+  }
+}

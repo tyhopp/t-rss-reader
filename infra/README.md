@@ -2,14 +2,14 @@
 
 Set up and tear down these resources in AWS via Terraform:
 
-- DynamoDB table
+- DynamoDB tables
 - Lambda functions
-- API Gateway
+- API Gateways
 - IAM roles and policies
 
 ## Endpoints
 
-After creating all the resources you end up with three endpoints:
+After creating all the resources you end up with these endpoints:
 
 - `/login`
   - `POST` takes your password and returns a [JSON Web Token](https://jwt.io/) to use with subsequent requests
@@ -19,6 +19,8 @@ After creating all the resources you end up with three endpoints:
   - `DELETE` deletes a feed
 - `/entries?url=[FEED_URL]`
   - `GET` gets a feed url's entries. Necessary because most feeds in the wild do not respond with a permissive `Access-Control-Allow-Origin` header, which makes requests to those resources in the browser fail with a CORS error
+- `/last-access`
+  - `PUT` upserts a timestamp of the last time the application was accessed
 
 See lambda function handler code for the exact signatures.
 
