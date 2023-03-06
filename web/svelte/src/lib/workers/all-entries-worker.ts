@@ -1,4 +1,5 @@
 import EntriesService from '../services/entries-service';
+import LastAccessService from '../services/last-access-service';
 
 class AbortTimeoutController extends AbortController {
   get signal() {
@@ -7,11 +8,19 @@ class AbortTimeoutController extends AbortController {
 }
 
 onmessage = async (event: MessageEvent): Promise<void> => {
-  const { api, urls }: { api: string; urls: Array<string> } = event.data || {};
+  const {
+    entriesApi,
+    lastAccessApi,
+    urls
+  }: { entriesApi: string; lastAccessApi: string; urls: Array<string> } = event.data || {};
+
   const controller: AbortController = new AbortTimeoutController();
-  const service: EntriesService = new EntriesService(api);
-  const requests = urls.map((url: string) => service.getEntries(url, controller));
+  const entriesService: EntriesService = new EntriesService(entriesApi);
+  const requests = urls.map((url: string) => entriesService.getEntries(url, controller));
   await Promise.allSettled(requests);
+
+  const lastAccessService: LastAccessService = new LastAccessService(lastAccessApi);
+  await lastAccessService.putLastAccess();
 };
 
 export {};

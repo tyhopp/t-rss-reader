@@ -7,8 +7,8 @@ const headers = {
   'Content-Type': 'application/json'
 };
 
-const minuteInSeconds = 60;
-const monthInSeconds = minuteInSeconds * 60 * 24 * 7 * 4;
+const hourInSeconds = 60 * 60;
+const monthInSeconds = hourInSeconds * 24 * 7 * 4;
 
 export const handler = async (event: APIGatewayEvent) => {
   const verified = verifyToken(event?.headers?.authorization);
@@ -54,7 +54,7 @@ export const handler = async (event: APIGatewayEvent) => {
 
         responseHeaders[
           'Cache-Control'
-        ] = `max-age=${minuteInSeconds}, stale-while-revalidate=${monthInSeconds}`;
+        ] = `max-age=${hourInSeconds}, stale-while-revalidate=${monthInSeconds}`;
         break;
       default:
         return {
