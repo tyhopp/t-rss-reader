@@ -8,11 +8,13 @@
   },
   "scripts": {
     "clean": "del dist entries-handler.zip",
-    "build": "ncc build ./src/index.ts --out dist",
+    "build": "ncc build ./src/index.ts --out dist --external @aws-sdk/client-dynamodb --external @aws-sdk/lib-dynamodb --minify",
     "zip": "zip -r entries-handler.zip ./dist",
     "test": "vitest"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.284.0",
+    "@aws-sdk/lib-dynamodb": "^3.284.0",
     "jsonwebtoken": "^9.0.0",
     "linkedom": "^0.14.22"
   },

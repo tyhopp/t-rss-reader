@@ -1,6 +1,7 @@
 import { verifyToken } from './lib/verify-token';
 import { parseFeed } from './lib/parse-feed';
 import type { APIGatewayEvent } from 'aws-lambda';
+import { sortEntries } from './lib/sort-entries';
 
 const headers = {
   'Content-Type': 'application/json'
@@ -48,8 +49,9 @@ export const handler = async (event: APIGatewayEvent) => {
         }
 
         const xml = await response.text();
+        const unsortedEntries = parseFeed(url, xml);
+        responseBody = await sortEntries(unsortedEntries);
 
-        responseBody = parseFeed(url, xml);
         responseHeaders[
           'Cache-Control'
         ] = `max-age=${minuteInSeconds}, stale-while-revalidate=${monthInSeconds}`;
