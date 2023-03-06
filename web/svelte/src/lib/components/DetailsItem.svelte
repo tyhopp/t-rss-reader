@@ -12,7 +12,7 @@
   }
 </script>
 
-<li data-new={entry?.isNew ? 'yes' : 'no'}>
+<li data-new={entry?.isNew}>
   <a href={entry.url} target="_blank" rel="noopener noreferrer">
     <p class="details-item-title">
       <span class="details-item-is-new" />
@@ -43,11 +43,11 @@
     margin: 0.25em 0 0.5em 0;
   }
 
-  li[data-new='no'] .details-item-is-new {
+  li[data-new='false'] .details-item-is-new {
     display: none;
   }
 
-  li[data-new='yes'] .details-item-is-new {
+  li[data-new='true'] .details-item-is-new {
     flex-shrink: 0;
     width: 8px;
     height: 8px;
@@ -56,14 +56,14 @@
     background-color: var(--accent);
   }
 
+  li[data-new='true'] .details-item-published {
+    margin-left: 18px;
+  }
+
   .details-item-published {
     font-size: 14px;
     opacity: 75%;
     margin: 0.75em 0;
-  }
-
-  li[data-new='yes'] .details-item-published {
-    margin-left: 18px;
   }
 
   @media (min-width: 600px) {

@@ -1,6 +1,7 @@
 export interface Feed {
   name: string;
   url: string;
+  hasNew?: boolean;
 }
 
 export type Feeds = Array<Feed>;
