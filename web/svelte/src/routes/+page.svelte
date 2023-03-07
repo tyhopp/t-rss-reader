@@ -5,7 +5,7 @@
   import List from '$lib/widgets/List.svelte';
   import Details from '$lib/widgets/Details.svelte';
   import UpsertFeedModal from '$lib/widgets/UpsertFeedModal.svelte';
-  import AllEntriesWorker from '$lib/workers/all-entries-worker?worker';
+  import BackgroundRequestEntries from '$lib/workers/background-request-entries?worker';
   import { PUBLIC_ENTRIES_API, PUBLIC_LAST_ACCESS_API } from '$env/static/public';
 
   onMount(async () => {
@@ -19,15 +19,11 @@
       }
     });
 
-    const allEntriesWorker = new AllEntriesWorker();
+    const backgroundRequestEntriesWorker = new BackgroundRequestEntries();
 
-    let allEntriesWorkerFinished = false;
+    let backgroundRequestInitialized = false;
 
-    allEntriesWorker.onmessage = (event: MessageEvent) => {
-      if (event?.data === 'finished') {
-        allEntriesWorkerFinished = true;
-      }
-
+    backgroundRequestEntriesWorker.onmessage = (event: MessageEvent) => {
       if (event?.data?.size) {
         feedsStore.update((prevFeeds) => {
           const unsortedNextFeeds = prevFeeds.map((prevFeed) => {
@@ -53,14 +49,16 @@
     };
 
     feedsStore.subscribe((feeds) => {
-      if (!allEntriesWorkerFinished && feeds.length) {
+      if (!backgroundRequestInitialized && feeds.length) {
         const urls = feeds.map((feed) => feed.url);
 
-        allEntriesWorker.postMessage({
+        backgroundRequestEntriesWorker.postMessage({
           entriesApi: PUBLIC_ENTRIES_API,
           lastAccessApi: PUBLIC_LAST_ACCESS_API,
           urls
         });
+
+        backgroundRequestInitialized = true;
       }
     });
   });
