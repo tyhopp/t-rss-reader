@@ -5,6 +5,9 @@ import type { RssFeedEntries } from '$lib/types';
 type Urls = Array<string>;
 type UrlResponseMap = Map<string, PromiseSettledResult<Response>>;
 
+const initialTimeout = 750;
+const cutoff = 12000;
+
 function hasNew(entries: RssFeedEntries) {
   return entries.some((entry) => entry?.isNew);
 }
@@ -71,7 +74,7 @@ async function backgroundRequestEntries(
   const urlResponseMap = await makeBackgroundRequests(urls, entriesService, timeout);
   const unfulfilledUrls = await notifyFeedsThatHaveNew(urlResponseMap);
 
-  if (unfulfilledUrls.length) {
+  if (unfulfilledUrls.length && timeout <= cutoff) {
     return backgroundRequestEntries(unfulfilledUrls, entriesService, timeout * 2);
   }
 }
@@ -85,7 +88,7 @@ onmessage = async (event: MessageEvent): Promise<void> => {
 
   const entriesService = new EntriesService(entriesApi);
 
-  await backgroundRequestEntries(urls, entriesService, 750);
+  await backgroundRequestEntries(urls, entriesService, initialTimeout);
 
   const lastAccessService: LastAccessService = new LastAccessService(lastAccessApi);
   await lastAccessService.putLastAccess();
