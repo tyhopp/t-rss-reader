@@ -19,10 +19,13 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<li data-elem="list-item" data-selected={selected} on:click={onSelect}>
+<li data-elem="list-item" data-selected={selected} data-new={feed?.hasNew} on:click={onSelect}>
   <div class="list-item-info">
-    <p>{feed?.name}</p>
-    <p>{feed?.url}</p>
+    <p class="list-item-title">
+      <span class="list-item-has-new" />
+      <span>{feed?.name}</span>
+    </p>
+    <p class="list-item-url">{feed?.url}</p>
   </div>
   <div class="list-item-actions">
     <Button label="Edit" size="small" on:click={edit} />
@@ -48,6 +51,27 @@
 
   li > * {
     margin: 0.25em 0 0.5em 0;
+  }
+
+  .list-item-title {
+    display: flex;
+  }
+
+  li[data-new='false'] .list-item-has-new {
+    display: none;
+  }
+
+  li[data-new='true'] .list-item-has-new {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    margin: 8px 8px 0 0;
+    border-radius: 100%;
+    background-color: var(--accent);
+  }
+
+  li[data-new='true'] .list-item-url {
+    margin-left: 14px;
   }
 
   .list-item-info {

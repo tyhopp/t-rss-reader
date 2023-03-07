@@ -46,7 +46,7 @@
       abortController = new AbortController();
 
       entriesService
-        .getEntries(nextSelected.url, abortController)
+        .getEntries({ url: nextSelected.url, abortController })
         .then((response) => response.json())
         .then((nextEntries) => {
           if (!nextEntries) {

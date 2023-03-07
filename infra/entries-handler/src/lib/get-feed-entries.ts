@@ -27,20 +27,20 @@ function getEntryElements(doc: XMLDocument, format: RssFeedFormat): NodeList {
   return doc.querySelectorAll(format === RssFeedFormat.rss ? 'item' : 'entry');
 }
 
-function getUrlTag(format: RssFeedFormat): string {
+function getUrlSelector(format: RssFeedFormat): string {
   return format === RssFeedFormat.rss ? 'link' : 'id';
 }
 
-function getPublishedTag(format: RssFeedFormat): string {
-  return format === RssFeedFormat.rss ? 'pubDate' : 'published';
+function getPublishedSelector(format: RssFeedFormat): string {
+  return format === RssFeedFormat.rss ? 'pubDate' : 'published, updated';
 }
 
 export function getFeedEntries(doc: XMLDocument, format: RssFeedFormat): RssFeedEntries {
   const entries = [];
 
   const entryElements = getEntryElements(doc, format) || [];
-  const urlTag = getUrlTag(format);
-  const publishedTag = getPublishedTag(format);
+  const urlTag = getUrlSelector(format);
+  const publishedTag = getPublishedSelector(format);
 
   for (const entryElement of entryElements) {
     const entry = getEntry({ entryElement, urlTag, publishedTag });

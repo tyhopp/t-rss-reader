@@ -1,10 +1,11 @@
 import { test, vi, expect } from 'vitest';
 import { createEvent } from './fixture/create-event';
 import { verifyToken } from '../src/lib/verify-token';
-import { parseFeed } from '../src/lib/parse-feed';
 import { handler } from '../src/index';
+import { sortEntries } from '../src/lib/sort-entries';
+import type { RssFeedEntry } from '../src/lib/types';
 
-const entry = {
+const entry: RssFeedEntry = {
   url: 'url',
   title: 'title',
   published: 'published'
@@ -21,6 +22,10 @@ vi.mock('../src/lib/verify-token', () => ({
 
 vi.mock('../src/lib/parse-feed', () => ({
   parseFeed: vi.fn()
+}));
+
+vi.mock('../src/lib/sort-entries', () => ({
+  sortEntries: vi.fn()
 }));
 
 test('should return early if user is not authorized', async () => {
@@ -45,7 +50,7 @@ test('should return early if url query param is malformed', async () => {
 
 test('should handle GET requests', async () => {
   vi.mocked(verifyToken).mockReturnValueOnce(true);
-  vi.mocked(parseFeed).mockReturnValueOnce([entry]);
+  vi.mocked(sortEntries).mockResolvedValueOnce([entry]);
   const event = createEvent();
 
   const { statusCode, body } = await handler(event);

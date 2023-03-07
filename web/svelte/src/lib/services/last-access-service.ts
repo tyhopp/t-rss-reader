@@ -6,7 +6,7 @@ import { getAccessToken } from '../utils/get-access-token';
  *
  * Instead the endpoint should be provided when the service is constructed.
  */
-export default class EntriesService {
+export default class LastAccessService {
   constructor(api: string) {
     this.api = api;
   }
@@ -34,42 +34,12 @@ export default class EntriesService {
     };
   }
 
-  async getEntries({
-    url,
-    abortController,
-    timeout
-  }: {
-    url: string;
-    abortController?: AbortController;
-    timeout?: number;
-  }): Promise<Response> {
-    const composedUrl = `${this.api}?url=${encodeURIComponent(url)}`;
-
+  async putLastAccess(): Promise<Response> {
     const options: RequestInit = {
-      method: 'GET',
+      method: 'PUT',
       headers: await this.headersWithAuthorization()
     };
 
-    if (abortController) {
-      options.signal = abortController.signal;
-    }
-
-    let timeoutCallback;
-
-    if (timeout) {
-      const timeoutController = new AbortController();
-      options.signal = timeoutController.signal;
-      timeoutCallback = setTimeout(() => {
-        timeoutController.abort();
-      }, timeout);
-    }
-
-    const response = await fetch(composedUrl, options);
-
-    if (timeoutCallback) {
-      clearTimeout(timeoutCallback);
-    }
-
-    return response;
+    return await fetch(this.api, options);
   }
 }

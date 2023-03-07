@@ -1,13 +1,14 @@
 import { verifyToken } from './lib/verify-token';
 import { parseFeed } from './lib/parse-feed';
 import type { APIGatewayEvent } from 'aws-lambda';
+import { sortEntries } from './lib/sort-entries';
 
 const headers = {
   'Content-Type': 'application/json'
 };
 
-const minuteInSeconds = 60;
-const monthInSeconds = minuteInSeconds * 60 * 24 * 7 * 4;
+const halfHourInSeconds = 60 * 30;
+const monthInSeconds = 60 * 60 * 24 * 7 * 4;
 
 export const handler = async (event: APIGatewayEvent) => {
   const verified = verifyToken(event?.headers?.authorization);
@@ -48,11 +49,12 @@ export const handler = async (event: APIGatewayEvent) => {
         }
 
         const xml = await response.text();
+        const unsortedEntries = parseFeed(url, xml);
+        responseBody = await sortEntries(unsortedEntries);
 
-        responseBody = parseFeed(url, xml);
         responseHeaders[
           'Cache-Control'
-        ] = `max-age=${minuteInSeconds}, stale-while-revalidate=${monthInSeconds}`;
+        ] = `max-age=${halfHourInSeconds}, stale-while-revalidate=${monthInSeconds}`;
         break;
       default:
         return {
