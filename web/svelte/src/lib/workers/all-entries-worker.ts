@@ -2,36 +2,43 @@ import EntriesService from '../services/entries-service';
 import LastAccessService from '../services/last-access-service';
 import type { RssFeedEntries } from '$lib/types';
 
-class AbortTimeoutController extends AbortController {
-  get signal() {
-    return AbortSignal.timeout(3000);
-  }
-}
-
 function hasNew(entries: RssFeedEntries) {
   return entries.some((entry) => entry?.isNew);
 }
 
-onmessage = async (event: MessageEvent): Promise<void> => {
-  const {
-    entriesApi,
-    lastAccessApi,
-    urls
-  }: { entriesApi: string; lastAccessApi: string; urls: Array<string> } = event.data || {};
+type Urls = Array<string>;
+type UrlResponseMap = Map<string, PromiseSettledResult<Response>>;
 
-  const controller: AbortController = new AbortTimeoutController();
-  const entriesService: EntriesService = new EntriesService(entriesApi);
-  const requests = urls.map((url: string) => entriesService.getEntries(url, controller));
+async function makeEntriesRequests(
+  urls: Urls,
+  entriesService: EntriesService,
+  timeout: number
+): Promise<UrlResponseMap> {
+  const requests = urls.map((url: string) => entriesService.getEntries({ url, timeout }));
   const responses = await Promise.allSettled(requests);
 
-  const lastAccessService: LastAccessService = new LastAccessService(lastAccessApi);
-  await lastAccessService.putLastAccess();
+  const urlResponseMap: UrlResponseMap = new Map();
+
+  for (let i = 0; i < urls.length; i++) {
+    urlResponseMap.set(urls[i], responses[i]);
+  }
 
   postMessage('finished');
 
+  return urlResponseMap;
+}
+
+async function notifyFeedsThatHaveNew(urlResponseMap: UrlResponseMap): Promise<Urls> {
   const feedsWithNewEntries: Set<string> = new Set();
 
-  for (const response of responses) {
+  let unfulfilledUrls: Urls = [];
+
+  for (const [url, response] of urlResponseMap) {
+    if (response.status !== 'fulfilled') {
+      unfulfilledUrls.push(url);
+      continue;
+    }
+
     if (response.status === 'fulfilled' && response.value) {
       const entries = await response.value.json();
 
@@ -46,7 +53,39 @@ onmessage = async (event: MessageEvent): Promise<void> => {
     }
   }
 
-  postMessage(feedsWithNewEntries);
+  if (feedsWithNewEntries) {
+    postMessage(feedsWithNewEntries);
+  }
+
+  return unfulfilledUrls;
+}
+
+async function backgroundRequestEntries(
+  urls: Urls,
+  entriesService: EntriesService,
+  timeout: number
+): Promise<void> {
+  const urlResponseMap = await makeEntriesRequests(urls, entriesService, timeout);
+  const unfulfilledUrls = await notifyFeedsThatHaveNew(urlResponseMap);
+
+  if (unfulfilledUrls.length) {
+    return backgroundRequestEntries(unfulfilledUrls, entriesService, timeout * 2);
+  }
+}
+
+onmessage = async (event: MessageEvent): Promise<void> => {
+  const {
+    entriesApi,
+    lastAccessApi,
+    urls
+  }: { entriesApi: string; lastAccessApi: string; urls: Array<string> } = event.data || {};
+
+  const entriesService = new EntriesService(entriesApi);
+
+  await backgroundRequestEntries(urls, entriesService, 750);
+
+  const lastAccessService: LastAccessService = new LastAccessService(lastAccessApi);
+  await lastAccessService.putLastAccess();
 };
 
 export {};

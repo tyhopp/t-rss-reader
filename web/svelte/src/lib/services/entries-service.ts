@@ -34,7 +34,17 @@ export default class EntriesService {
     };
   }
 
-  async getEntries(url: string, abortController?: AbortController): Promise<Response> {
+  async getEntries({
+    url,
+    abortController,
+    timeout
+  }: {
+    url: string;
+    abortController?: AbortController;
+    timeout?: number;
+  }): Promise<Response> {
+    const composedUrl = `${this.api}?url=${encodeURIComponent(url)}`;
+
     const options: RequestInit = {
       method: 'GET',
       headers: await this.headersWithAuthorization()
@@ -44,8 +54,22 @@ export default class EntriesService {
       options.signal = abortController.signal;
     }
 
-    const composedUrl = `${this.api}?url=${encodeURIComponent(url)}`;
+    let timeoutCallback;
 
-    return await fetch(composedUrl, options);
+    if (timeout) {
+      const timeoutController = new AbortController();
+      options.signal = timeoutController.signal;
+      timeoutCallback = setTimeout(() => {
+        timeoutController.abort();
+      }, timeout);
+    }
+
+    const response = await fetch(composedUrl, options);
+
+    if (timeoutCallback) {
+      clearTimeout(timeoutCallback);
+    }
+
+    return response;
   }
 }
