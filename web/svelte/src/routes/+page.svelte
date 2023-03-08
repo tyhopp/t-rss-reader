@@ -24,10 +24,12 @@
     let backgroundRequestInitialized = false;
 
     backgroundRequestEntriesWorker.onmessage = (event: MessageEvent) => {
-      if (event?.data?.size) {
+      if (event?.data?.startsWith('https')) {
         feedsStore.update((prevFeeds) => {
           const unsortedNextFeeds = prevFeeds.map((prevFeed) => {
-            prevFeed.hasNew = event.data.has(prevFeed.url);
+            if (event.data === prevFeed.url) {
+              prevFeed.hasNew = true
+            }
             return prevFeed;
           });
 
