@@ -5,19 +5,15 @@ import type { RssFeedEntries } from '$lib/types';
 type Urls = Array<string>;
 type UrlResponseMap = Map<string, PromiseSettledResult<Response>>;
 
-const initialTimeout = 750;
-const cutoff = 12000;
-
 function hasNew(entries: RssFeedEntries) {
   return entries.some((entry) => entry?.isNew);
 }
 
 async function makeBackgroundRequests(
   urls: Urls,
-  entriesService: EntriesService,
-  timeout: number
+  entriesService: EntriesService
 ): Promise<UrlResponseMap> {
-  const requests = urls.map((url: string) => entriesService.getEntries({ url, timeout }));
+  const requests = urls.map((url: string) => entriesService.getEntries({ url, timeout: 3000 }));
   const responses = await Promise.allSettled(requests);
 
   const urlResponseMap: UrlResponseMap = new Map();
@@ -62,21 +58,13 @@ async function notifyFeedsThatHaveNew(urlResponseMap: UrlResponseMap): Promise<U
 }
 
 /**
- * Request all entries with exponential backoff. Effects are:
+ * Request all entries in the background. Effects are:
  *  - Entries requests are cached so subsequent requests on feed selection are instantaneous
  *  - Feeds can display a new indicator if any entries are new
  */
-async function backgroundRequestEntries(
-  urls: Urls,
-  entriesService: EntriesService,
-  timeout: number
-): Promise<void> {
-  const urlResponseMap = await makeBackgroundRequests(urls, entriesService, timeout);
-  const unfulfilledUrls = await notifyFeedsThatHaveNew(urlResponseMap);
-
-  if (unfulfilledUrls.length && timeout <= cutoff) {
-    return backgroundRequestEntries(unfulfilledUrls, entriesService, timeout * 2);
-  }
+async function backgroundRequestEntries(urls: Urls, entriesService: EntriesService): Promise<void> {
+  const urlResponseMap = await makeBackgroundRequests(urls, entriesService);
+  await notifyFeedsThatHaveNew(urlResponseMap);
 }
 
 onmessage = async (event: MessageEvent): Promise<void> => {
@@ -88,7 +76,7 @@ onmessage = async (event: MessageEvent): Promise<void> => {
 
   const entriesService = new EntriesService(entriesApi);
 
-  await backgroundRequestEntries(urls, entriesService, initialTimeout);
+  await backgroundRequestEntries(urls, entriesService);
 
   const lastAccessService: LastAccessService = new LastAccessService(lastAccessApi);
   await lastAccessService.putLastAccess();

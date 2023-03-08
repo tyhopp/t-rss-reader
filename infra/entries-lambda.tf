@@ -42,6 +42,13 @@ resource "aws_iam_role_policy" "t-rss-reader-entries-handler-iam-policy" {
     "Version" = "2012-10-17"
     "Statement" = [
       {
+        "Effect" = "Allow",
+        "Action" = [
+          "dynamodb:GetItem",
+        ],
+        "Resource" = "arn:aws:dynamodb:${var.aws-region}:${data.aws_caller_identity.current.account_id}:table/*"
+      },
+      {
         "Effect"   = "Allow",
         "Action"   = "logs:CreateLogGroup",
         "Resource" = "*"

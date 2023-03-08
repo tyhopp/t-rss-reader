@@ -19,7 +19,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<li data-elem="list-item" data-selected={selected} data-new={feed?.hasNew} on:click={onSelect}>
+<li data-elem="list-item" data-selected={selected} data-new={!!feed?.hasNew} on:click={onSelect}>
   <div class="list-item-info">
     <p class="list-item-title">
       <span class="list-item-has-new" />

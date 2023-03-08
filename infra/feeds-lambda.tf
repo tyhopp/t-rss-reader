@@ -45,10 +45,8 @@ resource "aws_iam_role_policy" "t-rss-reader-feeds-handler-iam-policy" {
         "Effect" = "Allow",
         "Action" = [
           "dynamodb:DeleteItem",
-          "dynamodb:GetItem",
           "dynamodb:PutItem",
-          "dynamodb:Scan",
-          "dynamodb:UpdateItem"
+          "dynamodb:Scan"
         ],
         "Resource" = "arn:aws:dynamodb:${var.aws-region}:${data.aws_caller_identity.current.account_id}:table/*"
       },
