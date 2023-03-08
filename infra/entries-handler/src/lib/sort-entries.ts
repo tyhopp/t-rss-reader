@@ -16,6 +16,10 @@ export async function sortEntries(unsortedEntries: RssFeedEntries) {
     });
 
     sortedEntries = unsortedEntries.sort((a, b) => {
+      if (a.isNew && b.isNew) {
+        return 0;
+      }
+
       if (a.isNew) {
         return -1;
       }
