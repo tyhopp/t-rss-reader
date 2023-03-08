@@ -1,14 +1,12 @@
 # t-rss-reader
 
-A personal [RSS](https://en.wikipedia.org/wiki/RSS) reader you can self-host.
-
-![Screenshot of the t-rss-reader design file](./design/t-rss-reader-design.webp)
+A personal [RSS](https://en.wikipedia.org/wiki/RSS) reader you can self-host at no cost.
 
 ## Project
 
 The project is arranged in three parts:
 
-- Backend [infrastructure](./infra/README.md) built with Terraform and AWS. After setup you only need to run `make create` to build all cloud resources.
+- Backend [infrastructure](./infra/README.md) built with Terraform and AWS.
 - Frontend clients that run natively on each platform:
 
   - Web ([Svelte](./web/svelte/README.md), Vue (TBD), React (TBD))

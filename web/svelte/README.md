@@ -29,10 +29,11 @@ To use Firebase Hosting:
 
 ## Disclaimer
 
-An access token with a 1 month expiry is stored in local storage. Reasons:
+An access token with a 1 month expiry is stored in IndexedDB. Reasons:
 
 - Data stored for this app is not particularly sensitive
 - Straightforward to revoke access tokens by changing the password
 - HTTP-only cookies are not convenient for localhost development
+- Web workers have access to IndexedDB
 
 Of course, make your own judgement based on your own requirements. This is acceptable for me for this use case.
