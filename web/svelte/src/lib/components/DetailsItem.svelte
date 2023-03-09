@@ -12,7 +12,7 @@
   }
 </script>
 
-<li data-new={!!entry?.isNew}>
+<li data-elem="details-item" data-new={!!entry?.isNew}>
   <a href={entry.url} target="_blank" rel="noopener noreferrer">
     <p class="details-item-title">
       <span class="details-item-is-new" />

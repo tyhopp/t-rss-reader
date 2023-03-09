@@ -6,22 +6,29 @@
   import { modalStore } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
+  import { handleJumpKeyboardEvents } from '../utils/handle-jump-keyboard-events';
   import { Result } from '../types';
 
   let initialized: Result = Result.none;
   let loading: boolean = false;
   let attempts: number = 1;
-  let selected: boolean;
+  let hasSelected: boolean;
 
   onMount(async () => {
     initialized = await feedsStore.init();
 
-    selectedFeedStore.subscribe((selectedFeed) => (selected = !!selectedFeed));
+    selectedFeedStore.subscribe((selectedFeed) => (hasSelected = !!selectedFeed));
   });
 
   function onSelect(event: CustomEvent) {
     if (event.detail) {
       selectedFeedStore.set(event.detail);
+    }
+  }
+
+  function onKeyDown(event: KeyboardEvent) {
+    if ($feedsStore.length) {
+      handleJumpKeyboardEvents(event, '[data-elem=list-item]');
     }
   }
 
@@ -36,7 +43,7 @@
   }
 </script>
 
-<ul data-selected={selected}>
+<ul on:keydown={onKeyDown} data-has-selected={hasSelected}>
   {#if initialized === Result.none}
     <Loading />
   {:else if initialized === Result.failure}
@@ -70,7 +77,7 @@
     border-right: 1px dashed var(--line);
   }
 
-  ul[data-selected='true'] {
+  ul[data-has-selected='true'] {
     display: none;
   }
 
@@ -81,7 +88,7 @@
       padding: 0 0 2em 0;
     }
 
-    ul[data-selected='true'] {
+    ul[data-has-selected='true'] {
       display: flex;
     }
   }

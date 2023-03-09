@@ -7,11 +7,12 @@
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
   import { getRandomNumber } from '../utils/get-random-number';
-  import type { RssFeedEntries } from '../types';
   import { PUBLIC_ENTRIES_API } from '$env/static/public';
+  import { handleJumpKeyboardEvents } from '../utils/handle-jump-keyboard-events';
+  import type { RssFeedEntries } from '../types';
 
   let loading: boolean = false;
-  let selected: boolean = false;
+  let hasSelection: boolean = false;
   let entriesFailed: boolean = false;
   let entries: RssFeedEntries = [];
   let prevSelected: string | undefined;
@@ -19,7 +20,7 @@
 
   function reset(): void {
     loading = false;
-    selected = false;
+    hasSelection = false;
     entriesFailed = false;
     entries = [];
     prevSelected = undefined;
@@ -38,7 +39,7 @@
       }
 
       loading = true;
-      selected = true;
+      hasSelection = true;
       entriesFailed = false;
       entries = [];
 
@@ -76,22 +77,28 @@
     const newSelectedFeed = $feedsStore[randomInt];
     selectedFeedStore.set(newSelectedFeed);
   }
+
+  function onKeyDown(event: KeyboardEvent) {
+    if (entries.length) {
+      handleJumpKeyboardEvents(event, '[data-elem=details-item] a');
+    }
+  }
 </script>
 
-<div data-selected={selected}>
+<div data-has-selection={hasSelection}>
   {#if loading}
     <Loading />
-  {:else if !selected && !entriesFailed && $feedsStore.length}
+  {:else if !hasSelection && !entriesFailed && $feedsStore.length}
     <section>
       <p>Select a feed to view entries</p>
       <Button label="Select random" on:click={onSelectRandom} />
     </section>
-  {:else if selected && entriesFailed}
+  {:else if hasSelection && entriesFailed}
     <section>
       <p>Failed to get entries</p>
     </section>
-  {:else if selected && entries.length}
-    <ul>
+  {:else if hasSelection && entries.length}
+    <ul on:keydown={onKeyDown}>
       {#each entries as entry}
         <DetailsItem {entry} />
       {/each}
@@ -104,7 +111,7 @@
     display: none;
   }
 
-  div[data-selected='true'] {
+  div[data-has-selection='true'] {
     flex: 1;
     display: flex;
   }
