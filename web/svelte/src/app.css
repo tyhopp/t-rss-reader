@@ -87,3 +87,10 @@ input[disabled] {
     font-size: 14px;
   }
 }
+
+:focus {
+  outline-width: 2px;
+  outline-style: dashed;
+  outline-color: var(--accent);
+  outline-offset: -2px;
+}
