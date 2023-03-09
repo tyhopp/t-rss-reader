@@ -13,13 +13,31 @@
     dispatch('select', feed);
   }
 
+  function onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      dispatch('select', feed);
+    }
+  }
+
   function edit() {
     modalStore.open({ mode: ModalMode.edit, ...feed });
   }
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<li data-elem="list-item" data-selected={selected} data-new={!!feed?.hasNew} on:click={onSelect}>
+<!--
+  svelte-ignore a11y-no-noninteractive-tabindex
+  Since this is personal software, I can accept not having the best accessible solution here.
+  If your case is different, I recommend evaluating the listbox pattern as a starting point.
+  See https://www.w3.org/WAI/ARIA/apg/patterns/listbox/.
+-->
+<li
+  data-elem="list-item"
+  data-selected={selected}
+  data-new={!!feed?.hasNew}
+  on:click={onSelect}
+  on:keydown={onKeyDown}
+  tabindex="0"
+>
   <div class="list-item-info">
     <p class="list-item-title">
       <span class="list-item-has-new" />
@@ -28,7 +46,7 @@
     <p class="list-item-url">{feed?.url}</p>
   </div>
   <div class="list-item-actions">
-    <Button label="Edit" size="small" on:click={edit} />
+    <Button label="Edit" size="small" on:click={edit} tabindex={selected ? 0 : -1} />
   </div>
 </li>
 

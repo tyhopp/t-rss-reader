@@ -7,8 +7,9 @@
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
   import { getRandomNumber } from '../utils/get-random-number';
-  import type { RssFeedEntries } from '../types';
   import { PUBLIC_ENTRIES_API } from '$env/static/public';
+  import { handleJumpKeyboardEvents } from '../utils/handle-jump-keyboard-events';
+  import type { RssFeedEntries } from '../types';
 
   let loading: boolean = false;
   let hasSelection: boolean = false;
@@ -76,6 +77,12 @@
     const newSelectedFeed = $feedsStore[randomInt];
     selectedFeedStore.set(newSelectedFeed);
   }
+
+  function onKeyDown(event: KeyboardEvent) {
+    if (entries.length) {
+      handleJumpKeyboardEvents(event, '[data-elem=details-item] a');
+    }
+  }
 </script>
 
 <div data-has-selection={hasSelection}>
@@ -91,7 +98,7 @@
       <p>Failed to get entries</p>
     </section>
   {:else if hasSelection && entries.length}
-    <ul>
+    <ul on:keydown={onKeyDown}>
       {#each entries as entry}
         <DetailsItem {entry} />
       {/each}

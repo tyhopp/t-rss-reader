@@ -6,6 +6,7 @@
   import { modalStore } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
+  import { handleJumpKeyboardEvents } from '../utils/handle-jump-keyboard-events';
   import { Result } from '../types';
 
   let initialized: Result = Result.none;
@@ -25,6 +26,12 @@
     }
   }
 
+  function onKeyDown(event: KeyboardEvent) {
+    if ($feedsStore.length) {
+      handleJumpKeyboardEvents(event, '[data-elem=list-item]');
+    }
+  }
+
   async function retry() {
     loading = true;
     initialized = await feedsStore.init();
@@ -36,7 +43,7 @@
   }
 </script>
 
-<ul data-has-selected={hasSelected}>
+<ul on:keydown={onKeyDown} data-has-selected={hasSelected}>
   {#if initialized === Result.none}
     <Loading />
   {:else if initialized === Result.failure}

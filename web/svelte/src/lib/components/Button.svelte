@@ -3,9 +3,10 @@
   export let type: 'button' | 'submit' | 'reset' = 'button';
   export let disabled: boolean = false;
   export let size: 'regular' | 'small' = 'regular';
+  export let tabindex: number = 0;
 </script>
 
-<button {type} {disabled} data-size={size} on:click|stopPropagation>
+<button {type} {disabled} data-size={size} {tabindex} on:click|stopPropagation>
   {label}
 </button>
 
