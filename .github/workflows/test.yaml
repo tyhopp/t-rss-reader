@@ -34,6 +34,10 @@ jobs:
         working-directory: ./infra/entries-handler
         run: npm install
 
+      - name: Install last-access-handler dependencies
+        working-directory: ./infra/last-access-handler
+        run: npm install
+
       - name: Run login-handler tests
         working-directory: ./infra/login-handler
         run: npm run test
@@ -44,4 +48,8 @@ jobs:
 
       - name: Run entries-handler tests
         working-directory: ./infra/entries-handler
+        run: npm run test
+
+      - name: Run last-access-handler tests
+        working-directory: ./infra/last-access-handler
         run: npm run test
