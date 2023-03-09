@@ -44,7 +44,14 @@
 <form on:submit|preventDefault={onSubmit}>
   <label for="password">Enter your password</label>
   <FormResultMessage {result} --margin="0.5em" />
-  <input name="password" type="password" required bind:value={password} disabled={loading} />
+  <input
+    name="password"
+    type="password"
+    required
+    autocomplete="current-password"
+    bind:value={password}
+    disabled={loading}
+  />
   <Button
     type="submit"
     label={loading ? 'Authorizing...' : 'Log in'}
