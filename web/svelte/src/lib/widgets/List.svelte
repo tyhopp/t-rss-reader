@@ -11,12 +11,12 @@
   let initialized: Result = Result.none;
   let loading: boolean = false;
   let attempts: number = 1;
-  let selected: boolean;
+  let hasSelected: boolean;
 
   onMount(async () => {
     initialized = await feedsStore.init();
 
-    selectedFeedStore.subscribe((selectedFeed) => (selected = !!selectedFeed));
+    selectedFeedStore.subscribe((selectedFeed) => (hasSelected = !!selectedFeed));
   });
 
   function onSelect(event: CustomEvent) {
@@ -36,7 +36,7 @@
   }
 </script>
 
-<ul data-selected={selected}>
+<ul data-has-selected={hasSelected}>
   {#if initialized === Result.none}
     <Loading />
   {:else if initialized === Result.failure}
@@ -70,7 +70,7 @@
     border-right: 1px dashed var(--line);
   }
 
-  ul[data-selected='true'] {
+  ul[data-has-selected='true'] {
     display: none;
   }
 
@@ -81,7 +81,7 @@
       padding: 0 0 2em 0;
     }
 
-    ul[data-selected='true'] {
+    ul[data-has-selected='true'] {
       display: flex;
     }
   }

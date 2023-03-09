@@ -11,7 +11,7 @@
   import { PUBLIC_ENTRIES_API } from '$env/static/public';
 
   let loading: boolean = false;
-  let selected: boolean = false;
+  let hasSelection: boolean = false;
   let entriesFailed: boolean = false;
   let entries: RssFeedEntries = [];
   let prevSelected: string | undefined;
@@ -19,7 +19,7 @@
 
   function reset(): void {
     loading = false;
-    selected = false;
+    hasSelection = false;
     entriesFailed = false;
     entries = [];
     prevSelected = undefined;
@@ -38,7 +38,7 @@
       }
 
       loading = true;
-      selected = true;
+      hasSelection = true;
       entriesFailed = false;
       entries = [];
 
@@ -78,19 +78,19 @@
   }
 </script>
 
-<div data-selected={selected}>
+<div data-has-selection={hasSelection}>
   {#if loading}
     <Loading />
-  {:else if !selected && !entriesFailed && $feedsStore.length}
+  {:else if !hasSelection && !entriesFailed && $feedsStore.length}
     <section>
       <p>Select a feed to view entries</p>
       <Button label="Select random" on:click={onSelectRandom} />
     </section>
-  {:else if selected && entriesFailed}
+  {:else if hasSelection && entriesFailed}
     <section>
       <p>Failed to get entries</p>
     </section>
-  {:else if selected && entries.length}
+  {:else if hasSelection && entries.length}
     <ul>
       {#each entries as entry}
         <DetailsItem {entry} />
@@ -104,7 +104,7 @@
     display: none;
   }
 
-  div[data-selected='true'] {
+  div[data-has-selection='true'] {
     flex: 1;
     display: flex;
   }
