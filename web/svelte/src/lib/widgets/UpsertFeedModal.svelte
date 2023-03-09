@@ -156,8 +156,14 @@
         <FormResultMessage {result} --margin="0 0 1em 0" />
         <div>
           <label for="name">Name</label>
+          <!--
+            svelte-ignore a11y-autofocus
+            Focusing on the first input in a modal dialog is recommended by the W3C.
+            See https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/.
+          -->
           <input
             bind:value={$modalStore.name}
+            autofocus={true}
             type="text"
             name="name"
             required

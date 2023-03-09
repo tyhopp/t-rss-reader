@@ -9,9 +9,16 @@
 </script>
 
 {#if $modalStore.open}
-  <div id="modal" on:click={() => modalStore.close()} on:keydown={onKeyDown}>
+  <div
+    id="modal"
+    role="dialog"
+    aria-labelledby="modal-title"
+    aria-modal="true"
+    on:click={() => modalStore.close()}
+    on:keydown={onKeyDown}
+  >
     <div id="modal-content" on:click|stopPropagation on:keydown>
-      <h1>
+      <h1 id="modal-title">
         <slot name="title" />
       </h1>
       <slot name="body" />
