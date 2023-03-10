@@ -11,8 +11,6 @@ const headers = {
   'Content-Type': 'application/json'
 };
 
-const monthInSeconds = 60 * 60 * 24 * 7 * 4;
-
 export const handler = async (event: APIGatewayEvent) => {
   const verified = verifyToken(event?.headers?.authorization);
 
@@ -48,7 +46,7 @@ export const handler = async (event: APIGatewayEvent) => {
         break;
       case 'GET':
         responseBody = await feedsTableInstance.getFeeds();
-        responseHeaders['Cache-Control'] = `max-age=5, stale-while-revalidate=${monthInSeconds}`;
+        responseHeaders['Cache-Control'] = `max-age=5`;
         break;
       case 'PUT':
         responseBody = await feedsTableInstance.putFeed(requestBody.url, requestBody.name);

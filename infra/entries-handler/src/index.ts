@@ -7,9 +7,6 @@ const headers = {
   'Content-Type': 'application/json'
 };
 
-const halfHourInSeconds = 60 * 30;
-const monthInSeconds = 60 * 60 * 24 * 7 * 4;
-
 export const handler = async (event: APIGatewayEvent) => {
   const verified = verifyToken(event?.headers?.authorization);
 
@@ -52,9 +49,7 @@ export const handler = async (event: APIGatewayEvent) => {
         const unsortedEntries = parseFeed(url, xml);
         responseBody = await sortEntries(unsortedEntries);
 
-        responseHeaders[
-          'Cache-Control'
-        ] = `max-age=${halfHourInSeconds}, stale-while-revalidate=${monthInSeconds}`;
+        responseHeaders['Cache-Control'] = `max-age=300`;
         break;
       default:
         return {
