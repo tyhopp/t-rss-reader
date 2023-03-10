@@ -20,6 +20,16 @@
     href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&text=t-rss-reader&display=swap"
     rel="stylesheet"
   />
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="favicon-180.jpg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.jpg" />
+  <link rel="icon" type="image/jpg" sizes="48x48" href="favicon-48.jpg" />
+  <link rel="icon" type="image/jpg" sizes="32x32" href="favicon-32.jpg" />
+  <link rel="icon" type="image/jpg" sizes="16x16" href="favicon-16.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="open-graph-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary" />
 </svelte:head>
 
 <Header />
