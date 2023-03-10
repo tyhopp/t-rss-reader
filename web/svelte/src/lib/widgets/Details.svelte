@@ -134,6 +134,7 @@
   }
 
   ul {
+    flex: 1;
     padding: 0 0 5em 0;
     margin: 0;
     overflow-y: auto;

@@ -36,7 +36,7 @@
 <style>
   h1 {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   header {
@@ -49,8 +49,8 @@
   }
 
   .header-title-mobile {
-    flex: 1;
-    padding: 0 1em;
+    flex: 2;
+    padding: 0 0.5em;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -80,6 +80,10 @@
   }
 
   @media (min-width: 600px) {
+    h1 {
+      font-size: 20px;
+    }
+
     header {
       border-bottom: none;
     }
