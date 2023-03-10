@@ -71,7 +71,7 @@
     flex-direction: column;
     min-width: 300px;
     overflow-y: auto;
-    padding: 0 0 5em 0;
+    padding: 0 0 1em 0;
     margin: 0;
     border-left: 1px dashed var(--line);
     border-right: 1px dashed var(--line);
@@ -85,7 +85,6 @@
     ul {
       max-width: 350px;
       border-top: 1px dashed var(--line);
-      padding: 0 0 2em 0;
     }
 
     ul[data-has-selected='true'] {
