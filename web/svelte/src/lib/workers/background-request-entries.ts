@@ -1,5 +1,5 @@
-import EntriesService from '../services/entries-service';
-import LastAccessService from '../services/last-access-service';
+import { EntriesService } from '../services/entries-service';
+import { LastAccessService } from '../services/last-access-service';
 import type { RssFeedEntries } from '$lib/types';
 
 function hasNew(entries: RssFeedEntries) {

@@ -1,6 +1,6 @@
 import { PUBLIC_LOGIN_API } from '$env/static/public';
 
-export class LoginServiceImpl {
+export class LoginService {
   private get headers(): HeadersInit {
     return {
       'content-type': 'application/json'
@@ -16,7 +16,4 @@ export class LoginServiceImpl {
   }
 }
 
-const LoginServiceInstance = new LoginServiceImpl();
-const LoginServiceSingleton = Object.freeze(LoginServiceInstance);
-
-export default LoginServiceSingleton;
+export default new LoginService();

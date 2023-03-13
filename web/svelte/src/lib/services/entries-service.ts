@@ -1,17 +1,11 @@
 import { getAccessToken } from '../utils/get-access-token';
 
-/**
- * This service does not export a singleton because it is also used in a
- * worker context that does not have access to env vars.
- *
- * Instead the endpoint should be provided when the service is constructed.
- */
-export default class EntriesService {
+export class EntriesService {
   constructor(api: string) {
     this.api = api;
   }
 
-  private api: string;
+  api: string;
 
   private get headers(): HeadersInit {
     return {
