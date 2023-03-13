@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { getAccessTokenWithCheck } from '../utils/get-access-token';
+import { getAccessTokenWithCheck } from '../utils/get-access-token-with-check';
 import { tokenMaybeValid } from '../utils/token-maybe-valid';
 import { ACCESS_TOKEN_KEY } from '../constants';
 import { set } from 'idb-keyval';
