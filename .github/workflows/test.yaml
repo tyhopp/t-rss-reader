@@ -22,34 +22,18 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install login-handler dependencies
-        working-directory: ./infra/login-handler
+      - name: Install handler dependencies
+        working-directory: ./infra
+        run: make install
+
+      - name: Run handler tests
+        working-directory: ./infra
+        run: make test
+
+      - name: Install Svelte client dependencies
+        working-directory: ./web/svelte
         run: npm install
 
-      - name: Install feeds-handler dependencies
-        working-directory: ./infra/feeds-handler
-        run: npm install
-
-      - name: Install entries-handler dependencies
-        working-directory: ./infra/entries-handler
-        run: npm install
-
-      - name: Install last-access-handler dependencies
-        working-directory: ./infra/last-access-handler
-        run: npm install
-
-      - name: Run login-handler tests
-        working-directory: ./infra/login-handler
-        run: npm run test
-
-      - name: Run feeds-handler tests
-        working-directory: ./infra/feeds-handler
-        run: npm run test
-
-      - name: Run entries-handler tests
-        working-directory: ./infra/entries-handler
-        run: npm run test
-
-      - name: Run last-access-handler tests
-        working-directory: ./infra/last-access-handler
+      - name: Run Svelte client tests
+        working-directory: ./web/svelte
         run: npm run test

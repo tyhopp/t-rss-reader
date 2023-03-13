@@ -1,4 +1,4 @@
-targets = init validate create delete
+targets = install test init validate create delete
 login_handler_path = ./login-handler
 feeds_handler_path = ./feeds-handler
 entries_handler_path = ./entries-handler
@@ -9,11 +9,20 @@ last_access_handler_path = ./last-access-handler
 help:
 	@echo "Available targets: $(targets)"
 
-init:
+install:
 	$(MAKE) -C $(login_handler_path) install
 	$(MAKE) -C $(feeds_handler_path) install
 	$(MAKE) -C $(entries_handler_path) install
 	$(MAKE) -C $(last_access_handler_path) install
+
+test:
+	$(MAKE) -C $(login_handler_path) test
+	$(MAKE) -C $(feeds_handler_path) test
+	$(MAKE) -C $(entries_handler_path) test
+	$(MAKE) -C $(last_access_handler_path) test
+
+init:
+	$(MAKE) install
 	terraform init
 
 validate:
