@@ -1,4 +1,4 @@
-targets = install prepare clean
+targets = install prepare test clean
 
 .PHONY: help $(targets)
 
@@ -11,6 +11,9 @@ install:
 prepare:
 	npm run build
 	npm run zip
+
+test:
+	npm run test
 
 clean:
 	npm run clean

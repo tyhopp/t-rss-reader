@@ -1,7 +1,7 @@
 import { getAccessToken } from '../utils/get-access-token';
 import { PUBLIC_FEEDS_API } from '$env/static/public';
 
-export class FeedsServiceImpl {
+export class FeedsService {
   private get headers(): HeadersInit {
     return {
       'content-type': 'application/json'
@@ -53,7 +53,4 @@ export class FeedsServiceImpl {
   }
 }
 
-const FeedsServiceInstance = new FeedsServiceImpl();
-const FeedsServiceSingleton = Object.freeze(FeedsServiceInstance);
-
-export default FeedsServiceSingleton;
+export default new FeedsService();

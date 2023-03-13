@@ -3,7 +3,7 @@
   import DetailsItem from '../components/DetailsItem.svelte';
   import Loading from '../components/Loading.svelte';
   import Button from '../components/Button.svelte';
-  import EntriesService from '../services/entries-service';
+  import { EntriesService } from '../services/entries-service';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
   import { getRandomNumber } from '../utils/get-random-number';
