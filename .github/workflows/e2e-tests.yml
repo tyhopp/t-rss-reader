@@ -1,0 +1,25 @@
+name: E2E tests
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        working-directory: ./web
+        run: npm ci
+
+      - name: Install chromium
+        working-directory: ./web
+        run: npx playwright install chromium
+
+      - name: Run tests
+        working-directory: ./web
+        run: npm run test:e2e

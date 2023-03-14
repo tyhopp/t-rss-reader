@@ -10,7 +10,7 @@ export default defineConfig({
   },
   plugins: [sveltekit()],
   test: {
-    include: ['test/**/*.{test,spec}.ts'],
+    include: ['test/unit/**/*.{test,spec}.ts'],
     watch: false
   }
 });

@@ -1,4 +1,4 @@
-name: test
+name: Unit tests
 
 on:
   pull_request:
@@ -6,21 +6,11 @@ on:
 
 jobs:
   test:
-    name: ${{ matrix.os }}-node-${{ matrix.node }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [18]
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up node
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 18
 
       - name: Install handler dependencies
         working-directory: ./infra
@@ -36,4 +26,4 @@ jobs:
 
       - name: Run web client tests
         working-directory: ./web
-        run: npm run test
+        run: npm run test:unit
