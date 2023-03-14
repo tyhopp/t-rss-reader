@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Result } from '../types';
+  import { Result } from 't-rss-reader';
 
   export let result: Result = Result.none;
 

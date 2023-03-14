@@ -1,9 +1,8 @@
 import { writable } from 'svelte/store';
-import { getAccessTokenWithCheck } from '../utils/get-access-token-with-check';
-import { tokenMaybeValid } from '../utils/token-maybe-valid';
-import { ACCESS_TOKEN_KEY } from '../constants';
-import { set } from 'idb-keyval';
-import type { Token } from '../types';
+import { getAccessTokenWithCheck } from 't-rss-reader/utils/get-access-token-with-check';
+import { setAccessToken } from 't-rss-reader/utils/set-access-token';
+import { tokenMaybeValid } from 't-rss-reader/utils/token-maybe-valid';
+import type { Token } from 't-rss-reader';
 
 interface TokenStore {
   maybeValid: boolean;
@@ -20,7 +19,7 @@ export const tokenStore = {
   },
   subscribe: tokenStoreInstance.subscribe,
   set: async (token: Token) => {
-    await set(ACCESS_TOKEN_KEY, JSON.stringify(token));
+    await setAccessToken(token);
     const maybeValid = tokenMaybeValid(token);
     tokenStoreInstance.set({ maybeValid, token });
   }

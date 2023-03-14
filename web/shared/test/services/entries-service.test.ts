@@ -1,13 +1,13 @@
 import { test, vi, expect } from 'vitest';
-import { EntriesService } from '../../../src/lib/services/entries-service';
+import { EntriesService } from '../../src/services/entries-service';
+
+const api = 'a';
 
 vi.stubGlobal('fetch', () => vi.fn());
 
-vi.mock('../../../src/lib/utils/get-access-token', () => ({
+vi.mock('../../src/utils/get-access-token', () => ({
   getAccessToken: vi.fn()
 }));
-
-const api = 'a';
 
 test('should export a constructor that accepts an api', () => {
   const EntriesServiceInstance = new EntriesService(api);

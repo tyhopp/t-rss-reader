@@ -1,14 +1,18 @@
 import { test, vi, expect } from 'vitest';
-import LoginServiceInstance, { LoginService } from '../../../src/lib/services/login-service';
+import { LoginService } from '../../src/services/login-service';
+
+const api = 'api';
+const password = 'password';
+
+const LoginServiceInstance = new LoginService(api);
+const spy = vi.spyOn(LoginServiceInstance, 'login');
 
 vi.stubGlobal('fetch', () => vi.fn());
 
-const spy = vi.spyOn(LoginServiceInstance, 'login');
-
-const password = 'a';
-
-test('should have a default export of a constructed instance', () => {
+test('should export a constructor that accepts an api', () => {
+  const LoginServiceInstance = new LoginService(api);
   expect(LoginServiceInstance).toBeInstanceOf(LoginService);
+  expect(LoginServiceInstance.api).toBe(api);
 });
 
 test('should have a login method', () => {

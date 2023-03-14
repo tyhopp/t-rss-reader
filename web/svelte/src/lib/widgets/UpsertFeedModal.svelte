@@ -2,13 +2,13 @@
   import Modal from '../components/Modal.svelte';
   import FormResultMessage from '../components/FormResultMessage.svelte';
   import Button from '../components/Button.svelte';
-  import FeedsService from '../services/feeds-service';
+  import { FeedsService } from '../services/feeds-service';
   import { modalStore, ModalMode } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
-  import { Result } from '../types';
-  import type { Feeds } from '../types';
   import FormValidationMessage from '$lib/components/FormValidationMessage.svelte';
+  import { Result } from 't-rss-reader';
+  import type { Feeds } from 't-rss-reader';
 
   enum InFlightAction {
     none = 'none',

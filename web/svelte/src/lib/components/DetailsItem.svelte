@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { RssFeedEntry } from '../types';
+  import type { RssFeedEntry } from 't-rss-reader';
 
   export let entry: RssFeedEntry;
 

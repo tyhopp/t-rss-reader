@@ -16,7 +16,7 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "dependencies": {
-    "idb-keyval": "^6.2.0"
+    "t-rss-reader": "^0.1.4"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.1",

@@ -1,0 +1,42 @@
+{
+  "name": "t-rss-reader",
+  "version": "0.1.4",
+  "description": "Shared resources for t-rss-reader web clients",
+  "author": "Ty Hopp (https://tyhopp.com)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types.d.ts",
+      "import": "./types.js"
+    },
+    "./services/*": {
+      "types": "./services/*.d.ts",
+      "import": "./services/*.js"
+    },
+    "./utils/*": {
+      "types": "./utils/*.d.ts",
+      "import": "./utils/*.js"
+    },
+    "./constants": {
+      "types": "./constants.d.ts",
+      "import": "./constants.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "types.d.ts",
+  "scripts": {
+    "clean": "del dist",
+    "build": "tsc",
+    "postbuild": "cp package.json README.md dist/",
+    "test": "vitest"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "del-cli": "^5.0.0",
+    "typescript": "^4.9.5",
+    "vitest": "^0.29.2"
+  },
+  "dependencies": {
+    "idb-keyval": "^6.2.0"
+  }
+}

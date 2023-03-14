@@ -1,6 +1,6 @@
-import { EntriesService } from '../services/entries-service';
-import { LastAccessService } from '../services/last-access-service';
-import type { RssFeedEntries } from '$lib/types';
+import { EntriesService } from 't-rss-reader/services/entries-service';
+import { LastAccessService } from 't-rss-reader/services/last-access-service';
+import type { RssFeedEntries } from 't-rss-reader';
 
 function hasNew(entries: RssFeedEntries) {
   return entries.some((entry) => entry?.isNew);

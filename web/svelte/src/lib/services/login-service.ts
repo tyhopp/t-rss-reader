@@ -1,19 +1,6 @@
+import { LoginService } from 't-rss-reader/services/login-service';
 import { PUBLIC_LOGIN_API } from '$env/static/public';
 
-export class LoginService {
-  private get headers(): HeadersInit {
-    return {
-      'content-type': 'application/json'
-    };
-  }
+const LoginServiceInstance = new LoginService(PUBLIC_LOGIN_API);
 
-  async login(password: string): Promise<Response> {
-    return await fetch(PUBLIC_LOGIN_API, {
-      method: 'POST',
-      cache: 'no-cache',
-      headers: { ...this.headers, authorization: password }
-    });
-  }
-}
-
-export default new LoginService();
+export { LoginServiceInstance as LoginService };

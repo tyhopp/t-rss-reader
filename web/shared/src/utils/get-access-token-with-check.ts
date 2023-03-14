@@ -1,6 +1,6 @@
-import { getAccessToken } from './get-access-token';
-import { tokenMaybeValid } from './token-maybe-valid';
-import type { Token } from '../types';
+import { getAccessToken } from './get-access-token.js';
+import { tokenMaybeValid } from './token-maybe-valid.js';
+import type { Token } from '../types.js';
 
 export async function getAccessTokenWithCheck(): Promise<{
   maybeValid: boolean;

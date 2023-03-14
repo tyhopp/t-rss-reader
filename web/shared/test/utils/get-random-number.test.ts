@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { getRandomNumber } from '../../../src/lib/utils/get-random-number';
+import { getRandomNumber } from '../../src/utils/get-random-number';
 
 test('should return 0 if min and max is 0', () => {
   const number = getRandomNumber(0, 0);

@@ -1,20 +1,25 @@
 import { test, vi, expect } from 'vitest';
-import FeedsServiceInstance, { FeedsService } from '../../../src/lib/services/feeds-service';
+import { FeedsService } from '../../src/services/feeds-service';
 
-vi.stubGlobal('fetch', () => vi.fn());
+const api = 'api';
+const url = 'url';
+const name = 'name';
 
-const url = 'a-url';
-const name = 'a-name';
+const FeedsServiceInstance = new FeedsService(api);
 
 const deleteFeedSpy = vi.spyOn(FeedsServiceInstance, 'deleteFeed');
 const putFeedSpy = vi.spyOn(FeedsServiceInstance, 'putFeed');
 
-vi.mock('../../../src/lib/utils/get-access-token', () => ({
+vi.stubGlobal('fetch', () => vi.fn());
+
+vi.mock('../../src/utils/get-access-token', () => ({
   getAccessToken: vi.fn()
 }));
 
-test('should have a default export of a constructed instance', () => {
+test('should export a constructor that accepts an api', () => {
+  const FeedsServiceInstance = new FeedsService(api);
   expect(FeedsServiceInstance).toBeInstanceOf(FeedsService);
+  expect(FeedsServiceInstance.api).toBe(api);
 });
 
 test('should have a deleteFeed method', () => {

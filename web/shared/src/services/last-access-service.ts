@@ -1,4 +1,4 @@
-import { getAccessToken } from '../utils/get-access-token';
+import { getAccessToken } from '../utils/get-access-token.js';
 
 export class LastAccessService {
   constructor(api: string) {

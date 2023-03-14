@@ -4,7 +4,7 @@
   import { modalStore } from '../stores/modal-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
   import Button from './Button.svelte';
-  import type { Feed } from '../types';
+  import type { Feed } from 't-rss-reader';
 
   let disabled: boolean = true;
   let selectedFeed: Feed | undefined;

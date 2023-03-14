@@ -2,7 +2,7 @@
   import { createEventDispatcher } from 'svelte';
   import Button from './Button.svelte';
   import { modalStore, ModalMode } from '../stores/modal-store';
-  import type { Feed } from '../types';
+  import type { Feed } from 't-rss-reader';
 
   const dispatch = createEventDispatcher();
 

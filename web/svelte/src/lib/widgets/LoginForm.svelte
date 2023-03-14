@@ -1,9 +1,10 @@
 <script lang="ts">
   import FormResultMessage from '../components/FormResultMessage.svelte';
   import Button from '../components/Button.svelte';
-  import LoginService from '../services/login-service';
   import { tokenStore } from '../stores/token-store';
-  import { Result, type Token } from '../types';
+  import { LoginService } from '../services/login-service';
+  import { Result } from 't-rss-reader';
+  import type { Token } from 't-rss-reader';
 
   let password: string | undefined;
   let loading: boolean = false;

@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
-import FeedsService from '../services/feeds-service';
-import { Result } from '../types';
-import type { Feeds } from '../types';
+import { FeedsService } from '../services/feeds-service';
+import { Result } from 't-rss-reader';
+import type { Feeds } from 't-rss-reader';
 
 const feedsStoreInstance = writable<Feeds>([]);
 

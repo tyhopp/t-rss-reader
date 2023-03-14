@@ -1,13 +1,13 @@
 import { test, vi, expect } from 'vitest';
-import { LastAccessService } from '../../../src/lib/services/last-access-service';
+import { LastAccessService } from '../../src/services/last-access-service';
+
+const api = 'a';
 
 vi.stubGlobal('fetch', () => vi.fn());
 
-vi.mock('../../../src/lib/utils/get-access-token', () => ({
+vi.mock('../../src/utils/get-access-token', () => ({
   getAccessToken: vi.fn()
 }));
-
-const api = 'a';
 
 test('should export a constructor that accepts an api', () => {
   const LastAccessServiceInstance = new LastAccessService(api);

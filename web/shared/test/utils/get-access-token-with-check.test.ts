@@ -1,13 +1,13 @@
 import { test, vi, expect } from 'vitest';
-import { getAccessTokenWithCheck } from '../../../src/lib/utils/get-access-token-with-check';
-import { getAccessToken } from '../../../src/lib/utils/get-access-token';
-import { tokenMaybeValid } from '../../../src/lib/utils/token-maybe-valid';
+import { getAccessTokenWithCheck } from '../../src/utils/get-access-token-with-check';
+import { getAccessToken } from '../../src/utils/get-access-token';
+import { tokenMaybeValid } from '../../src/utils/token-maybe-valid';
 
-vi.mock('../../../src/lib/utils/get-access-token', () => ({
+vi.mock('../../src/utils/get-access-token', () => ({
   getAccessToken: vi.fn()
 }));
 
-vi.mock('../../../src/lib/utils/token-maybe-valid', () => ({
+vi.mock('../../src/utils/token-maybe-valid', () => ({
   tokenMaybeValid: vi.fn()
 }));
 

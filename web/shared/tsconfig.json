@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "outDir": "./dist",
+    "declaration": true
+  },
+  "include": ["./src"],
+}

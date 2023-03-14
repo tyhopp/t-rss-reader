@@ -6,8 +6,8 @@
   import { modalStore } from '../stores/modal-store';
   import { feedsStore } from '../stores/feeds-store';
   import { selectedFeedStore } from '../stores/selected-feed-store';
-  import { handleJumpKeyboardEvents } from '../utils/handle-jump-keyboard-events';
-  import { Result } from '../types';
+  import { handleJumpKeyboardEvents } from 't-rss-reader/utils/handle-jump-keyboard-events';
+  import { Result } from 't-rss-reader';
 
   let initialized: Result = Result.none;
   let loading: boolean = false;

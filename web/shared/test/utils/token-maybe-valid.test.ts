@@ -1,5 +1,5 @@
 import { test, vi, expect } from 'vitest';
-import { tokenMaybeValid } from '../../../src/lib/utils/token-maybe-valid';
+import { tokenMaybeValid } from '../../src/utils/token-maybe-valid';
 
 vi.useFakeTimers();
 vi.setSystemTime(1);

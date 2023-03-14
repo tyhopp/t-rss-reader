@@ -30,10 +30,10 @@ jobs:
         working-directory: ./infra
         run: make test
 
-      - name: Install Svelte client dependencies
-        working-directory: ./web/svelte
+      - name: Install web shared dependencies
+        working-directory: ./web/shared
         run: npm install
 
-      - name: Run Svelte client tests
-        working-directory: ./web/svelte
+      - name: Run web shared tests
+        working-directory: ./web/shared
         run: npm run test
