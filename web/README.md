@@ -1,6 +1,6 @@
-# t-rss-reader svelte client
+# t-rss-reader web client
 
-Client built with [SvelteKit](https://kit.svelte.dev/), which relies on [Svelte](https://svelte.dev/) and [Vite](https://vitejs.dev/).
+Web client built with [SvelteKit](https://kit.svelte.dev/), which relies on [Svelte](https://svelte.dev/) and [Vite](https://vitejs.dev/).
 
 ## Prerequisites
 
