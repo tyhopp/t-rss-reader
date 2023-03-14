@@ -1,6 +1,6 @@
 {
   "name": "t-rss-reader",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Shared resources for t-rss-reader web clients",
   "author": "Ty Hopp (https://tyhopp.com)",
   "type": "module",
