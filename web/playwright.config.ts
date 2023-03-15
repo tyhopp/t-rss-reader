@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const appServerUrl = 'http://localhost:8000';
+const mockServerUrl = 'http://localhost:8001';
+
 export default defineConfig({
   testDir: './test/e2e',
   timeout: 10 * 1000,
@@ -13,7 +16,7 @@ export default defineConfig({
   reporter: process.env.CI ? 'github' : 'list',
   use: {
     actionTimeout: 0,
-    baseURL: 'http://localhost:8000',
+    baseURL: appServerUrl,
     trace: 'on-first-retry'
   },
   projects: [
@@ -24,12 +27,18 @@ export default defineConfig({
   ],
   webServer: [
     {
-      command: 'node ./test/e2e/fixtures/mock-server.mjs',
+      command: 'node ./test/e2e/fixtures/server.mjs',
       port: 8001
     },
     {
-      command: 'npm run dev',
-      port: 8000
+      command: `npm run dev`,
+      port: 8000,
+      env: {
+        PUBLIC_FEEDS_API: `${mockServerUrl}/feeds`,
+        PUBLIC_LOGIN_API: `${mockServerUrl}/login`,
+        PUBLIC_ENTRIES_API: `${mockServerUrl}/entries`,
+        PUBLIC_LAST_ACCESS_API: `${mockServerUrl}/last-access`
+      }
     }
   ]
 });
