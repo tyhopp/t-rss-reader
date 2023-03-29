@@ -1,11 +1,29 @@
-.terraform
+# infra
+.terraform/
 *.out
 *.tfstate
 *.tfstate.backup
 *.tfstate.lock.info
 *.zip
 terraform.tfvars
-node_modules
-dist
+
+# web
+node_modules/
+dist/
+.firebase/
+
+# apple
 .DS_Store
-.firebase
+xcuserdata/
+build/
+.build/
+DerivedData/
+*.pbxuser
+*.xcuserstate
+*.xcworkspace/
+*.log
+Packages/
+Package.pins
+Package.resolved
+.swiftpm
+*.xcodeproj
