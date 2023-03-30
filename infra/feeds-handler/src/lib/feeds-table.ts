@@ -41,7 +41,8 @@ export class FeedsTable {
     const response = await this.dbDocClientInstance.send(
       new ScanCommand({ TableName: this.tableName })
     );
-    return response?.Items as FeedItems;
+
+    return (response?.Items as FeedItems).sort((a, b) => a.name.localeCompare(b.name));
   }
 
   async putFeed(feedUrl: string, feedName: string): Promise<{ message: string; feed: FeedItem }> {
