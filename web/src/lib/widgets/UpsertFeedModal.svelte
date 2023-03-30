@@ -126,13 +126,19 @@
       const body = await response.json();
 
       feedsStore.update((prevFeeds) => {
+        let unsortedNextFeeds: Feeds;
+
         if ($modalStore.mode === ModalMode.edit) {
-          return prevFeeds.map((prevFeed) =>
+          unsortedNextFeeds = prevFeeds.map((prevFeed) =>
             prevFeed.url === body.feed.url ? body.feed : prevFeed
           );
         } else {
-          return [...prevFeeds, body.feed];
+          unsortedNextFeeds = [...prevFeeds, body.feed];
         }
+
+        const sortedNextFeeds = unsortedNextFeeds.sort((a, b) => a.name.localeCompare(b.name));
+
+        return sortedNextFeeds;
       });
 
       modalStore.close();
