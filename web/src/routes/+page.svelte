@@ -5,7 +5,7 @@
   import List from '$lib/widgets/List.svelte';
   import Details from '$lib/widgets/Details.svelte';
   import UpsertFeedModal from '$lib/widgets/UpsertFeedModal.svelte';
-  import BackgroundRequestEntries from '$lib/workers/background-request-entries?worker';
+  import BackgroundRequestEntriesWorker from '$lib/workers/background-request-entries?worker';
   import { PUBLIC_ENTRIES_API, PUBLIC_LAST_ACCESS_API } from '$env/static/public';
 
   onMount(async () => {
@@ -19,7 +19,7 @@
       }
     });
 
-    const backgroundRequestEntriesWorker = new BackgroundRequestEntries();
+    const backgroundRequestEntriesWorker = new BackgroundRequestEntriesWorker();
 
     let backgroundRequestInitialized = false;
 
@@ -28,12 +28,16 @@
         feedsStore.update((prevFeeds) => {
           const unsortedNextFeeds = prevFeeds.map((prevFeed) => {
             if (event.data === prevFeed.url) {
-              prevFeed.hasNew = true
+              prevFeed.hasNew = true;
             }
             return prevFeed;
           });
 
           const sortedNextFeeds = unsortedNextFeeds.sort((a, b) => {
+            if (a.hasNew && b.hasNew) {
+              return a.name.localeCompare(b.name);
+            }
+
             if (a.hasNew) {
               return -1;
             }
