@@ -42,17 +42,7 @@ export class FeedsTable {
       new ScanCommand({ TableName: this.tableName })
     );
 
-    return (response?.Items as FeedItems).sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-
-      if (a.name > b.name) {
-        return 1;
-      }
-
-      return 0;
-    });
+    return (response?.Items as FeedItems).sort((a, b) => a.name.localeCompare(b.name));
   }
 
   async putFeed(feedUrl: string, feedName: string): Promise<{ message: string; feed: FeedItem }> {
