@@ -1,0 +1,609 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559588F29D4125F008D7307 /* TRssReaderApp.swift */; };
+		E559589229D4125F008D7307 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559589129D4125F008D7307 /* ContentView.swift */; };
+		E559589429D41260008D7307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589329D41260008D7307 /* Assets.xcassets */; };
+		E559589829D41260008D7307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589729D41260008D7307 /* Preview Assets.xcassets */; };
+		E55958A229D41260008D7307 /* TRssReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958A129D41260008D7307 /* TRssReaderTests.swift */; };
+		E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AB29D41260008D7307 /* TRssReaderUITests.swift */; };
+		E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E559589E29D41260008D7307 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E559588429D4125F008D7307 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E559588B29D4125F008D7307;
+			remoteInfo = TRssReader;
+		};
+		E55958A829D41260008D7307 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E559588429D4125F008D7307 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E559588B29D4125F008D7307;
+			remoteInfo = TRssReader;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E559588C29D4125F008D7307 /* TRssReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRssReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E559588F29D4125F008D7307 /* TRssReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderApp.swift; sourceTree = "<group>"; };
+		E559589129D4125F008D7307 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E559589329D41260008D7307 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E559589529D41260008D7307 /* TRssReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TRssReader.entitlements; sourceTree = "<group>"; };
+		E559589729D41260008D7307 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E559589D29D41260008D7307 /* TRssReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55958A129D41260008D7307 /* TRssReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderTests.swift; sourceTree = "<group>"; };
+		E55958A729D41260008D7307 /* TRssReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55958AB29D41260008D7307 /* TRssReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITests.swift; sourceTree = "<group>"; };
+		E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E559588929D4125F008D7307 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E559589A29D41260008D7307 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E55958A429D41260008D7307 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E559588329D4125F008D7307 = {
+			isa = PBXGroup;
+			children = (
+				E559588E29D4125F008D7307 /* TRssReader */,
+				E55958A029D41260008D7307 /* TRssReaderTests */,
+				E55958AA29D41260008D7307 /* TRssReaderUITests */,
+				E559588D29D4125F008D7307 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E559588D29D4125F008D7307 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E559588C29D4125F008D7307 /* TRssReader.app */,
+				E559589D29D41260008D7307 /* TRssReaderTests.xctest */,
+				E55958A729D41260008D7307 /* TRssReaderUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E559588E29D4125F008D7307 /* TRssReader */ = {
+			isa = PBXGroup;
+			children = (
+				E559588F29D4125F008D7307 /* TRssReaderApp.swift */,
+				E559589129D4125F008D7307 /* ContentView.swift */,
+				E559589329D41260008D7307 /* Assets.xcassets */,
+				E559589529D41260008D7307 /* TRssReader.entitlements */,
+				E559589629D41260008D7307 /* Preview Content */,
+			);
+			path = TRssReader;
+			sourceTree = "<group>";
+		};
+		E559589629D41260008D7307 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E559589729D41260008D7307 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E55958A029D41260008D7307 /* TRssReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				E55958A129D41260008D7307 /* TRssReaderTests.swift */,
+			);
+			path = TRssReaderTests;
+			sourceTree = "<group>";
+		};
+		E55958AA29D41260008D7307 /* TRssReaderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E55958AB29D41260008D7307 /* TRssReaderUITests.swift */,
+				E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */,
+			);
+			path = TRssReaderUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E559588B29D4125F008D7307 /* TRssReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E55958B129D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReader" */;
+			buildPhases = (
+				E559588829D4125F008D7307 /* Sources */,
+				E559588929D4125F008D7307 /* Frameworks */,
+				E559588A29D4125F008D7307 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TRssReader;
+			productName = TRssReader;
+			productReference = E559588C29D4125F008D7307 /* TRssReader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E559589C29D41260008D7307 /* TRssReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E55958B429D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReaderTests" */;
+			buildPhases = (
+				E559589929D41260008D7307 /* Sources */,
+				E559589A29D41260008D7307 /* Frameworks */,
+				E559589B29D41260008D7307 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E559589F29D41260008D7307 /* PBXTargetDependency */,
+			);
+			name = TRssReaderTests;
+			productName = TRssReaderTests;
+			productReference = E559589D29D41260008D7307 /* TRssReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E55958A629D41260008D7307 /* TRssReaderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E55958B729D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReaderUITests" */;
+			buildPhases = (
+				E55958A329D41260008D7307 /* Sources */,
+				E55958A429D41260008D7307 /* Frameworks */,
+				E55958A529D41260008D7307 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E55958A929D41260008D7307 /* PBXTargetDependency */,
+			);
+			name = TRssReaderUITests;
+			productName = TRssReaderUITests;
+			productReference = E55958A729D41260008D7307 /* TRssReaderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E559588429D4125F008D7307 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					E559588B29D4125F008D7307 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					E559589C29D41260008D7307 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = E559588B29D4125F008D7307;
+					};
+					E55958A629D41260008D7307 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = E559588B29D4125F008D7307;
+					};
+				};
+			};
+			buildConfigurationList = E559588729D4125F008D7307 /* Build configuration list for PBXProject "TRssReader" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E559588329D4125F008D7307;
+			productRefGroup = E559588D29D4125F008D7307 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E559588B29D4125F008D7307 /* TRssReader */,
+				E559589C29D41260008D7307 /* TRssReaderTests */,
+				E55958A629D41260008D7307 /* TRssReaderUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E559588A29D4125F008D7307 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E559589829D41260008D7307 /* Preview Assets.xcassets in Resources */,
+				E559589429D41260008D7307 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E559589B29D41260008D7307 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E55958A529D41260008D7307 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E559588829D4125F008D7307 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E559589229D4125F008D7307 /* ContentView.swift in Sources */,
+				E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E559589929D41260008D7307 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E55958A229D41260008D7307 /* TRssReaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E55958A329D41260008D7307 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */,
+				E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E559589F29D41260008D7307 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E559588B29D4125F008D7307 /* TRssReader */;
+			targetProxy = E559589E29D41260008D7307 /* PBXContainerItemProxy */;
+		};
+		E55958A929D41260008D7307 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E559588B29D4125F008D7307 /* TRssReader */;
+			targetProxy = E55958A829D41260008D7307 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E55958AF29D41260008D7307 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E55958B029D41260008D7307 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		E55958B229D41260008D7307 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TRssReader/TRssReader.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TRssReader/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E55958B329D41260008D7307 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TRssReader/TRssReader.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TRssReader/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E55958B529D41260008D7307 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TRssReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TRssReader";
+			};
+			name = Debug;
+		};
+		E55958B629D41260008D7307 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TRssReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TRssReader";
+			};
+			name = Release;
+		};
+		E55958B829D41260008D7307 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TRssReader;
+			};
+			name = Debug;
+		};
+		E55958B929D41260008D7307 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TRssReader;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E559588729D4125F008D7307 /* Build configuration list for PBXProject "TRssReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E55958AF29D41260008D7307 /* Debug */,
+				E55958B029D41260008D7307 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E55958B129D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E55958B229D41260008D7307 /* Debug */,
+				E55958B329D41260008D7307 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E55958B429D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E55958B529D41260008D7307 /* Debug */,
+				E55958B629D41260008D7307 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E55958B729D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReaderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E55958B829D41260008D7307 /* Debug */,
+				E55958B929D41260008D7307 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E559588429D4125F008D7307 /* Project object */;
+}

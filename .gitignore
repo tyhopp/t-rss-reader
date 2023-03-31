@@ -12,18 +12,21 @@ node_modules/
 dist/
 .firebase/
 
-# apple
+# macOS
 .DS_Store
-xcuserdata/
-build/
-.build/
-DerivedData/
+
+# Xcode per-user config
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
 *.pbxuser
-*.xcuserstate
-*.xcworkspace/
-*.log
-Packages/
-Package.pins
-Package.resolved
-.swiftpm
-*.xcodeproj
+*.xcworkspace
+xcuserdata
+
+# Xcode build products
+build/
+*.o
+*.LinkFileList
+*.hmap
