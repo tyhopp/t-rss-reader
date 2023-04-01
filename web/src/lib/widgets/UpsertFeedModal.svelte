@@ -8,7 +8,8 @@
   import { selectedFeedStore } from '../stores/selected-feed-store';
   import { Result } from '../types';
   import type { Feeds } from '../types';
-  import FormValidationMessage from '$lib/components/FormValidationMessage.svelte';
+  import FormValidationMessage from '../components/FormValidationMessage.svelte';
+  import { sortFeeds } from '../utils/sort-feeds';
 
   enum InFlightAction {
     none = 'none',
@@ -136,7 +137,7 @@
           unsortedNextFeeds = [...prevFeeds, body.feed];
         }
 
-        const sortedNextFeeds = unsortedNextFeeds.sort((a, b) => a.name.localeCompare(b.name));
+        const sortedNextFeeds = sortFeeds(unsortedNextFeeds);
 
         return sortedNextFeeds;
       });

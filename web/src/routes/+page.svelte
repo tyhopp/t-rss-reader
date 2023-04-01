@@ -7,6 +7,7 @@
   import UpsertFeedModal from '$lib/widgets/UpsertFeedModal.svelte';
   import BackgroundRequestEntriesWorker from '$lib/workers/background-request-entries?worker';
   import { PUBLIC_ENTRIES_API, PUBLIC_LAST_ACCESS_API } from '$env/static/public';
+  import { sortFeeds } from '$lib/utils/sort-feeds';
 
   onMount(async () => {
     const initialized = await tokenStore.init();
@@ -33,21 +34,7 @@
             return prevFeed;
           });
 
-          const sortedNextFeeds = unsortedNextFeeds.sort((a, b) => {
-            if (a.hasNew && b.hasNew) {
-              return a.name.localeCompare(b.name);
-            }
-
-            if (a.hasNew) {
-              return -1;
-            }
-
-            if (b.hasNew) {
-              return 1;
-            }
-
-            return 0;
-          });
+          const sortedNextFeeds = sortFeeds(unsortedNextFeeds);
 
           return sortedNextFeeds;
         });
