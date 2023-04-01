@@ -50,7 +50,9 @@ Assumes a Unix-like system (e.g. Linux, macOS) with [make](https://www.gnu.org/s
 
 All resources have generous limits within the [AWS Free Tier](https://aws.amazon.com/free/).
 
-So, it costs nothing to run this infrastructure unless AWS changes it's free tier limits.
+In most cases it costs nothing to run this infrastructure.
+
+Use your own discretion when evaluating costs. It goes without saying, but I am not responsible for any unintended costs incurred by your use of these templates.
 
 ## Gotchas
 
