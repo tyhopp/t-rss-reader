@@ -7,15 +7,35 @@
 
 import SwiftUI
 
+struct DetailView: View {
+    var selectedFeed: Feed
+    
+    var body: some View {
+        Text(selectedFeed.url)
+    }
+}
+
+struct Feed {
+    var name: String
+    var url: String
+    var createdAt: String
+}
+
+let feeds: [Feed] = [
+    Feed(name: "A", url: "https://a.com", createdAt: "0"),
+    Feed(name: "B", url: "https://b.com", createdAt: "0"),
+    Feed(name: "C", url: "https://c.com", createdAt: "0")
+]
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationSplitView {
+            List(feeds, id: \.url) { feed in
+                NavigationLink(feed.name, destination: DetailView(selectedFeed: feed))
+            }
+        } detail: {
+            Text("Please select a feed")
         }
-        .padding()
     }
 }
 
