@@ -16,6 +16,10 @@
 		E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */; };
 		E582ACF229DA80980083CCFF /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF129DA80980083CCFF /* Feed.swift */; };
 		E582ACF429DA81200083CCFF /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF329DA81200083CCFF /* Token.swift */; };
+		E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF529DA836A0083CCFF /* FeedsService.swift */; };
+		E582ACFB29DA8F620083CCFF /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACFA29DA8F620083CCFF /* Env.swift */; };
+		E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */; };
+		E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0529DAA3D70083CCFF /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E582ACF129DA80980083CCFF /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		E582ACF329DA81200083CCFF /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		E582ACF529DA836A0083CCFF /* FeedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsService.swift; sourceTree = "<group>"; };
+		E582ACFA29DA8F620083CCFF /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
+		E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedService.swift; sourceTree = "<group>"; };
+		E582AD0529DAA3D70083CCFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,16 +107,18 @@
 		E559588E29D4125F008D7307 /* TRssReader */ = {
 			isa = PBXGroup;
 			children = (
-				E582ACF029DA805C0083CCFF /* Service */,
-				E582ACEF29DA80270083CCFF /* Utility */,
-				E582ACEE29DA80190083CCFF /* ViewModel */,
-				E582ACEC29DA80030083CCFF /* View */,
-				E582ACEB29DA7FF80083CCFF /* Model */,
+				E582ACF929DA8F430083CCFF /* Configs */,
+				E582ACF029DA805C0083CCFF /* Services */,
+				E582ACEF29DA80270083CCFF /* Utils */,
+				E582ACEE29DA80190083CCFF /* ViewModels */,
+				E582ACEC29DA80030083CCFF /* Views */,
+				E582ACEB29DA7FF80083CCFF /* Models */,
 				E559588F29D4125F008D7307 /* TRssReaderApp.swift */,
 				E559589129D4125F008D7307 /* ContentView.swift */,
 				E559589329D41260008D7307 /* Assets.xcassets */,
 				E559589529D41260008D7307 /* TRssReader.entitlements */,
 				E559589629D41260008D7307 /* Preview Content */,
+				E582AD0529DAA3D70083CCFF /* Constants.swift */,
 			);
 			path = TRssReader;
 			sourceTree = "<group>";
@@ -138,41 +148,51 @@
 			path = TRssReaderUITests;
 			sourceTree = "<group>";
 		};
-		E582ACEB29DA7FF80083CCFF /* Model */ = {
+		E582ACEB29DA7FF80083CCFF /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				E582ACF129DA80980083CCFF /* Feed.swift */,
 				E582ACF329DA81200083CCFF /* Token.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		E582ACEC29DA80030083CCFF /* View */ = {
+		E582ACEC29DA80030083CCFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		E582ACEE29DA80190083CCFF /* ViewModel */ = {
+		E582ACEE29DA80190083CCFF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		E582ACEF29DA80270083CCFF /* Utility */ = {
+		E582ACEF29DA80270083CCFF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E582ACFA29DA8F620083CCFF /* Env.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E582ACF029DA805C0083CCFF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E582ACF529DA836A0083CCFF /* FeedsService.swift */,
+				E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E582ACF929DA8F430083CCFF /* Configs */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		E582ACF029DA805C0083CCFF /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
+			path = Configs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +211,8 @@
 			dependencies = (
 			);
 			name = TRssReader;
+			packageProductDependencies = (
+			);
 			productName = TRssReader;
 			productReference = E559588C29D4125F008D7307 /* TRssReader.app */;
 			productType = "com.apple.product-type.application";
@@ -263,6 +285,8 @@
 				Base,
 			);
 			mainGroup = E559588329D4125F008D7307;
+			packageReferences = (
+			);
 			productRefGroup = E559588D29D4125F008D7307 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -307,8 +331,12 @@
 			files = (
 				E549B17B29D6DABE00BF5C45 /* ContentView.swift in Sources */,
 				E582ACF229DA80980083CCFF /* Feed.swift in Sources */,
+				E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */,
 				E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */,
+				E582ACFB29DA8F620083CCFF /* Env.swift in Sources */,
 				E582ACF429DA81200083CCFF /* Token.swift in Sources */,
+				E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */,
+				E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
