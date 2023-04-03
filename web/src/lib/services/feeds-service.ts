@@ -1,30 +1,9 @@
-import { getAccessToken } from '../utils/get-access-token';
+import { AuthorizedService } from './authorized-service';
 import { PUBLIC_FEEDS_API } from '$env/static/public';
 
-export class FeedsService {
-  private get headers(): HeadersInit {
-    return {
-      'content-type': 'application/json'
-    };
-  }
-
-  private async headersWithAuthorization(): Promise<HeadersInit> {
-    const token = await getAccessToken();
-
-    if (!token) {
-      return this.headers;
-    }
-
-    const { accessToken } = JSON.parse(token) || {};
-
-    return {
-      ...this.headers,
-      authorization: accessToken
-    };
-  }
-
+export class FeedsService extends AuthorizedService {
   async deleteFeed(url: string): Promise<Response> {
-    const headers = await this.headersWithAuthorization();
+    const headers = await this.headers();
 
     return await fetch(PUBLIC_FEEDS_API, {
       method: 'DELETE',
@@ -34,7 +13,7 @@ export class FeedsService {
   }
 
   async getFeeds(): Promise<Response> {
-    const headers = await this.headersWithAuthorization();
+    const headers = await this.headers();
 
     return await fetch(PUBLIC_FEEDS_API, {
       method: 'GET',
@@ -43,7 +22,7 @@ export class FeedsService {
   }
 
   async putFeed(url: string, name: string): Promise<Response> {
-    const headers = await this.headersWithAuthorization();
+    const headers = await this.headers();
 
     return await fetch(PUBLIC_FEEDS_API, {
       method: 'PUT',

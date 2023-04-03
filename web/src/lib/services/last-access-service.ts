@@ -1,37 +1,17 @@
-import { getAccessToken } from '../utils/get-access-token';
+import { AuthorizedService } from './authorized-service';
 
-export class LastAccessService {
+export class LastAccessService extends AuthorizedService {
   constructor(api: string) {
+    super();
     this.api = api;
   }
 
   api: string;
 
-  private get headers(): HeadersInit {
-    return {
-      'content-type': 'application/json'
-    };
-  }
-
-  private async headersWithAuthorization(): Promise<HeadersInit> {
-    const token = await getAccessToken();
-
-    if (!token) {
-      return this.headers;
-    }
-
-    const { accessToken } = JSON.parse(token) || {};
-
-    return {
-      ...this.headers,
-      authorization: accessToken
-    };
-  }
-
   async putLastAccess(): Promise<Response> {
     const options: RequestInit = {
       method: 'PUT',
-      headers: await this.headersWithAuthorization()
+      headers: await this.headers()
     };
 
     return await fetch(this.api, options);

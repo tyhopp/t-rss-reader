@@ -3,8 +3,12 @@ import { EntriesService } from '../../../src/lib/services/entries-service';
 
 vi.stubGlobal('fetch', () => vi.fn());
 
-vi.mock('../../../src/lib/utils/get-access-token', () => ({
-  getAccessToken: vi.fn()
+vi.mock('../../../src/lib/services/authorized-service', () => ({
+  AuthorizedService: class {
+    protected async headers(): Promise<HeadersInit> {
+      return {};
+    }
+  }
 }));
 
 const api = 'a';
