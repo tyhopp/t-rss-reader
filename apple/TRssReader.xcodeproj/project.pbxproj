@@ -14,6 +14,8 @@
 		E55958A229D41260008D7307 /* TRssReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958A129D41260008D7307 /* TRssReaderTests.swift */; };
 		E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AB29D41260008D7307 /* TRssReaderUITests.swift */; };
 		E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */; };
+		E582ACF229DA80980083CCFF /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF129DA80980083CCFF /* Feed.swift */; };
+		E582ACF429DA81200083CCFF /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF329DA81200083CCFF /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		E55958A729D41260008D7307 /* TRssReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E55958AB29D41260008D7307 /* TRssReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITests.swift; sourceTree = "<group>"; };
 		E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E582ACF129DA80980083CCFF /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		E582ACF329DA81200083CCFF /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,11 @@
 		E559588E29D4125F008D7307 /* TRssReader */ = {
 			isa = PBXGroup;
 			children = (
+				E582ACF029DA805C0083CCFF /* Service */,
+				E582ACEF29DA80270083CCFF /* Utility */,
+				E582ACEE29DA80190083CCFF /* ViewModel */,
+				E582ACEC29DA80030083CCFF /* View */,
+				E582ACEB29DA7FF80083CCFF /* Model */,
 				E559588F29D4125F008D7307 /* TRssReaderApp.swift */,
 				E559589129D4125F008D7307 /* ContentView.swift */,
 				E559589329D41260008D7307 /* Assets.xcassets */,
@@ -127,6 +136,43 @@
 				E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */,
 			);
 			path = TRssReaderUITests;
+			sourceTree = "<group>";
+		};
+		E582ACEB29DA7FF80083CCFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E582ACF129DA80980083CCFF /* Feed.swift */,
+				E582ACF329DA81200083CCFF /* Token.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E582ACEC29DA80030083CCFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E582ACEE29DA80190083CCFF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E582ACEF29DA80270083CCFF /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		E582ACF029DA805C0083CCFF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +306,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E549B17B29D6DABE00BF5C45 /* ContentView.swift in Sources */,
+				E582ACF229DA80980083CCFF /* Feed.swift in Sources */,
 				E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */,
+				E582ACF429DA81200083CCFF /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

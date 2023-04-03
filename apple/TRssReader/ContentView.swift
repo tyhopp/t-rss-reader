@@ -15,12 +15,6 @@ struct DetailView: View {
     }
 }
 
-struct Feed {
-    var name: String
-    var url: String
-    var createdAt: String
-}
-
 let feeds: [Feed] = [
     Feed(name: "A", url: "https://a.com", createdAt: "0"),
     Feed(name: "B", url: "https://b.com", createdAt: "0"),
