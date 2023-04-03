@@ -1,32 +1,12 @@
-import { getAccessToken } from '../utils/get-access-token';
+import { AuthorizedService } from './authorized-service';
 
-export class EntriesService {
+export class EntriesService extends AuthorizedService {
   constructor(api: string) {
+    super();
     this.api = api;
   }
 
   api: string;
-
-  private get headers(): HeadersInit {
-    return {
-      'content-type': 'application/json'
-    };
-  }
-
-  private async headersWithAuthorization(): Promise<HeadersInit> {
-    const token = await getAccessToken();
-
-    if (!token) {
-      return this.headers;
-    }
-
-    const { accessToken } = JSON.parse(token) || {};
-
-    return {
-      ...this.headers,
-      authorization: accessToken
-    };
-  }
 
   async getEntries({
     url,
@@ -41,7 +21,7 @@ export class EntriesService {
 
     const options: RequestInit = {
       method: 'GET',
-      headers: await this.headersWithAuthorization()
+      headers: await this.headers()
     };
 
     if (abortController) {

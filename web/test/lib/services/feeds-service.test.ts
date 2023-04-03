@@ -9,8 +9,12 @@ const name = 'a-name';
 const deleteFeedSpy = vi.spyOn(FeedsServiceInstance, 'deleteFeed');
 const putFeedSpy = vi.spyOn(FeedsServiceInstance, 'putFeed');
 
-vi.mock('../../../src/lib/utils/get-access-token', () => ({
-  getAccessToken: vi.fn()
+vi.mock('../../../src/lib/services/authorized-service', () => ({
+  AuthorizedService: class {
+    protected async headers(): Promise<HeadersInit> {
+      return {};
+    }
+  }
 }));
 
 test('should have a default export of a constructed instance', () => {
