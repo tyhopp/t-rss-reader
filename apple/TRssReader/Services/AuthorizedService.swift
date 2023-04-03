@@ -43,9 +43,7 @@ class AuthorizedService {
     func request(api: String) -> URLRequest {
         var request = URLRequest(url: URL(string: api)!)
         
-        let headers = self.headers()
-        
-        for (key, value) in headersWithAuthorization {
+        for (key, value) in self.headers() {
             request.setValue(value, forHTTPHeaderField: key)
         }
         
