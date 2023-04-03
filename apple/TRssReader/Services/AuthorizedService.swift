@@ -8,7 +8,7 @@
 import Foundation
 
 class AuthorizedService {
-    private let headers: [String: String] = ["content-type": "application/json"]
+    private let defaultHeaders: [String: String] = ["content-type": "application/json"]
     
     var token: AnyObject? {
         var token: AnyObject?
@@ -30,8 +30,8 @@ class AuthorizedService {
         return token
     }
     
-    func headersWithAuthorization() -> [String: String] {
-        var headersInstance = headers
+    func headers() -> [String: String] {
+        var headersInstance = defaultHeaders
         
         if let accessToken = token as? String {
             headersInstance.merge(["authorization": accessToken]) { (current, _) in current }
@@ -43,7 +43,7 @@ class AuthorizedService {
     func request(api: String) -> URLRequest {
         var request = URLRequest(url: URL(string: api)!)
         
-        let headersWithAuthorization = self.headersWithAuthorization()
+        let headers = self.headers()
         
         for (key, value) in headersWithAuthorization {
             request.setValue(value, forHTTPHeaderField: key)

@@ -20,6 +20,7 @@
 		E582ACFB29DA8F620083CCFF /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACFA29DA8F620083CCFF /* Env.swift */; };
 		E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */; };
 		E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0529DAA3D70083CCFF /* Constants.swift */; };
+		E582AD0929DAE3250083CCFF /* AuthorizedServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0829DAE3250083CCFF /* AuthorizedServiceTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		E582ACFA29DA8F620083CCFF /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedService.swift; sourceTree = "<group>"; };
 		E582AD0529DAA3D70083CCFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E582AD0829DAE3250083CCFF /* AuthorizedServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedServiceTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		E55958A029D41260008D7307 /* TRssReaderTests */ = {
 			isa = PBXGroup;
 			children = (
+				E582AD0729DAE30D0083CCFF /* Services */,
 				E55958A129D41260008D7307 /* TRssReaderTests.swift */,
 			);
 			path = TRssReaderTests;
@@ -193,6 +196,14 @@
 			children = (
 			);
 			path = Configs;
+			sourceTree = "<group>";
+		};
+		E582AD0729DAE30D0083CCFF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E582AD0829DAE3250083CCFF /* AuthorizedServiceTest.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E582AD0929DAE3250083CCFF /* AuthorizedServiceTest.swift in Sources */,
 				E55958A229D41260008D7307 /* TRssReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
