@@ -1,0 +1,22 @@
+name: test-apple
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    name: test-apple
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run apple client tests
+        working-directory: ./apple
+        run: >-
+          xcodebuild test -project TRssReader.xcodeproj \
+            -scheme TRssReaderTests \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.0' | xcpretty && exit ${PIPESTATUS[0]}

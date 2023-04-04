@@ -1,0 +1,27 @@
+name: test-infra
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    name: test-infra
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install infra handler dependencies
+        working-directory: ./infra
+        run: make install
+
+      - name: Run infra handler tests
+        working-directory: ./infra
+        run: make test
