@@ -1,4 +1,4 @@
-name: test-apple
+name: apple
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: test-apple
+    name: test
     runs-on: macos-latest
 
     steps:

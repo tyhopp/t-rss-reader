@@ -1,4 +1,4 @@
-name: test-web
+name: infra
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: test-web
+    name: test
     runs-on: ubuntu-latest
 
     steps:
@@ -18,10 +18,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install web client dependencies
-        working-directory: ./web
-        run: npm install
+      - name: Install infra handler dependencies
+        working-directory: ./infra
+        run: make install
 
-      - name: Run web client tests
-        working-directory: ./web
-        run: npm run test
+      - name: Run infra handler tests
+        working-directory: ./infra
+        run: make test
