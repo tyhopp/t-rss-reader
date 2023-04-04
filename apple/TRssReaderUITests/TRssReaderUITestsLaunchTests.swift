@@ -7,6 +7,7 @@
 
 import XCTest
 
+// TODO: Write UI launch tests
 final class TRssReaderUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {

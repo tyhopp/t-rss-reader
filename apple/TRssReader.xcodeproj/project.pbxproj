@@ -11,7 +11,6 @@
 		E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559588F29D4125F008D7307 /* TRssReaderApp.swift */; };
 		E559589429D41260008D7307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589329D41260008D7307 /* Assets.xcassets */; };
 		E559589829D41260008D7307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589729D41260008D7307 /* Preview Assets.xcassets */; };
-		E55958A229D41260008D7307 /* TRssReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958A129D41260008D7307 /* TRssReaderTests.swift */; };
 		E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AB29D41260008D7307 /* TRssReaderUITests.swift */; };
 		E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */; };
 		E582ACF229DA80980083CCFF /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF129DA80980083CCFF /* Feed.swift */; };
@@ -20,7 +19,8 @@
 		E582ACFB29DA8F620083CCFF /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACFA29DA8F620083CCFF /* Env.swift */; };
 		E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */; };
 		E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0529DAA3D70083CCFF /* Constants.swift */; };
-		E582AD0929DAE3250083CCFF /* AuthorizedServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0829DAE3250083CCFF /* AuthorizedServiceTest.swift */; };
+		E582AD0929DAE3250083CCFF /* AuthorizedServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */; };
+		E59A4A6629DBC0DD0033B09B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6529DBC0DD0033B09B /* Keychain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,6 @@
 		E559589529D41260008D7307 /* TRssReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TRssReader.entitlements; sourceTree = "<group>"; };
 		E559589729D41260008D7307 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E559589D29D41260008D7307 /* TRssReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E55958A129D41260008D7307 /* TRssReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderTests.swift; sourceTree = "<group>"; };
 		E55958A729D41260008D7307 /* TRssReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E55958AB29D41260008D7307 /* TRssReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITests.swift; sourceTree = "<group>"; };
 		E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -58,7 +57,8 @@
 		E582ACFA29DA8F620083CCFF /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedService.swift; sourceTree = "<group>"; };
 		E582AD0529DAA3D70083CCFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E582AD0829DAE3250083CCFF /* AuthorizedServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedServiceTest.swift; sourceTree = "<group>"; };
+		E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedServiceTests.swift; sourceTree = "<group>"; };
+		E59A4A6529DBC0DD0033B09B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				E582AD0729DAE30D0083CCFF /* Services */,
-				E55958A129D41260008D7307 /* TRssReaderTests.swift */,
 			);
 			path = TRssReaderTests;
 			sourceTree = "<group>";
@@ -178,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				E582ACFA29DA8F620083CCFF /* Env.swift */,
+				E59A4A6529DBC0DD0033B09B /* Keychain.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -201,7 +201,7 @@
 		E582AD0729DAE30D0083CCFF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E582AD0829DAE3250083CCFF /* AuthorizedServiceTest.swift */,
+				E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -345,6 +345,7 @@
 				E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */,
 				E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */,
 				E582ACFB29DA8F620083CCFF /* Env.swift in Sources */,
+				E59A4A6629DBC0DD0033B09B /* Keychain.swift in Sources */,
 				E582ACF429DA81200083CCFF /* Token.swift in Sources */,
 				E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */,
 				E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */,
@@ -355,8 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E582AD0929DAE3250083CCFF /* AuthorizedServiceTest.swift in Sources */,
-				E55958A229D41260008D7307 /* TRssReaderTests.swift in Sources */,
+				E582AD0929DAE3250083CCFF /* AuthorizedServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,8 +587,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -610,8 +610,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -632,8 +632,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -654,8 +654,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

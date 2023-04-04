@@ -8,33 +8,20 @@
 import Foundation
 
 class AuthorizedService {
-    private let defaultHeaders: [String: String] = ["content-type": "application/json"]
+    var keychain: Keychain
     
-    var token: AnyObject? {
-        var token: AnyObject?
-        
-        let query: [String: AnyObject] = [
-            // Key for item
-            kSecAttrService as String: ACCESS_TOKEN_KEY as AnyObject,
-            
-            // Read only one item
-            kSecMatchLimit as String: kSecMatchLimitOne,
-            
-            // Retrieve data for the item
-            kSecReturnData as String: kCFBooleanTrue
-        ]
-        
-        // Token copied to memory address if it exists
-        SecItemCopyMatching(query as CFDictionary, &token)
-        
-        return token
+    init(keychain: Keychain = Keychain()) {
+        self.keychain = keychain
     }
+    
+    // URLRequest capitalizes header keys, so init keys capitalized for consistency under test
+    let defaultHeaders: [String: String] = ["Content-Type": "application/json"]
     
     func headers() -> [String: String] {
         var headersInstance = defaultHeaders
         
-        if let accessToken = token as? String {
-            headersInstance.merge(["authorization": accessToken]) { (current, _) in current }
+        if let accessToken = keychain.getToken() as? String {
+            headersInstance.merge(["Authorization": accessToken]) { (current, _) in current }
         }
         
         return headersInstance
