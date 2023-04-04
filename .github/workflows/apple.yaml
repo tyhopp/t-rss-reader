@@ -19,4 +19,4 @@ jobs:
           xcodebuild test -project TRssReader.xcodeproj \
             -scheme TRssReaderTests \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.0' | xcpretty && exit ${PIPESTATUS[0]}
+            -destination 'platform=iOS Simulator,name=iPhone 14' | xcpretty && exit ${PIPESTATUS[0]}
