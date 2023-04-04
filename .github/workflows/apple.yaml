@@ -13,10 +13,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: brew install xcbeautify
+
       - name: Run apple client tests
         working-directory: ./apple
         run: >-
-          xcodebuild test -project TRssReader.xcodeproj \
+          set -o pipefail && xcodebuild test \
+            -project TRssReader.xcodeproj \
             -scheme TRssReaderTests \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 14' | xcpretty && exit ${PIPESTATUS[0]}
+            -destination 'platform=iOS Simulator,name=iPhone 14' | xcbeautify
