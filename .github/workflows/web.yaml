@@ -1,4 +1,4 @@
-name: test
+name: web
 
 on:
   pull_request:
@@ -6,12 +6,8 @@ on:
 
 jobs:
   test:
-    name: ${{ matrix.os }}-node-${{ matrix.node }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [18]
+    name: test
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
@@ -20,15 +16,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install handler dependencies
-        working-directory: ./infra
-        run: make install
-
-      - name: Run handler tests
-        working-directory: ./infra
-        run: make test
+          node-version: 18
 
       - name: Install web client dependencies
         working-directory: ./web

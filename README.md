@@ -6,15 +6,14 @@ A personal [RSS](https://en.wikipedia.org/wiki/RSS) reader you can self-host at 
 
 The project is arranged in three parts:
 
-- Backend [infrastructure](./infra/README.md) built with Terraform and AWS.
+- Backend [infrastructure](./infra/README.md) built with Terraform and AWS
 - Frontend clients that run natively on each platform:
 
   - [Web](./web/README.md)
-  - iOS (TBD)
-  - macOS (TBD)
+  - [iOS, iPadOS, and macOS](./apple/README.md) (WIP)
   - Windows (TBD)
 
-- A [Figma design file](./design/README.md) that you can view or duplicate.
+- A [Figma design file](./design/README.md) that you can view or duplicate
 
 ## Usage
 

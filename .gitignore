@@ -1,11 +1,32 @@
-.terraform
+# infra
+.terraform/
 *.out
 *.tfstate
 *.tfstate.backup
 *.tfstate.lock.info
 *.zip
 terraform.tfvars
-node_modules
-dist
+
+# web
+node_modules/
+dist/
+.firebase/
+
+# macOS
 .DS_Store
-.firebase
+
+# Xcode per-user config
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+xcuserdata
+
+# Xcode build products
+build/
+*.o
+*.LinkFileList
+*.hmap

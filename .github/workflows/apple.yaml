@@ -1,0 +1,26 @@
+name: apple
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    name: test
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: brew install xcbeautify
+
+      - name: Run apple client tests
+        working-directory: ./apple
+        run: >-
+          set -o pipefail && xcodebuild test \
+            -project TRssReader.xcodeproj \
+            -scheme TRssReaderTests \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 14' | xcbeautify
