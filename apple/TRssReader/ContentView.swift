@@ -16,9 +16,9 @@ struct DetailView: View {
 }
 
 let feeds: [Feed] = [
-    Feed(name: "A", url: "https://a.com", createdAt: "0"),
-    Feed(name: "B", url: "https://b.com", createdAt: "0"),
-    Feed(name: "C", url: "https://c.com", createdAt: "0")
+    Feed(name: "A", url: "https://a.com", createdAt: 0),
+    Feed(name: "B", url: "https://b.com", createdAt: 0),
+    Feed(name: "C", url: "https://c.com", createdAt: 0)
 ]
 
 struct ContentView: View {
