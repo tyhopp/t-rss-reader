@@ -21,6 +21,12 @@
 		E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0529DAA3D70083CCFF /* Constants.swift */; };
 		E582AD0929DAE3250083CCFF /* AuthorizedServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */; };
 		E59A4A6629DBC0DD0033B09B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6529DBC0DD0033B09B /* Keychain.swift */; };
+		E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6729DE6F680033B09B /* LoginService.swift */; };
+		E59A4A6B29DFB19A0033B09B /* URLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6A29DFB19A0033B09B /* URLResponse+StatusCode.swift */; };
+		E59A4A6D29DFB4440033B09B /* EntriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6C29DFB4440033B09B /* EntriesService.swift */; };
+		E59A4A6F29DFBC8A0033B09B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6E29DFBC8A0033B09B /* ServiceError.swift */; };
+		E59A4A7129DFBF2B0033B09B /* LastAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A7029DFBF2B0033B09B /* LastAccessService.swift */; };
+		E59A4A7329DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +65,12 @@
 		E582AD0529DAA3D70083CCFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedServiceTests.swift; sourceTree = "<group>"; };
 		E59A4A6529DBC0DD0033B09B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		E59A4A6729DE6F680033B09B /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		E59A4A6A29DFB19A0033B09B /* URLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+StatusCode.swift"; sourceTree = "<group>"; };
+		E59A4A6C29DFB4440033B09B /* EntriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesService.swift; sourceTree = "<group>"; };
+		E59A4A6E29DFBC8A0033B09B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		E59A4A7029DFBF2B0033B09B /* LastAccessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastAccessService.swift; sourceTree = "<group>"; };
+		E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+XCTAssertErrorType.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,7 @@
 		E559588E29D4125F008D7307 /* TRssReader */ = {
 			isa = PBXGroup;
 			children = (
+				E59A4A6929DFB0960033B09B /* Extensions */,
 				E582ACF929DA8F430083CCFF /* Configs */,
 				E582ACF029DA805C0083CCFF /* Services */,
 				E582ACEF29DA80270083CCFF /* Utils */,
@@ -137,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				E582AD0729DAE30D0083CCFF /* Services */,
+				E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */,
 			);
 			path = TRssReaderTests;
 			sourceTree = "<group>";
@@ -187,6 +201,10 @@
 			children = (
 				E582ACF529DA836A0083CCFF /* FeedsService.swift */,
 				E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */,
+				E59A4A6729DE6F680033B09B /* LoginService.swift */,
+				E59A4A6C29DFB4440033B09B /* EntriesService.swift */,
+				E59A4A6E29DFBC8A0033B09B /* ServiceError.swift */,
+				E59A4A7029DFBF2B0033B09B /* LastAccessService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -204,6 +222,14 @@
 				E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		E59A4A6929DFB0960033B09B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E59A4A6A29DFB19A0033B09B /* URLResponse+StatusCode.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,14 +367,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E549B17B29D6DABE00BF5C45 /* ContentView.swift in Sources */,
+				E59A4A6B29DFB19A0033B09B /* URLResponse+StatusCode.swift in Sources */,
 				E582ACF229DA80980083CCFF /* Feed.swift in Sources */,
 				E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */,
 				E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */,
 				E582ACFB29DA8F620083CCFF /* Env.swift in Sources */,
+				E59A4A6D29DFB4440033B09B /* EntriesService.swift in Sources */,
 				E59A4A6629DBC0DD0033B09B /* Keychain.swift in Sources */,
+				E59A4A6F29DFBC8A0033B09B /* ServiceError.swift in Sources */,
 				E582ACF429DA81200083CCFF /* Token.swift in Sources */,
+				E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */,
 				E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */,
 				E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */,
+				E59A4A7129DFBF2B0033B09B /* LastAccessService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E582AD0929DAE3250083CCFF /* AuthorizedServiceTests.swift in Sources */,
+				E59A4A7329DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

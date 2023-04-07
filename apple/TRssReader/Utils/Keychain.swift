@@ -8,7 +8,7 @@
 import Foundation
 
 class Keychain {
-    func getToken() -> AnyObject? {
+    func getToken() -> Token? {
         var token: AnyObject?
         
         let query: [String: AnyObject] = [
@@ -25,6 +25,6 @@ class Keychain {
         // Token copied to memory address if it exists
         SecItemCopyMatching(query as CFDictionary, &token)
         
-        return token
+        return token as? Token
     }
 }

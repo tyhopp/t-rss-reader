@@ -8,17 +8,39 @@
 import Foundation
 
 class FeedsService: AuthorizedService {
-    @Sendable func deleteFeed(url: String) async {
+    @Sendable func deleteFeed(url: String) async throws -> (Data, URLResponse) {
+        var request = try self.request(api: Env.FEEDS_API)
+        
+        request.httpMethod = "DELETE"
+        
         do {
-            var request = self.request(api: Env.FEEDS_API)
-            
-            request.httpMethod = "DELETE"
-            
-            let (data, _) = try await URLSession.shared.data(for: request)
-            
-            print(String(data: data, encoding: .utf8) as Any)
+            request.httpBody = try JSONEncoder().encode(["url": url])
         } catch {
-            print(error)
+            throw ServiceError.encodeBody
         }
+        
+        return try await URLSession.shared.data(for: request)
+    }
+    
+    @Sendable func getFeeds() async throws -> (Data, URLResponse) {
+        var request = URLRequest(url: URL(string: Env.FEEDS_API)!)
+        
+        request.httpMethod = "GET"
+        
+        return try await URLSession.shared.data(for: request)
+    }
+    
+    @Sendable func putFeed(url: String, name: String) async throws -> (Data, URLResponse) {
+        var request = URLRequest(url: URL(string: Env.FEEDS_API)!)
+        
+        request.httpMethod = "PUT"
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(["url": url, "name": name])
+        } catch {
+            throw ServiceError.encodeBody
+        }
+        
+        return try await URLSession.shared.data(for: request)
     }
 }
