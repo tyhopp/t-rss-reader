@@ -24,6 +24,8 @@ html {
   font-family: 'Roboto Slab', sans-serif;
   color: var(--text);
   background-color: var(--background);
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
 body {
