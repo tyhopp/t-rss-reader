@@ -12,7 +12,7 @@ enum KeychainKey {
     @Keychain(service: "token", account: "t-rss-reader") static public var token: String?
 }
 
-class KeychainManager {
+struct KeychainManager {
     func getToken() -> Token? {
         guard let tokenString = KeychainKey.token?.utf8 else {
             return nil
