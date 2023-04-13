@@ -13,7 +13,7 @@
 		E559589829D41260008D7307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589729D41260008D7307 /* Preview Assets.xcassets */; };
 		E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AB29D41260008D7307 /* TRssReaderUITests.swift */; };
 		E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */; };
-		E56DFE0829E69C63003C687E /* Keychain in Frameworks */ = {isa = PBXBuildFile; productRef = E56DFE0729E69C63003C687E /* Keychain */; };
+		E56DFE1129E7AE70003C687E /* Keychain in Frameworks */ = {isa = PBXBuildFile; productRef = E56DFE1029E7AE70003C687E /* Keychain */; };
 		E582ACF229DA80980083CCFF /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF129DA80980083CCFF /* Feed.swift */; };
 		E582ACF429DA81200083CCFF /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF329DA81200083CCFF /* Token.swift */; };
 		E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF529DA836A0083CCFF /* FeedsService.swift */; };
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E56DFE0829E69C63003C687E /* Keychain in Frameworks */,
+				E56DFE1129E7AE70003C687E /* Keychain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +251,7 @@
 			);
 			name = TRssReader;
 			packageProductDependencies = (
-				E56DFE0729E69C63003C687E /* Keychain */,
+				E56DFE1029E7AE70003C687E /* Keychain */,
 			);
 			productName = TRssReader;
 			productReference = E559588C29D4125F008D7307 /* TRssReader.app */;
@@ -326,7 +326,7 @@
 			);
 			mainGroup = E559588329D4125F008D7307;
 			packageReferences = (
-				E56DFE0629E69C63003C687E /* XCRemoteSwiftPackageReference "keychain" */,
+				E56DFE0F29E7AE70003C687E /* XCRemoteSwiftPackageReference "keychain" */,
 			);
 			productRefGroup = E559588D29D4125F008D7307 /* Products */;
 			projectDirPath = "";
@@ -746,9 +746,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E56DFE0629E69C63003C687E /* XCRemoteSwiftPackageReference "keychain" */ = {
+		E56DFE0F29E7AE70003C687E /* XCRemoteSwiftPackageReference "keychain" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:tyhopp/keychain.git";
+			repositoryURL = "https://github.com/tyhopp/keychain.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.1.1;
@@ -757,9 +757,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E56DFE0729E69C63003C687E /* Keychain */ = {
+		E56DFE1029E7AE70003C687E /* Keychain */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E56DFE0629E69C63003C687E /* XCRemoteSwiftPackageReference "keychain" */;
+			package = E56DFE0F29E7AE70003C687E /* XCRemoteSwiftPackageReference "keychain" */;
 			productName = Keychain;
 		};
 /* End XCSwiftPackageProductDependency section */
