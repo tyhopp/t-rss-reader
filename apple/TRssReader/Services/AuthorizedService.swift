@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import Keychain
 
 class AuthorizedService {
     let defaultHeaders: [String: String] = ["Content-Type": "application/json"]
-    var keychain: Keychain
+    let keychainManager: KeychainManager
     
-    init(keychain: Keychain = Keychain()) {
-        self.keychain = keychain
+    init(keychainManager: KeychainManager = KeychainManager()) {
+        self.keychainManager = keychainManager
     }
     
     func url(api: String) throws -> URL {
@@ -26,7 +27,7 @@ class AuthorizedService {
     func headers() throws -> [String: String] {
         var headersInstance = defaultHeaders
         
-        if let token = keychain.getToken() {
+        if let token = keychainManager.getToken() {
             headersInstance.merge(["Authorization": token.accessToken]) { (current, _) in current }
         } else {
             throw ServiceError.accessToken

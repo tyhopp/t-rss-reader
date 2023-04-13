@@ -34,13 +34,13 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testHeadersNoToken() {
-        let service = AuthorizedService(keychain: MockedKeychainNoToken())
+        let service = AuthorizedService(keychainManager: MockedKeychainManagerNoToken())
         
         XCTAssertErrorType(try service.headers(), throws: ServiceError.accessToken)
     }
     
     func testHeadersWithToken() {
-        let service = AuthorizedService(keychain: MockedKeychainWithToken())
+        let service = AuthorizedService(keychainManager: MockedKeychainManagerWithToken())
         
         var headers: [String: String]
         
@@ -57,13 +57,13 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testRequestNoToken() {
-        let service = AuthorizedService(keychain: MockedKeychainNoToken())
+        let service = AuthorizedService(keychainManager: MockedKeychainManagerNoToken())
         
         XCTAssertErrorType(try service.request(api: api), throws: ServiceError.headers)
     }
     
     func testRequestWithToken() {
-        let service = AuthorizedService(keychain: MockedKeychainWithToken())
+        let service = AuthorizedService(keychainManager: MockedKeychainManagerWithToken())
         
         let request: URLRequest
         
@@ -84,7 +84,7 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testRequestWithQueryItems() {
-        let service = AuthorizedService(keychain: MockedKeychainWithToken())
+        let service = AuthorizedService(keychainManager: MockedKeychainManagerWithToken())
         let queryItems = URLQueryItem(name: "a", value: "b")
         
         let request: URLRequest
@@ -98,13 +98,13 @@ class AuthorizedServiceTests: XCTestCase {
     }
 }
 
-private class MockedKeychainNoToken: Keychain {
+private class MockedKeychainManagerNoToken: KeychainManager {
     override func getToken() -> Token? {
         return nil
     }
 }
 
-private class MockedKeychainWithToken: Keychain {
+private class MockedKeychainManagerWithToken: KeychainManager {
     override func getToken() -> Token? {
         return mockToken
     }

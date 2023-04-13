@@ -13,6 +13,7 @@
 		E559589829D41260008D7307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589729D41260008D7307 /* Preview Assets.xcassets */; };
 		E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AB29D41260008D7307 /* TRssReaderUITests.swift */; };
 		E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */; };
+		E56DFE1129E7AE70003C687E /* Keychain in Frameworks */ = {isa = PBXBuildFile; productRef = E56DFE1029E7AE70003C687E /* Keychain */; };
 		E582ACF229DA80980083CCFF /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF129DA80980083CCFF /* Feed.swift */; };
 		E582ACF429DA81200083CCFF /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF329DA81200083CCFF /* Token.swift */; };
 		E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582ACF529DA836A0083CCFF /* FeedsService.swift */; };
@@ -20,7 +21,7 @@
 		E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */; };
 		E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0529DAA3D70083CCFF /* Constants.swift */; };
 		E582AD0929DAE3250083CCFF /* AuthorizedServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */; };
-		E59A4A6629DBC0DD0033B09B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6529DBC0DD0033B09B /* Keychain.swift */; };
+		E59A4A6629DBC0DD0033B09B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6529DBC0DD0033B09B /* KeychainManager.swift */; };
 		E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6729DE6F680033B09B /* LoginService.swift */; };
 		E59A4A6B29DFB19A0033B09B /* URLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6A29DFB19A0033B09B /* URLResponse+StatusCode.swift */; };
 		E59A4A6D29DFB4440033B09B /* EntriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6C29DFB4440033B09B /* EntriesService.swift */; };
@@ -64,7 +65,7 @@
 		E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedService.swift; sourceTree = "<group>"; };
 		E582AD0529DAA3D70083CCFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedServiceTests.swift; sourceTree = "<group>"; };
-		E59A4A6529DBC0DD0033B09B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		E59A4A6529DBC0DD0033B09B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		E59A4A6729DE6F680033B09B /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		E59A4A6A29DFB19A0033B09B /* URLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+StatusCode.swift"; sourceTree = "<group>"; };
 		E59A4A6C29DFB4440033B09B /* EntriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesService.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E56DFE1129E7AE70003C687E /* Keychain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				E582ACFA29DA8F620083CCFF /* Env.swift */,
-				E59A4A6529DBC0DD0033B09B /* Keychain.swift */,
+				E59A4A6529DBC0DD0033B09B /* KeychainManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -249,6 +251,7 @@
 			);
 			name = TRssReader;
 			packageProductDependencies = (
+				E56DFE1029E7AE70003C687E /* Keychain */,
 			);
 			productName = TRssReader;
 			productReference = E559588C29D4125F008D7307 /* TRssReader.app */;
@@ -323,6 +326,7 @@
 			);
 			mainGroup = E559588329D4125F008D7307;
 			packageReferences = (
+				E56DFE0F29E7AE70003C687E /* XCRemoteSwiftPackageReference "keychain" */,
 			);
 			productRefGroup = E559588D29D4125F008D7307 /* Products */;
 			projectDirPath = "";
@@ -373,7 +377,7 @@
 				E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */,
 				E582ACFB29DA8F620083CCFF /* Env.swift in Sources */,
 				E59A4A6D29DFB4440033B09B /* EntriesService.swift in Sources */,
-				E59A4A6629DBC0DD0033B09B /* Keychain.swift in Sources */,
+				E59A4A6629DBC0DD0033B09B /* KeychainManager.swift in Sources */,
 				E59A4A6F29DFBC8A0033B09B /* ServiceError.swift in Sources */,
 				E582ACF429DA81200083CCFF /* Token.swift in Sources */,
 				E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */,
@@ -740,6 +744,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E56DFE0F29E7AE70003C687E /* XCRemoteSwiftPackageReference "keychain" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tyhopp/keychain.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E56DFE1029E7AE70003C687E /* Keychain */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E56DFE0F29E7AE70003C687E /* XCRemoteSwiftPackageReference "keychain" */;
+			productName = Keychain;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E559588429D4125F008D7307 /* Project object */;
 }
