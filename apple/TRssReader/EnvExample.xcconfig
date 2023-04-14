@@ -8,7 +8,10 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-FEEDS_API = ""
-LOGIN_API = ""
-ENTRIES_API = ""
-LAST_ACCESS_API = ""
+// Separate consecutive forward slashes with $(), e.g. "https://" should be "https:/$()/"
+// See https://stackoverflow.com/a/36297483/13530088
+
+FEEDS_API =
+LOGIN_API =
+ENTRIES_API =
+LAST_ACCESS_API =
