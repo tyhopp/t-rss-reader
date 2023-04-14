@@ -21,7 +21,7 @@ struct LoginViewController: View {
         case unknown
     }
     
-    func submit() async {
+    func login() async {
         do {
             let (loginData, loginResponse) = try await loginService.login(password: password)
             
@@ -41,9 +41,11 @@ struct LoginViewController: View {
         } catch {
             result = .failure(LoginError.unknown)
         }
-        
+    }
+    
+    func submit() async {
+        await login()
         try? await Task.sleep(for: .seconds(3))
-        
         result = nil
     }
     
