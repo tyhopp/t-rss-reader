@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-// TODO: Implement
 struct LoginViewController: View {
     @State private var password: String = ""
+    @State private var loading: Bool = false
     @State private var result: Result<Bool, Error>?
     
     private var loginService: LoginService = LoginService()
@@ -23,7 +23,11 @@ struct LoginViewController: View {
     
     func login() async {
         do {
+            loading = true
+            
             let (loginData, loginResponse) = try await loginService.login(password: password)
+            
+            loading = false
             
             guard let token = try? JSONDecoder().decode(Token.self, from: loginData) else {
                 result = .failure(LoginError.tokenDecode)
@@ -54,20 +58,17 @@ struct LoginViewController: View {
             Text("Enter your password")
             Group {
                 ResultMessageView(result: $result)
-                SecureField("Password", text: $password) {
-                    Task {
-                        await submit()
-                    }
-                }
+                SecureField("Password", text: $password)
                 .textFieldStyle(.roundedBorder)
                 .padding()
+                .disabled(loading)
             }
-            // TODO: Display loading state
-            Button("Log In", action: {
+            Button(loading ? "Authorizing..." : "Log In", action: {
                 Task {
                     await submit()
                 }
             })
+            .disabled(password.isEmpty || loading)
             Spacer()
         }
         .frame(
