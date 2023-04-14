@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E521B75729E8F4A5007FD06A /* ResultMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E521B75629E8F4A5007FD06A /* ResultMessageView.swift */; };
+		E521B75929E8FCF2007FD06A /* StatefulPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E521B75829E8FCF2007FD06A /* StatefulPreview.swift */; };
 		E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559588F29D4125F008D7307 /* TRssReaderApp.swift */; };
 		E559589429D41260008D7307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589329D41260008D7307 /* Assets.xcassets */; };
 		E559589829D41260008D7307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589729D41260008D7307 /* Preview Assets.xcassets */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E521B75629E8F4A5007FD06A /* ResultMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultMessageView.swift; sourceTree = "<group>"; };
+		E521B75829E8FCF2007FD06A /* StatefulPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPreview.swift; sourceTree = "<group>"; };
 		E559588C29D4125F008D7307 /* TRssReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRssReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E559588F29D4125F008D7307 /* TRssReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderApp.swift; sourceTree = "<group>"; };
 		E559589329D41260008D7307 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				E559589729D41260008D7307 /* Preview Assets.xcassets */,
+				E521B75829E8FCF2007FD06A /* StatefulPreview.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 		E582ACEC29DA80030083CCFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E521B75629E8F4A5007FD06A /* ResultMessageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -401,11 +407,13 @@
 				E56DFE1629E7B466003C687E /* Date+nowInt.swift in Sources */,
 				E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */,
 				E582ACFB29DA8F620083CCFF /* Env.swift in Sources */,
+				E521B75929E8FCF2007FD06A /* StatefulPreview.swift in Sources */,
 				E59A4A6D29DFB4440033B09B /* EntriesService.swift in Sources */,
 				E59A4A6629DBC0DD0033B09B /* KeychainManager.swift in Sources */,
 				E59A4A6F29DFBC8A0033B09B /* ServiceError.swift in Sources */,
 				E56DFE1429E7B13B003C687E /* TokenModelController.swift in Sources */,
 				E582ACF429DA81200083CCFF /* Token.swift in Sources */,
+				E521B75729E8F4A5007FD06A /* ResultMessageView.swift in Sources */,
 				E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */,
 				E56DFE1B29E7BF41003C687E /* ListViewController.swift in Sources */,
 				E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */,

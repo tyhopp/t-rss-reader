@@ -10,43 +10,52 @@ import SwiftUI
 // TODO: Implement
 struct LoginViewController: View {
     @State private var password: String = ""
+    @State private var result: Result<Bool, Error>?
     
     private var loginService: LoginService = LoginService()
     private var keychainManager: KeychainManager = KeychainManager()
+    
+    enum LoginError: Error {
+        case tokenDecode
+        case tokenNotReceived
+        case unknown
+    }
     
     func submit() async {
         do {
             let (loginData, loginResponse) = try await loginService.login(password: password)
             
             guard let token = try? JSONDecoder().decode(Token.self, from: loginData) else {
-                // TODO: Display error state
-                print("Failed to login")
+                result = .failure(LoginError.tokenDecode)
                 return
             }
 
             guard loginResponse.statusCode() == 200 && !token.accessToken.isEmpty else {
-                // TODO: Display error state
-                print("Failed to login")
+                result = .failure(LoginError.tokenNotReceived)
                 return
             }
             
             keychainManager.setToken(token: loginData)
+            
+            result = .success(true)
         } catch {
-            // TODO: Display error state
-            print(error)
+            result = .failure(LoginError.unknown)
         }
     }
     
     var body: some View {
         VStack {
             Text("Enter your password")
-            SecureField("Password", text: $password) {
-                Task {
-                    await submit()
+            Group {
+                ResultMessageView(result: $result)
+                SecureField("Password", text: $password) {
+                    Task {
+                        await submit()
+                    }
                 }
+                .textFieldStyle(.roundedBorder)
+                .padding()
             }
-            .textFieldStyle(.roundedBorder)
-            .padding()
             // TODO: Display loading state
             Button("Log In", action: {
                 Task {
