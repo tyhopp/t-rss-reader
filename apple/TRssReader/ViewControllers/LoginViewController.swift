@@ -41,6 +41,10 @@ struct LoginViewController: View {
         } catch {
             result = .failure(LoginError.unknown)
         }
+        
+        try? await Task.sleep(for: .seconds(3))
+        
+        result = nil
     }
     
     var body: some View {

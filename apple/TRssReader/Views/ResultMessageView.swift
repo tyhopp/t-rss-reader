@@ -16,14 +16,16 @@ struct ResultMessageView: View {
     }
     
     @ViewBuilder var body: some View {
-        switch result {
-        case .success(_):
-            Text(ResultMessage.success.rawValue)
-        case .failure(_):
-            Text(ResultMessage.failure.rawValue)
-        case .none:
-            EmptyView()
-        }
+        Group {
+            switch result {
+            case .success(_):
+                Text(ResultMessage.success.rawValue)
+            case .failure(_):
+                Text(ResultMessage.failure.rawValue)
+            case .none:
+                EmptyView()
+            }
+        }.padding(4)
     }
 }
 
