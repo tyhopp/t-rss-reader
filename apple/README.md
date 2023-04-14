@@ -9,11 +9,15 @@
 
 ## Setup
 
-TBD
+1. Create a `Env.xcconfig` file from the `EnvExample.xcconfig` file
+2. Add the env vars
 
 ## Usage
 
-TBD
+- Open `TRssReader.xcodeproj` in Xcode
+- Make sure the `TRssReader` scheme is selected in the toolbar
+- Select a device destination (e.g. "My Mac", "iPhone 14")
+- Run the project
 
 ## Deployment
 

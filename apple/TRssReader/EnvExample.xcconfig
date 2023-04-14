@@ -1,0 +1,25 @@
+//
+//  EnvExample.xcconfig
+//  TRssReader
+//
+//  Created by Ty Hopp on 14/4/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// Separate sequential forward slashes with $() (e.g. https:// should be https:/$()/)
+// See https://stackoverflow.com/a/36297483/13530088
+
+// Values should not have quotes around them.
+//
+// Incorrect:
+// FEEDS_API = "https:/$()/example.com/api"
+//
+// Correct:
+// FEEDS_API = https:/$()/example.com/api
+
+FEEDS_API =
+LOGIN_API =
+ENTRIES_API =
+LAST_ACCESS_API =

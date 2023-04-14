@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ENTRIES_API</key>
+	<string>$(ENTRIES_API)</string>
+	<key>FEEDS_API</key>
+	<string>$(FEEDS_API)</string>
+	<key>LAST_ACCESS_API</key>
+	<string>$(LAST_ACCESS_API)</string>
+	<key>LOGIN_API</key>
+	<string>$(LOGIN_API)</string>
 	<key>Scene Configuration</key>
 	<dict/>
 </dict>

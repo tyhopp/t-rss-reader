@@ -22,5 +22,6 @@ jobs:
           set -o pipefail && xcodebuild test \
             -project TRssReader.xcodeproj \
             -scheme TRssReaderTests \
+            -configuration Test \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 14' | xcbeautify
