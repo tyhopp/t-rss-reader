@@ -30,3 +30,6 @@ build/
 *.o
 *.LinkFileList
 *.hmap
+
+# Xcode env vars
+Env.xcconfig

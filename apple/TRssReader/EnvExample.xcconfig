@@ -1,0 +1,14 @@
+//
+//  EnvExample.xcconfig
+//  TRssReader
+//
+//  Created by Ty Hopp on 14/4/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+FEEDS_API = ""
+LOGIN_API = ""
+ENTRIES_API = ""
+LAST_ACCESS_API = ""

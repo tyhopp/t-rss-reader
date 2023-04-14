@@ -57,6 +57,8 @@
 /* Begin PBXFileReference section */
 		E521B75629E8F4A5007FD06A /* ResultMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultMessageView.swift; sourceTree = "<group>"; };
 		E521B75829E8FCF2007FD06A /* StatefulPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPreview.swift; sourceTree = "<group>"; };
+		E521B75A29E904F1007FD06A /* Env.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Env.xcconfig; sourceTree = "<group>"; };
+		E521B75B29E90568007FD06A /* EnvExample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = EnvExample.xcconfig; sourceTree = "<group>"; };
 		E559588C29D4125F008D7307 /* TRssReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRssReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E559588F29D4125F008D7307 /* TRssReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderApp.swift; sourceTree = "<group>"; };
 		E559589329D41260008D7307 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,7 +139,6 @@
 		E559588E29D4125F008D7307 /* TRssReader */ = {
 			isa = PBXGroup;
 			children = (
-				E582ACF929DA8F430083CCFF /* Configs */,
 				E59A4A6929DFB0960033B09B /* Extensions */,
 				E582ACEB29DA7FF80083CCFF /* Models */,
 				E56DFE1229E7B0FD003C687E /* ModelControllers */,
@@ -146,6 +147,8 @@
 				E582ACEC29DA80030083CCFF /* Views */,
 				E56DFE1929E7BE96003C687E /* ViewControllers */,
 				E559588F29D4125F008D7307 /* TRssReaderApp.swift */,
+				E521B75A29E904F1007FD06A /* Env.xcconfig */,
+				E521B75B29E90568007FD06A /* EnvExample.xcconfig */,
 				E559589329D41260008D7307 /* Assets.xcassets */,
 				E559589529D41260008D7307 /* TRssReader.entitlements */,
 				E559589629D41260008D7307 /* Preview Content */,
@@ -237,13 +240,6 @@
 				E59A4A7029DFBF2B0033B09B /* LastAccessService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		E582ACF929DA8F430083CCFF /* Configs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Configs;
 			sourceTree = "<group>";
 		};
 		E582AD0729DAE30D0083CCFF /* Services */ = {
@@ -574,6 +570,7 @@
 		};
 		E55958B229D41260008D7307 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E521B75A29E904F1007FD06A /* Env.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -613,6 +610,7 @@
 		};
 		E55958B329D41260008D7307 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E521B75A29E904F1007FD06A /* Env.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
