@@ -9,5 +9,5 @@ import Foundation
 import Keychain
 
 enum KeychainKey {
-    @Keychain(service: "token", account: "t-rss-reader") static public var token: String?
+    @Keychain(service: "t-rss-reader-access-token", account: "t-rss-reader") static public var token: String?
 }

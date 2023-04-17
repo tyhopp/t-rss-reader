@@ -9,7 +9,7 @@ import Foundation
 
 class LastAccessService: AuthorizedService {
     @Sendable func putLastAccess() async throws -> (Data, URLResponse) {
-        var request = URLRequest(url: URL(string: Env.LAST_ACCESS_API)!)
+        var request = try self.request(api: Env.LAST_ACCESS_API)
         
         request.httpMethod = "PUT"
         

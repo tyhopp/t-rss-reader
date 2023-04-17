@@ -23,7 +23,7 @@ class FeedsService: AuthorizedService {
     }
     
     @Sendable func getFeeds() async throws -> (Data, URLResponse) {
-        var request = URLRequest(url: URL(string: Env.FEEDS_API)!)
+        var request = try self.request(api: Env.FEEDS_API)
         
         request.httpMethod = "GET"
         
@@ -31,7 +31,7 @@ class FeedsService: AuthorizedService {
     }
     
     @Sendable func putFeed(url: String, name: String) async throws -> (Data, URLResponse) {
-        var request = URLRequest(url: URL(string: Env.FEEDS_API)!)
+        var request = try self.request(api: Env.FEEDS_API)
         
         request.httpMethod = "PUT"
         

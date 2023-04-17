@@ -12,7 +12,7 @@ class AuthorizedService {
     let defaultHeaders: [String: String] = ["Content-Type": "application/json"]
     let tokenModelController: TokenModelControllable
     
-    init(tokenModelController: TokenModelControllable = TokenModelController()) {
+    init(tokenModelController: TokenModelControllable = TokenModelController.shared) {
         self.tokenModelController = tokenModelController
     }
     
