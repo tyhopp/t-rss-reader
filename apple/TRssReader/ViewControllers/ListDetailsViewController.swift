@@ -10,13 +10,14 @@ import SwiftUI
 
 struct ListDetailsViewController: View {
     @EnvironmentObject var tokenModelController: TokenModelController
+    @StateObject var feedsModelController = FeedsModelController()
     
     var body: some View {
         NavigationSplitView {
             ListViewController()
         } detail: {
             Text("Please select a feed")
-        }
+        }.environmentObject(feedsModelController)
     }
 }
 
