@@ -34,13 +34,13 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testHeadersNoToken() {
-        let service = AuthorizedService(keychainManager: MockedKeychainManagerNoToken())
+        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerNoToken())
         
         XCTAssertErrorType(try service.headers(), throws: ServiceError.accessToken)
     }
     
     func testHeadersWithToken() {
-        let service = AuthorizedService(keychainManager: MockedKeychainManagerWithToken())
+        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerWithToken())
         
         var headers: [String: String]
         
@@ -57,13 +57,13 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testRequestNoToken() {
-        let service = AuthorizedService(keychainManager: MockedKeychainManagerNoToken())
+        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerNoToken())
         
         XCTAssertErrorType(try service.request(api: api), throws: ServiceError.headers)
     }
     
     func testRequestWithToken() {
-        let service = AuthorizedService(keychainManager: MockedKeychainManagerWithToken())
+        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerWithToken())
         
         let request: URLRequest
         
@@ -84,7 +84,7 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testRequestWithQueryItems() {
-        let service = AuthorizedService(keychainManager: MockedKeychainManagerWithToken())
+        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerWithToken())
         let queryItems = URLQueryItem(name: "a", value: "b")
         
         let request: URLRequest
@@ -98,14 +98,22 @@ class AuthorizedServiceTests: XCTestCase {
     }
 }
 
-private class MockedKeychainManagerNoToken: KeychainManager {
-    override func getToken() -> Token? {
+private final class MockedTokenModelControllerNoToken: TokenModelControllable {
+    var store = TokenModelStore()
+    
+    func getTokenFromKeychain() -> Token? {
         return nil
     }
+    
+    func setToken(token: Token) throws {}
 }
 
-private class MockedKeychainManagerWithToken: KeychainManager {
-    override func getToken() -> Token? {
+private final class MockedTokenModelControllerWithToken: TokenModelControllable {
+    var store = TokenModelStore(maybeValid: true, token: mockToken)
+    
+    func getTokenFromKeychain() -> Token? {
         return mockToken
     }
+    
+    func setToken(token: Token) throws {}
 }

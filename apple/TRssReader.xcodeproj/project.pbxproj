@@ -28,7 +28,7 @@
 		E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */; };
 		E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0529DAA3D70083CCFF /* Constants.swift */; };
 		E582AD0929DAE3250083CCFF /* AuthorizedServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */; };
-		E59A4A6629DBC0DD0033B09B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6529DBC0DD0033B09B /* KeychainManager.swift */; };
+		E59A4A6629DBC0DD0033B09B /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6529DBC0DD0033B09B /* KeychainKey.swift */; };
 		E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6729DE6F680033B09B /* LoginService.swift */; };
 		E59A4A6B29DFB19A0033B09B /* URLResponse+statusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6A29DFB19A0033B09B /* URLResponse+statusCode.swift */; };
 		E59A4A6D29DFB4440033B09B /* EntriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6C29DFB4440033B09B /* EntriesService.swift */; };
@@ -81,7 +81,7 @@
 		E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedService.swift; sourceTree = "<group>"; };
 		E582AD0529DAA3D70083CCFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedServiceTests.swift; sourceTree = "<group>"; };
-		E59A4A6529DBC0DD0033B09B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		E59A4A6529DBC0DD0033B09B /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
 		E59A4A6729DE6F680033B09B /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		E59A4A6A29DFB19A0033B09B /* URLResponse+statusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+statusCode.swift"; sourceTree = "<group>"; };
 		E59A4A6C29DFB4440033B09B /* EntriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesService.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				E582ACFA29DA8F620083CCFF /* Env.swift */,
-				E59A4A6529DBC0DD0033B09B /* KeychainManager.swift */,
+				E59A4A6529DBC0DD0033B09B /* KeychainKey.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -405,7 +405,7 @@
 				E582ACFB29DA8F620083CCFF /* Env.swift in Sources */,
 				E521B75929E8FCF2007FD06A /* StatefulPreview.swift in Sources */,
 				E59A4A6D29DFB4440033B09B /* EntriesService.swift in Sources */,
-				E59A4A6629DBC0DD0033B09B /* KeychainManager.swift in Sources */,
+				E59A4A6629DBC0DD0033B09B /* KeychainKey.swift in Sources */,
 				E59A4A6F29DFBC8A0033B09B /* ServiceError.swift in Sources */,
 				E56DFE1429E7B13B003C687E /* TokenModelController.swift in Sources */,
 				E582ACF429DA81200083CCFF /* Token.swift in Sources */,

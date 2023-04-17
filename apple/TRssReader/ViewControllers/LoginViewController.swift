@@ -12,12 +12,14 @@ struct LoginViewController: View {
     @State private var loading: Bool = false
     @State private var result: Result<Bool, Error>?
     
+    @EnvironmentObject private var tokenModelController: TokenModelController
+    
     private var loginService: LoginService = LoginService()
-    private var keychainManager: KeychainManager = KeychainManager()
     
     enum LoginError: Error {
         case tokenDecode
         case tokenNotReceived
+        case tokenNotSet
         case unknown
     }
     
@@ -39,9 +41,12 @@ struct LoginViewController: View {
                 return
             }
             
-            keychainManager.setToken(token: loginData)
-            
-            result = .success(true)
+            do {
+                try tokenModelController.setToken(token: token)
+                result = .success(true)
+            } catch {
+                result = .failure(LoginError.tokenNotSet)
+            }
         } catch {
             result = .failure(LoginError.unknown)
         }
@@ -58,7 +63,11 @@ struct LoginViewController: View {
             Text("Enter your password")
             Group {
                 ResultMessageView(result: $result)
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $password) {
+                    Task {
+                        await submit()
+                    }
+                }
                 .textFieldStyle(.roundedBorder)
                 .padding()
                 .disabled(loading)
