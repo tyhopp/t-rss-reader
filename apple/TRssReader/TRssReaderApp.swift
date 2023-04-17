@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct TRssReaderApp: App {
-    @StateObject var tokenModelController: TokenModelController = TokenModelController()
+    @StateObject var tokenModelController = TokenModelController()
     
     var body: some Scene {
         WindowGroup {
