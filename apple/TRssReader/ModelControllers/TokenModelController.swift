@@ -12,10 +12,6 @@ struct TokenModelStore {
     var token: Token?
 }
 
-enum TokenModelError: Error {
-    case jsonEncodeFailure
-}
-
 protocol TokenModelControllable {
     var store: TokenModelStore { get set }
     
@@ -25,16 +21,26 @@ protocol TokenModelControllable {
 }
 
 final class TokenModelController: TokenModelControllable, ObservableObject {
+    static let shared = TokenModelController()
+    
     @Published var store = TokenModelStore()
 
     private var date: Date = Date()
     
-    init() {        
+    private init() {
+        #if DEBUG
+        KeychainKey.token = nil
+        #endif
+        
         if let tokenInKeychain = getTokenFromKeychain() {
             if (!tokenInKeychain.accessToken.isEmpty && tokenInKeychain.expiresIn > date.nowInMs) {
                 store = TokenModelStore(maybeValid: true, token: tokenInKeychain)
             }
         }
+    }
+    
+    enum TokenModelError: Error {
+        case jsonEncodeFailure
     }
     
     func getTokenFromKeychain() -> Token? {

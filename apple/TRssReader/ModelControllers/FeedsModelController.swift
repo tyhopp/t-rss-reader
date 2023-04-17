@@ -38,6 +38,7 @@ final class FeedsModelController: FeedsModelControllable, ObservableObject {
                     return
                 }
                 
+                // TODO: Investigate using receive(on:) API to not make UI-mutating changes from a background thread
                 result = .success(feeds)
             } catch {
                 result = .failure(FeedsModelError.feedsRequest)

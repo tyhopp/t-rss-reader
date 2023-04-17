@@ -98,7 +98,7 @@ class AuthorizedServiceTests: XCTestCase {
     }
 }
 
-private final class MockedTokenModelControllerNoToken: TokenModelControllable {
+private class MockedTokenModelControllerNoToken: TokenModelControllable {
     var store = TokenModelStore()
     
     func getTokenFromKeychain() -> Token? {
@@ -108,7 +108,7 @@ private final class MockedTokenModelControllerNoToken: TokenModelControllable {
     func setToken(token: Token) throws {}
 }
 
-private final class MockedTokenModelControllerWithToken: TokenModelControllable {
+private class MockedTokenModelControllerWithToken: TokenModelControllable {
     var store = TokenModelStore(maybeValid: true, token: mockToken)
     
     func getTokenFromKeychain() -> Token? {
