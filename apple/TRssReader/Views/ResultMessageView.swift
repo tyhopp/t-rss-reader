@@ -30,11 +30,24 @@ struct ResultMessageView: View {
 }
 
 struct ResultMessageView_Previews: PreviewProvider {
+    enum ResultMessagePreviewError: Error {
+        case unknown
+    }
+    
     static var previews: some View {
-        let result: Result<Bool, Error>? = Result(catching: { return true })
+        let resultSuccess: Result<Bool, Error>? = Result(catching: { return true })
+        let resultFailure: Result<Bool, Error>? = Result(catching: { throw ResultMessagePreviewError.unknown })
         
-        StatefulPreview(stateVariable: result) { binding in
-            ResultMessageView(result: binding)
+        Group {
+            StatefulPreview(stateVariable: resultSuccess) { binding in
+                ResultMessageView(result: binding)
+            }
+            .previewDisplayName("ResultMessageView - Success")
+            
+            StatefulPreview(stateVariable: resultFailure) { binding in
+                ResultMessageView(result: binding)
+            }
+            .previewDisplayName("ResultMessageView - Failure")
         }
     }
 }
