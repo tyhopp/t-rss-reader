@@ -14,8 +14,7 @@ struct ListViewController: View {
     @ViewBuilder var body: some View {
         switch feedsModelController.result {
         case .none:
-            // TODO: Proper loading indicator
-            Text("Loading")
+            ProgressView()
             
         case .failure(_):
             Text("Failed to get feeds")

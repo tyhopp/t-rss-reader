@@ -14,4 +14,3 @@ struct Feed: Codable {
         case name, url, createdAt
     }
 }
-
