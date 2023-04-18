@@ -24,7 +24,7 @@ final class FeedsModelController: FeedsModelControllable, ObservableObject {
     init(feedsService: FeedsService = FeedsService()) {
         self.feedsService = feedsService
         
-        Task {
+        Task { @MainActor in
             do {
                 let (feedsData, feedsResponse) = try await feedsService.getFeeds()
                 
@@ -38,7 +38,6 @@ final class FeedsModelController: FeedsModelControllable, ObservableObject {
                     return
                 }
                 
-                // TODO: Investigate using receive(on:) API to not make UI-mutating changes from a background thread
                 result = .success(feeds)
             } catch {
                 result = .failure(FeedsModelError.feedsRequest)
