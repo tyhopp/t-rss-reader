@@ -36,6 +36,7 @@
 		E59A4A6F29DFBC8A0033B09B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6E29DFBC8A0033B09B /* ServiceError.swift */; };
 		E59A4A7129DFBF2B0033B09B /* LastAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A7029DFBF2B0033B09B /* LastAccessService.swift */; };
 		E59A4A7329DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */; };
+		E5D7189329EE4AAB00B4309C /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D7189229EE4AAB00B4309C /* Entry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		E59A4A6E29DFBC8A0033B09B /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		E59A4A7029DFBF2B0033B09B /* LastAccessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastAccessService.swift; sourceTree = "<group>"; };
 		E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+XCTAssertErrorType.swift"; sourceTree = "<group>"; };
+		E5D7189229EE4AAB00B4309C /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 			children = (
 				E582ACF129DA80980083CCFF /* Feed.swift */,
 				E582ACF329DA81200083CCFF /* Token.swift */,
+				E5D7189229EE4AAB00B4309C /* Entry.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				E582ACF429DA81200083CCFF /* Token.swift in Sources */,
 				E521B75729E8F4A5007FD06A /* ResultMessageView.swift in Sources */,
 				E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */,
+				E5D7189329EE4AAB00B4309C /* Entry.swift in Sources */,
 				E56DFE1B29E7BF41003C687E /* ListViewController.swift in Sources */,
 				E521B76129ECF417007FD06A /* FeedsModelController.swift in Sources */,
 				E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */,

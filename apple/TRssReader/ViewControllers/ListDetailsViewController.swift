@@ -12,12 +12,26 @@ struct ListDetailsViewController: View {
     @EnvironmentObject var tokenModelController: TokenModelController
     @StateObject var feedsModelController = FeedsModelController()
     
+    // TODO: Selected feed state
+    
     var body: some View {
         NavigationSplitView {
             ListViewController()
+                .navigationTitle("Feeds")
         } detail: {
-            Text("Please select a feed")
-        }.environmentObject(feedsModelController)
+            switch feedsModelController.result {
+            case .success(let feeds):
+                if (!feeds.isEmpty) {
+                    Text("Select a feed to view entries")
+                    // TODO: Button to select random feed
+                }
+            case .failure(_):
+                Text("Failed to get feeds")
+            case .none:
+                EmptyView()
+            }
+        }
+        .environmentObject(feedsModelController)
     }
 }
 
