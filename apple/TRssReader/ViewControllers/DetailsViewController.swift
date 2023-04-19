@@ -75,8 +75,7 @@ struct DetailsViewController: View {
                     // TODO: Select random button
                 } else {
                     List(entries, id: \.url) { entry in
-                        // TODO: DetailsItemView
-                        Text(entry.title)
+                        DetailsItemView(entry: entry)
                     }
                 }
             }

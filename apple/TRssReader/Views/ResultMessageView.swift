@@ -20,12 +20,14 @@ struct ResultMessageView: View {
             switch result {
             case .success(_):
                 Text(ResultMessage.success.rawValue)
+                    .foregroundColor(.green)
             case .failure(_):
                 Text(ResultMessage.failure.rawValue)
+                    .foregroundColor(.red)
             case .none:
                 EmptyView()
             }
-        }.padding(4)
+        }
     }
 }
 
