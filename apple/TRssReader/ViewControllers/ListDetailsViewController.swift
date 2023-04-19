@@ -13,8 +13,6 @@ struct ListDetailsViewController: View {
     @StateObject var feedsModelController = FeedsModelController.shared
     @State private var selectedFeedUrl: String?
     
-    // TODO: Selected feed state
-    
     var body: some View {
         NavigationSplitView {
             ListViewController(selectedFeedUrl: $selectedFeedUrl)
