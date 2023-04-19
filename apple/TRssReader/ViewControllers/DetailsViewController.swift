@@ -11,6 +11,7 @@ import SwiftUI
 struct DetailsViewController: View {
     @EnvironmentObject var feedsModelController: FeedsModelController
     @Binding var selectedFeedUrl: String?
+    @State private var task: Task<Void, Error>?
     @State private var result: Result<[Entry], Error>?
     
     var entriesService: EntriesService
@@ -40,8 +41,8 @@ struct DetailsViewController: View {
     }
     
     func getEntries() async {
-        if let selectedFeedUrl = selectedFeedUrl {
-            do {
+        task = Task {
+            if let selectedFeedUrl = selectedFeedUrl {
                 let (entriesData, entriesResponse) = try await entriesService.getEntries(url: selectedFeedUrl)
                 
                 guard let entries = try? JSONDecoder().decode([Entry].self, from: entriesData) else {
@@ -55,8 +56,6 @@ struct DetailsViewController: View {
                 }
                 
                 result = .success(entries)
-            } catch {
-                result = .failure(DetailsViewControllerError.entriesRequest)
             }
         }
     }
@@ -85,6 +84,7 @@ struct DetailsViewController: View {
         .navigationTitle(getNavigationTitle())
         .onChange(of: selectedFeedUrl) { selectedFeedUrl in
             result = .none
+            task?.cancel()
             
             Task { @MainActor in
                 await getEntries()
