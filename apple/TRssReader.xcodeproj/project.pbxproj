@@ -38,6 +38,7 @@
 		E59A4A7329DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */; };
 		E5D7189329EE4AAB00B4309C /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D7189229EE4AAB00B4309C /* Entry.swift */; };
 		E5D718B229EFE07700B4309C /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B129EFE07700B4309C /* ListItemView.swift */; };
+		E5D718B429EFE3E400B4309C /* DetailsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B329EFE3E400B4309C /* DetailsItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+XCTAssertErrorType.swift"; sourceTree = "<group>"; };
 		E5D7189229EE4AAB00B4309C /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		E5D718B129EFE07700B4309C /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		E5D718B329EFE3E400B4309C /* DetailsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			children = (
 				E521B75629E8F4A5007FD06A /* ResultMessageView.swift */,
 				E5D718B129EFE07700B4309C /* ListItemView.swift */,
+				E5D718B329EFE3E400B4309C /* DetailsItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */,
 				E56DFE1D29E7C025003C687E /* ListDetailsViewController.swift in Sources */,
 				E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */,
+				E5D718B429EFE3E400B4309C /* DetailsItemView.swift in Sources */,
 				E59A4A7129DFBF2B0033B09B /* LastAccessService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
