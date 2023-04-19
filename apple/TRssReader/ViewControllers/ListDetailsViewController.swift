@@ -11,26 +11,16 @@ import SwiftUI
 struct ListDetailsViewController: View {
     @EnvironmentObject var tokenModelController: TokenModelController
     @StateObject var feedsModelController = FeedsModelController.shared
+    @State private var selectedFeedUrl: String?
     
     // TODO: Selected feed state
     
     var body: some View {
         NavigationSplitView {
-            ListViewController()
+            ListViewController(selectedFeedUrl: $selectedFeedUrl)
                 .navigationTitle("Feeds")
         } detail: {
-            EmptyView()
-//            switch feedsModelController.result {
-//            case .success(let feeds):
-//                if (!feeds.isEmpty) {
-//                    Text("Select a feed to view entries")
-//                    // TODO: Button to select random feed
-//                }
-//            case .failure(_):
-//                Text("Failed to get feeds")
-//            case .none:
-//                EmptyView()
-//            }
+            DetailsViewController(selectedFeedUrl: $selectedFeedUrl)
         }
         .environmentObject(feedsModelController)
     }
