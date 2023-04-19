@@ -7,41 +7,10 @@
 
 import Foundation
 
-enum FeedsModelError: Error {
-    case feedsRequest
-    case feedsDecode
-}
-
-protocol FeedsModelControllable {
-    var result: Result<[Feed], Error>? { get set }
-}
-
-final class FeedsModelController: FeedsModelControllable, ObservableObject {
-    @Published var result: Result<[Feed], Error>?
+final class FeedsModelController: ObservableObject {
+    static let shared = FeedsModelController()
     
-    private let feedsService: FeedsService
-
-    init(feedsService: FeedsService = FeedsService()) {
-        self.feedsService = feedsService
-        
-        Task { @MainActor in
-            do {
-                let (feedsData, feedsResponse) = try await feedsService.getFeeds()
-                
-                guard let feeds = try? JSONDecoder().decode([Feed].self, from: feedsData) else {
-                    result = .failure(FeedsModelError.feedsDecode)
-                    return
-                }
-                
-                guard feedsResponse.statusCode() == 200 else {
-                    result = .failure(FeedsModelError.feedsRequest)
-                    return
-                }
-                
-                result = .success(feeds)
-            } catch {
-                result = .failure(FeedsModelError.feedsRequest)
-            }
-        }
-    }
+    @Published var feeds: [Feed]?
+    
+    private init() {}
 }
