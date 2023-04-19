@@ -62,14 +62,14 @@ struct LoginViewController: View {
         NavigationStack {
             VStack {
                 Spacer()
-                .frame(height: 50)
+                    .frame(height: 50)
                 
                 Text("Enter your password")
-                .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ResultMessageView(result: $result)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding([.top], 4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding([.top], 4)
                 
                 SecureField("Password", text: $password) {
                     Task {
@@ -85,7 +85,7 @@ struct LoginViewController: View {
                         await submit()
                     }
                 })
-                .padding([.top], 8)
+                .padding([.top], 6)
                 .frame(alignment: .trailing)
                 .buttonStyle(.borderedProminent)
                 .disabled(password.isEmpty || loading)

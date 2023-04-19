@@ -39,9 +39,7 @@ struct ListViewController: View {
                     // TODO: Add feed button
                 } else {
                     List(feeds, id: \.url, selection: $selectedFeedUrl) { feed in
-                        NavigationLink(value: feed.url) {
-                            Text(feed.name)
-                        }
+                        ListItemView(feed: feed)
                     }
                 }
             }

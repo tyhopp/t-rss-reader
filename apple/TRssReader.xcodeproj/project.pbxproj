@@ -37,6 +37,7 @@
 		E59A4A7129DFBF2B0033B09B /* LastAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A7029DFBF2B0033B09B /* LastAccessService.swift */; };
 		E59A4A7329DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */; };
 		E5D7189329EE4AAB00B4309C /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D7189229EE4AAB00B4309C /* Entry.swift */; };
+		E5D718B229EFE07700B4309C /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B129EFE07700B4309C /* ListItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		E59A4A7029DFBF2B0033B09B /* LastAccessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastAccessService.swift; sourceTree = "<group>"; };
 		E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+XCTAssertErrorType.swift"; sourceTree = "<group>"; };
 		E5D7189229EE4AAB00B4309C /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		E5D718B129EFE07700B4309C /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				E521B75629E8F4A5007FD06A /* ResultMessageView.swift */,
+				E5D718B129EFE07700B4309C /* ListItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				E59A4A6B29DFB19A0033B09B /* URLResponse+statusCode.swift in Sources */,
 				E56DFE1829E7BCCB003C687E /* DetailsViewController.swift in Sources */,
 				E582ACF229DA80980083CCFF /* Feed.swift in Sources */,
+				E5D718B229EFE07700B4309C /* ListItemView.swift in Sources */,
 				E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */,
 				E56DFE1F29E7DE64003C687E /* LoginViewController.swift in Sources */,
 				E56DFE1629E7B466003C687E /* Date+nowInt.swift in Sources */,
