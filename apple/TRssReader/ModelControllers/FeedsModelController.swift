@@ -26,7 +26,7 @@ final class FeedsModelController: ObservableObject {
         return feedsByUrl
     }
     
-    func getFeedWithUrl(url: String) -> Feed? {
+    func getFeedByUrl(url: String) -> Feed? {
         let feedsUrlIndex = getFeedsUrlIndex()
         return feedsUrlIndex[url]
     }

@@ -31,7 +31,7 @@ struct DetailsViewController: View {
             return "Entries"
         }
         
-        let selectedFeed = feedsModelController.getFeedWithUrl(url: selectedFeedUrl)
+        let selectedFeed = feedsModelController.getFeedByUrl(url: selectedFeedUrl)
         
         if let name = selectedFeed?.name {
             return name
