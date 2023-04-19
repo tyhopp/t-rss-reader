@@ -35,7 +35,7 @@ struct LoginViewController: View {
                 result = .failure(LoginError.tokenDecode)
                 return
             }
-
+            
             guard loginResponse.statusCode() == 200 && !token.accessToken.isEmpty else {
                 result = .failure(LoginError.tokenNotReceived)
                 return
@@ -59,34 +59,46 @@ struct LoginViewController: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Enter your password")
-            Group {
+        NavigationStack {
+            VStack {
+                Spacer()
+                .frame(height: 50)
+                
+                Text("Enter your password")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
                 ResultMessageView(result: $result)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding([.top], 4)
+                
                 SecureField("Password", text: $password) {
                     Task {
                         await submit()
                     }
                 }
+                .padding([.top, .bottom], 10)
                 .textFieldStyle(.roundedBorder)
-                .padding()
                 .disabled(loading)
+                
+                Button(loading ? "Authorizing..." : "Log In", action: {
+                    Task {
+                        await submit()
+                    }
+                })
+                .padding([.top], 8)
+                .frame(alignment: .trailing)
+                .buttonStyle(.borderedProminent)
+                .disabled(password.isEmpty || loading)
+                
+                Spacer()
             }
-            Button(loading ? "Authorizing..." : "Log In", action: {
-                Task {
-                    await submit()
-                }
-            })
-            .disabled(password.isEmpty || loading)
-            Spacer()
+            .frame(
+                idealWidth: 300.0,
+                maxWidth: 300.0
+            )
+            .padding()
+            .navigationTitle("Log In")
         }
-        .frame(
-            idealWidth: 300.0,
-            maxWidth: 300.0,
-            alignment: .center
-        )
-        .padding()
-        .navigationTitle("t-rss-reader")
     }
 }
 

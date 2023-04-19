@@ -19,7 +19,8 @@ struct TRssReaderApp: App {
                 } else {
                     LoginViewController()
                 }
-            }.environmentObject(tokenModelController)
+            }
+            .environmentObject(tokenModelController)
         }
     }
 }
