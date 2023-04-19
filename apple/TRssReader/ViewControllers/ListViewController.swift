@@ -10,12 +10,14 @@ import SwiftUI
 
 struct ListViewController: View {
     @EnvironmentObject var feedsModelController: FeedsModelController
+    @Binding var selectedFeedUrl: String?
     @State private var result: Result<[Feed], Error>?
     
     let feedsService: FeedsService
     
-    init(feedsService: FeedsService = FeedsService()) {
+    init(feedsService: FeedsService = FeedsService(), selectedFeedUrl: Binding<String?>) {
         self.feedsService = feedsService
+        _selectedFeedUrl = selectedFeedUrl
     }
     
     enum FeedsError: Error {
@@ -28,22 +30,23 @@ struct ListViewController: View {
             switch result {
             case .none:
                 ProgressView()
-                
             case .failure(_):
                 Text("Failed to get feeds")
                 // TODO: Retry logic
-                
             case .success(let feeds):
                 if feeds.isEmpty {
                     Text("No feeds yet")
                     // TODO: Add feed button
                 } else {
-                    List(feeds, id: \.url) { feed in
-                        NavigationLink(feed.name, destination: DetailsViewController(selectedFeed: feed))
+                    List(feeds, id: \.url, selection: $selectedFeedUrl) { feed in
+                        NavigationLink(value: feed.url) {
+                            Text(feed.name)
+                        }
                     }
                 }
             }
-        }.task {
+        }
+        .task {
             if case .none = result {
                 do {
                     let (feedsData, feedsResponse) = try await feedsService.getFeeds()
@@ -57,6 +60,8 @@ struct ListViewController: View {
                         result = .failure(FeedsError.feedsRequest)
                         return
                     }
+                    
+                    feedsModelController.feeds = feeds
                     
                     result = .success(feeds)
                 } catch {
