@@ -24,7 +24,7 @@ struct DetailsItemView: View {
             }
         }
         .foregroundColor(.primary)
-        .padding([.top, .bottom], 4)
+        .padding(4)
     }
 }
 

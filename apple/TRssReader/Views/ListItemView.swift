@@ -22,7 +22,7 @@ struct ListItemView: View {
                     .opacity(0.75)
             }
         }
-        .padding([.top, .bottom], 4)
+        .padding(4)
     }
 }
 
