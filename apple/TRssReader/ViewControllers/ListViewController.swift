@@ -10,15 +10,14 @@ import SwiftUI
 
 struct ListViewController: View {
     @EnvironmentObject var feedsModelController: FeedsModelController
-    @Binding var selectedFeedUrl: String?
-    @State private var getFeedsResult: Result<[Feed], Error>?
-    @State private var isUpserting: Bool = false
+    @EnvironmentObject var selectedFeedModelController: SelectedFeedModelController
+    
+    @State private var feedsResult: Result<[Feed], Error>?
     
     let feedsService: FeedsService
     
-    init(feedsService: FeedsService = FeedsService(), selectedFeedUrl: Binding<String?>) {
+    init(feedsService: FeedsService = FeedsService()) {
         self.feedsService = feedsService
-        _selectedFeedUrl = selectedFeedUrl
     }
     
     enum FeedsError: Error {
@@ -31,49 +30,26 @@ struct ListViewController: View {
             let (feedsData, feedsResponse) = try await feedsService.getFeeds()
             
             guard let feeds = try? JSONDecoder().decode([Feed].self, from: feedsData) else {
-                getFeedsResult = .failure(FeedsError.feedsDecode)
+                feedsResult = .failure(FeedsError.feedsDecode)
                 return
             }
             
             guard feedsResponse.statusCode() == 200 else {
-                getFeedsResult = .failure(FeedsError.feedsRequest)
+                feedsResult = .failure(FeedsError.feedsRequest)
                 return
             }
             
             feedsModelController.feeds = feeds
             
-            getFeedsResult = .success(feeds)
+            feedsResult = .success(feeds)
         } catch {
-            getFeedsResult = .failure(FeedsError.feedsRequest)
-        }
-    }
-    
-    func deleteFeed(url: String) {
-        Task {
-            do {
-                isUpserting = true
-                
-                let (_, deletedFeedResponse) = try await feedsService.deleteFeed(url: url)
-                
-                guard deletedFeedResponse.statusCode() == 200 else {
-                    // TODO: Show alert failure
-                    isUpserting = false
-                    return
-                }
-                
-                feedsModelController.deleteFeedByUrl(url: url)
-                selectedFeedUrl = nil
-                isUpserting = false
-            } catch {
-                // TODO: Show alert failure
-                isUpserting = false
-            }
+            feedsResult = .failure(FeedsError.feedsRequest)
         }
     }
     
     @ViewBuilder var body: some View {
         Group {
-            switch getFeedsResult {
+            switch feedsResult {
             case .none:
                 ProgressView()
             case .failure(_):
@@ -84,41 +60,15 @@ struct ListViewController: View {
                     if feeds.isEmpty {
                         Text("No feeds yet")
                     } else {
-                        List(selection: $selectedFeedUrl) {
-                            ForEach(feeds, id: \.url) { feed in
-                                ListItemView(feed: feed)
-                                    // Long press on iOS/iPadOS, right click on macOS
-                                    .contextMenu {
-                                        if !isUpserting {
-                                            Button("Delete") {
-                                                deleteFeed(url: feed.url)
-                                            }
-                                        }
-                                    }
-                            }
-                            // Slide to delete gesture on iOS/iPadOS, ignored on macOS
-                            .onDelete(perform: { offsets in
-                                if let index = offsets.first, let feed = feedsModelController.feeds?[index] {
-                                    deleteFeed(url: feed.url)
-                                }
-                            })
-                            .deleteDisabled(isUpserting)
-                        }
+                        ListActionsViewController()
                     }
                 } else {
                     Text("No feeds yet")
                 }
             }
         }
-        .toolbar {
-            HStack(alignment: .bottom) {
-                Button("Add") {
-                    print("TODO: Add")
-                }
-            }
-        }
         .task {
-            if case .none = getFeedsResult {
+            if case .none = feedsResult {
                 await getFeeds()
             }
         }

@@ -10,19 +10,21 @@ import SwiftUI
 
 struct ListDetailsViewController: View {
     @EnvironmentObject var tokenModelController: TokenModelController
+    
     @StateObject var feedsModelController = FeedsModelController.shared
-    @State private var selectedFeedUrl: String?
+    @StateObject var selectedFeedModelController = SelectedFeedModelController.shared
     
     var body: some View {
         NavigationSplitView {
-            ListViewController(selectedFeedUrl: $selectedFeedUrl)
+            ListViewController()
                 .navigationSplitViewColumnWidth(
                     min: 275, ideal: 400)
                 .navigationTitle("Feeds")
         } detail: {
-            DetailsViewController(selectedFeedUrl: $selectedFeedUrl)
+            DetailsViewController()
         }
         .environmentObject(feedsModelController)
+        .environmentObject(selectedFeedModelController)
     }
 }
 

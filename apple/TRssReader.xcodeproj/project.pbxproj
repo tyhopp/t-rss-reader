@@ -39,6 +39,8 @@
 		E5D7189329EE4AAB00B4309C /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D7189229EE4AAB00B4309C /* Entry.swift */; };
 		E5D718B229EFE07700B4309C /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B129EFE07700B4309C /* ListItemView.swift */; };
 		E5D718B429EFE3E400B4309C /* DetailsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B329EFE3E400B4309C /* DetailsItemView.swift */; };
+		E5D718B829F18B1000B4309C /* ListActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B729F18B1000B4309C /* ListActionsViewController.swift */; };
+		E5D718BA29F18BDF00B4309C /* SelectedFeedModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B929F18BDF00B4309C /* SelectedFeedModelController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +98,8 @@
 		E5D7189229EE4AAB00B4309C /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		E5D718B129EFE07700B4309C /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		E5D718B329EFE3E400B4309C /* DetailsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsItemView.swift; sourceTree = "<group>"; };
+		E5D718B729F18B1000B4309C /* ListActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActionsViewController.swift; sourceTree = "<group>"; };
+		E5D718B929F18BDF00B4309C /* SelectedFeedModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFeedModelController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,7 @@
 			children = (
 				E56DFE1329E7B13B003C687E /* TokenModelController.swift */,
 				E521B76029ECF417007FD06A /* FeedsModelController.swift */,
+				E5D718B929F18BDF00B4309C /* SelectedFeedModelController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -204,9 +209,10 @@
 		E56DFE1929E7BE96003C687E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E56DFE1729E7BCCB003C687E /* DetailsViewController.swift */,
-				E56DFE1A29E7BF41003C687E /* ListViewController.swift */,
 				E56DFE1C29E7C025003C687E /* ListDetailsViewController.swift */,
+				E56DFE1A29E7BF41003C687E /* ListViewController.swift */,
+				E5D718B729F18B1000B4309C /* ListActionsViewController.swift */,
+				E56DFE1729E7BCCB003C687E /* DetailsViewController.swift */,
 				E56DFE1E29E7DE64003C687E /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
@@ -417,6 +423,7 @@
 				E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */,
 				E582ACFB29DA8F620083CCFF /* Env.swift in Sources */,
 				E521B75929E8FCF2007FD06A /* StatefulPreview.swift in Sources */,
+				E5D718B829F18B1000B4309C /* ListActionsViewController.swift in Sources */,
 				E59A4A6D29DFB4440033B09B /* EntriesService.swift in Sources */,
 				E59A4A6629DBC0DD0033B09B /* KeychainKey.swift in Sources */,
 				E59A4A6F29DFBC8A0033B09B /* ServiceError.swift in Sources */,
@@ -430,6 +437,7 @@
 				E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */,
 				E56DFE1D29E7C025003C687E /* ListDetailsViewController.swift in Sources */,
 				E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */,
+				E5D718BA29F18BDF00B4309C /* SelectedFeedModelController.swift in Sources */,
 				E5D718B429EFE3E400B4309C /* DetailsItemView.swift in Sources */,
 				E59A4A7129DFBF2B0033B09B /* LastAccessService.swift in Sources */,
 			);
