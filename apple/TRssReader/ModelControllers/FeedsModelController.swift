@@ -30,4 +30,8 @@ final class FeedsModelController: ObservableObject {
         let feedsUrlIndex = getFeedsUrlIndex()
         return feedsUrlIndex[url]
     }
+    
+    func deleteFeedByUrl(url: String) {
+        feeds = feeds?.filter { $0.url != url }
+    }
 }
