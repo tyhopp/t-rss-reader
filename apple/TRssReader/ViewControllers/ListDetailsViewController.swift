@@ -16,6 +16,8 @@ struct ListDetailsViewController: View {
     var body: some View {
         NavigationSplitView {
             ListViewController(selectedFeedUrl: $selectedFeedUrl)
+                .navigationSplitViewColumnWidth(
+                    min: 275, ideal: 400)
                 .navigationTitle("Feeds")
         } detail: {
             DetailsViewController(selectedFeedUrl: $selectedFeedUrl)
