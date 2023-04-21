@@ -11,7 +11,8 @@ struct ListActionsViewController: View {
     @EnvironmentObject var feedsModelController: FeedsModelController
     @EnvironmentObject var selectedFeedModelController: SelectedFeedModelController
     
-    @State private var isUpserting: Bool = false
+    @State private var actionInFlight: Bool = false
+    @State private var actionFailed: Bool = true
     
     let feedsService: FeedsService
     
@@ -22,22 +23,22 @@ struct ListActionsViewController: View {
     func deleteFeed(url: String) {
         Task {
             do {
-                isUpserting = true
+                actionInFlight = true
                 
                 let (_, deletedFeedResponse) = try await feedsService.deleteFeed(url: url)
                 
                 guard deletedFeedResponse.statusCode() == 200 else {
-                    // TODO: Show alert failure
-                    isUpserting = false
+                    actionInFlight = false
+                    actionFailed = true
                     return
                 }
                 
                 feedsModelController.deleteFeedByUrl(url: url)
                 selectedFeedModelController.feedUrl = nil
-                isUpserting = false
+                actionInFlight = false
             } catch {
-                // TODO: Show alert failure
-                isUpserting = false
+                actionInFlight = false
+                actionFailed = true
             }
         }
     }
@@ -51,7 +52,7 @@ struct ListActionsViewController: View {
                     ForEach(feeds, id: \.url) { feed in
                         ListItemView(feed: feed)
                             .contextMenu {
-                                if !isUpserting {
+                                if !actionInFlight {
                                     Button("Delete") {
                                         deleteFeed(url: feed.url)
                                     }
@@ -63,7 +64,7 @@ struct ListActionsViewController: View {
                             deleteFeed(url: feed.url)
                         }
                     })
-                    .deleteDisabled(isUpserting)
+                    .deleteDisabled(actionInFlight)
                 }
                 .toolbar {
                     HStack(alignment: .bottom) {
@@ -72,6 +73,11 @@ struct ListActionsViewController: View {
                         }
                     }
                 }
+                .alert("Request failed", isPresented: $actionFailed, actions: {
+                    Button("Close") {
+                        actionFailed = false
+                    }
+                })
             }
         } else {
             Text("No feeds yet")
