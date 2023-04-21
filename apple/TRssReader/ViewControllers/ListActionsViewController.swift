@@ -53,18 +53,18 @@ struct ListActionsViewController: View {
                     ForEach(feeds, id: \.url) { feed in
                         ListItemView(feed: feed)
                             .swipeActions(allowsFullSwipe: false) {
-                                ActionButtonView(buttonType: .edit) {
+                                ActionButtonView(type: .edit) {
                                     modalModelController.open(mode: .edit, name: feed.name, url: feed.url)
                                 }
-                                ActionButtonView(buttonType: .delete) {
+                                ActionButtonView(type: .delete) {
                                     deleteFeed(url: feed.url)
                                 }
                             }
                             .contextMenu {
-                                ActionButtonView(buttonType: .edit) {
+                                ActionButtonView(type: .edit) {
                                     modalModelController.open(mode: .edit, name: feed.name, url: feed.url)
                                 }
-                                ActionButtonView(buttonType: .delete) {
+                                ActionButtonView(type: .delete) {
                                     deleteFeed(url: feed.url)
                                 }
                             }
@@ -74,8 +74,10 @@ struct ListActionsViewController: View {
                 .toolbar {
                     ToolbarItemGroup {
                         Spacer()
-                        Button("Add") {
-                            print("TODO: Add")
+                        Button {
+                            modalModelController.open()
+                        } label: {
+                            Label("Add", systemImage: "plus.circle")
                         }
                     }
                 }
