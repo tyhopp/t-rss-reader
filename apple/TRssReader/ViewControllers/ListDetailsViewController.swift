@@ -14,12 +14,16 @@ struct ListDetailsViewController: View {
     @StateObject var feedsModelController = FeedsModelController.shared
     @StateObject var selectedFeedModelController = SelectedFeedModelController.shared
     
+    @State var columnVisibility: NavigationSplitViewVisibility = .all
+    
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             ListViewController()
-                .navigationSplitViewColumnWidth(
-                    min: 275, ideal: 400)
                 .navigationTitle("Feeds")
+            #if os(macOS)
+                .navigationSplitViewColumnWidth(
+                    min: 250, ideal: 300)
+            #endif
         } detail: {
             DetailsViewController()
         }

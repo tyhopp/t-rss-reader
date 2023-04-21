@@ -12,7 +12,7 @@ struct ListActionsViewController: View {
     @EnvironmentObject var selectedFeedModelController: SelectedFeedModelController
     
     @State private var actionInFlight: Bool = false
-    @State private var actionFailed: Bool = true
+    @State private var actionFailed: Bool = false
     
     let feedsService: FeedsService
     
@@ -67,7 +67,8 @@ struct ListActionsViewController: View {
                     .deleteDisabled(actionInFlight)
                 }
                 .toolbar {
-                    HStack(alignment: .bottom) {
+                    ToolbarItemGroup {
+                        Spacer()
                         Button("Add") {
                             print("TODO: Add")
                         }
