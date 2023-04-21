@@ -8,9 +8,5 @@
 import Foundation
 
 final class SelectedFeedModelController: ObservableObject {
-    static let shared = SelectedFeedModelController()
-    
     @Published var feedUrl: String?
-    
-    private init() {}
 }
