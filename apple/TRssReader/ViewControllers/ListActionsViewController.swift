@@ -10,6 +10,7 @@ import SwiftUI
 struct ListActionsViewController: View {
     @EnvironmentObject var feedsModelController: FeedsModelController
     @EnvironmentObject var selectedFeedModelController: SelectedFeedModelController
+    @EnvironmentObject var modalModelController: ModalModelController
     
     @State private var actionInFlight: Bool = false
     @State private var actionFailed: Bool = false
@@ -51,19 +52,23 @@ struct ListActionsViewController: View {
                 List(selection: $selectedFeedModelController.feedUrl) {
                     ForEach(feeds, id: \.url) { feed in
                         ListItemView(feed: feed)
+                            .swipeActions(allowsFullSwipe: false) {
+                                ActionButtonView(buttonType: .edit) {
+                                    modalModelController.open(mode: .edit, name: feed.name, url: feed.url)
+                                }
+                                ActionButtonView(buttonType: .delete) {
+                                    deleteFeed(url: feed.url)
+                                }
+                            }
                             .contextMenu {
-                                if !actionInFlight {
-                                    Button("Delete") {
-                                        deleteFeed(url: feed.url)
-                                    }
+                                ActionButtonView(buttonType: .edit) {
+                                    modalModelController.open(mode: .edit, name: feed.name, url: feed.url)
+                                }
+                                ActionButtonView(buttonType: .delete) {
+                                    deleteFeed(url: feed.url)
                                 }
                             }
                     }
-                    .onDelete(perform: { offsets in
-                        if let index = offsets.first, let feed = feedsModelController.feeds?[index] {
-                            deleteFeed(url: feed.url)
-                        }
-                    })
                     .deleteDisabled(actionInFlight)
                 }
                 .toolbar {

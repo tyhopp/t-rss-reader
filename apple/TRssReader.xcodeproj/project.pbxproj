@@ -41,6 +41,9 @@
 		E5D718B429EFE3E400B4309C /* DetailsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B329EFE3E400B4309C /* DetailsItemView.swift */; };
 		E5D718B829F18B1000B4309C /* ListActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B729F18B1000B4309C /* ListActionsViewController.swift */; };
 		E5D718BA29F18BDF00B4309C /* SelectedFeedModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718B929F18BDF00B4309C /* SelectedFeedModelController.swift */; };
+		E5D718BE29F2517100B4309C /* ModalModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718BD29F2517100B4309C /* ModalModelController.swift */; };
+		E5D718C029F2549B00B4309C /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718BF29F2549B00B4309C /* Modal.swift */; };
+		E5D718C229F25C7700B4309C /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D718C129F25C7700B4309C /* ActionButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,9 @@
 		E5D718B329EFE3E400B4309C /* DetailsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsItemView.swift; sourceTree = "<group>"; };
 		E5D718B729F18B1000B4309C /* ListActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActionsViewController.swift; sourceTree = "<group>"; };
 		E5D718B929F18BDF00B4309C /* SelectedFeedModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFeedModelController.swift; sourceTree = "<group>"; };
+		E5D718BD29F2517100B4309C /* ModalModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalModelController.swift; sourceTree = "<group>"; };
+		E5D718BF29F2549B00B4309C /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
+		E5D718C129F25C7700B4309C /* ActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +208,7 @@
 				E56DFE1329E7B13B003C687E /* TokenModelController.swift */,
 				E521B76029ECF417007FD06A /* FeedsModelController.swift */,
 				E5D718B929F18BDF00B4309C /* SelectedFeedModelController.swift */,
+				E5D718BD29F2517100B4309C /* ModalModelController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -224,6 +231,7 @@
 				E582ACF129DA80980083CCFF /* Feed.swift */,
 				E582ACF329DA81200083CCFF /* Token.swift */,
 				E5D7189229EE4AAB00B4309C /* Entry.swift */,
+				E5D718BF29F2549B00B4309C /* Modal.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 				E521B75629E8F4A5007FD06A /* ResultMessageView.swift */,
 				E5D718B129EFE07700B4309C /* ListItemView.swift */,
 				E5D718B329EFE3E400B4309C /* DetailsItemView.swift */,
+				E5D718C129F25C7700B4309C /* ActionButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -414,8 +423,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E59A4A6B29DFB19A0033B09B /* URLResponse+statusCode.swift in Sources */,
+				E5D718C029F2549B00B4309C /* Modal.swift in Sources */,
 				E56DFE1829E7BCCB003C687E /* DetailsViewController.swift in Sources */,
 				E582ACF229DA80980083CCFF /* Feed.swift in Sources */,
+				E5D718BE29F2517100B4309C /* ModalModelController.swift in Sources */,
 				E5D718B229EFE07700B4309C /* ListItemView.swift in Sources */,
 				E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */,
 				E56DFE1F29E7DE64003C687E /* LoginViewController.swift in Sources */,
@@ -429,6 +440,7 @@
 				E59A4A6F29DFBC8A0033B09B /* ServiceError.swift in Sources */,
 				E56DFE1429E7B13B003C687E /* TokenModelController.swift in Sources */,
 				E582ACF429DA81200083CCFF /* Token.swift in Sources */,
+				E5D718C229F25C7700B4309C /* ActionButtonView.swift in Sources */,
 				E521B75729E8F4A5007FD06A /* ResultMessageView.swift in Sources */,
 				E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */,
 				E5D7189329EE4AAB00B4309C /* Entry.swift in Sources */,

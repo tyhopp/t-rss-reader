@@ -11,8 +11,9 @@ import SwiftUI
 struct ListDetailsViewController: View {
     @EnvironmentObject var tokenModelController: TokenModelController
     
-    @StateObject var feedsModelController = FeedsModelController.shared
-    @StateObject var selectedFeedModelController = SelectedFeedModelController.shared
+    @StateObject var feedsModelController = FeedsModelController()
+    @StateObject var selectedFeedModelController = SelectedFeedModelController()
+    @StateObject var modalModelController = ModalModelController()
     
     @State var columnVisibility: NavigationSplitViewVisibility = .all
     
@@ -29,6 +30,7 @@ struct ListDetailsViewController: View {
         }
         .environmentObject(feedsModelController)
         .environmentObject(selectedFeedModelController)
+        .environmentObject(modalModelController)
     }
 }
 
