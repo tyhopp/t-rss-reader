@@ -10,7 +10,8 @@ import SwiftUI
 
 struct DetailsViewController: View {
     @EnvironmentObject var feedsModelController: FeedsModelController
-    @Binding var selectedFeedUrl: String?
+    @EnvironmentObject var selectedFeedModelController: SelectedFeedModelController
+    
     @State private var task: Task<Void, Error>?
     @State private var result: Result<[Entry], Error>?
     
@@ -21,13 +22,12 @@ struct DetailsViewController: View {
         case entriesDecode
     }
     
-    init(entriesService: EntriesService = EntriesService(), selectedFeedUrl: Binding<String?>) {
+    init(entriesService: EntriesService = EntriesService()) {
         self.entriesService = entriesService
-        _selectedFeedUrl = selectedFeedUrl
     }
     
     func getNavigationTitle() -> String {
-        guard let selectedFeedUrl = selectedFeedUrl else {
+        guard let selectedFeedUrl = selectedFeedModelController.feedUrl else {
             return "Entries"
         }
         
@@ -42,7 +42,7 @@ struct DetailsViewController: View {
     
     func getEntries() async {
         task = Task {
-            if let selectedFeedUrl = selectedFeedUrl {
+            if let selectedFeedUrl = selectedFeedModelController.feedUrl {
                 let (entriesData, entriesResponse) = try await entriesService.getEntries(url: selectedFeedUrl)
                 
                 guard let entries = try? JSONDecoder().decode([Entry].self, from: entriesData) else {
@@ -64,7 +64,7 @@ struct DetailsViewController: View {
         Group {
             switch result {
             case .none:
-                if selectedFeedUrl != nil {
+                if selectedFeedModelController.feedUrl != nil {
                     ProgressView()
                 }
             case .failure(_):
@@ -81,7 +81,7 @@ struct DetailsViewController: View {
             }
         }
         .navigationTitle(getNavigationTitle())
-        .onChange(of: selectedFeedUrl) { selectedFeedUrl in
+        .onChange(of: selectedFeedModelController.feedUrl) { selectedFeedUrl in
             result = .none
             task?.cancel()
             
@@ -94,8 +94,6 @@ struct DetailsViewController: View {
 
 struct DetailsViewController_Previews: PreviewProvider {
     static var previews: some View {
-        StatefulPreview(stateVariable: "https://example.com") { binding in
-            DetailsViewController(entriesService: EntriesService(), selectedFeedUrl: binding)
-        }
+        DetailsViewController(entriesService: EntriesService())
     }
 }

@@ -10,17 +10,27 @@ import SwiftUI
 
 struct ListDetailsViewController: View {
     @EnvironmentObject var tokenModelController: TokenModelController
-    @StateObject var feedsModelController = FeedsModelController.shared
-    @State private var selectedFeedUrl: String?
+    
+    @StateObject var feedsModelController = FeedsModelController()
+    @StateObject var selectedFeedModelController = SelectedFeedModelController()
+    @StateObject var modalModelController = ModalModelController()
+    
+    @State var columnVisibility: NavigationSplitViewVisibility = .all
     
     var body: some View {
-        NavigationSplitView {
-            ListViewController(selectedFeedUrl: $selectedFeedUrl)
+        NavigationSplitView(columnVisibility: $columnVisibility) {
+            ListViewController()
                 .navigationTitle("Feeds")
+            #if os(macOS)
+                .navigationSplitViewColumnWidth(
+                    min: 250, ideal: 300)
+            #endif
         } detail: {
-            DetailsViewController(selectedFeedUrl: $selectedFeedUrl)
+            DetailsViewController()
         }
         .environmentObject(feedsModelController)
+        .environmentObject(selectedFeedModelController)
+        .environmentObject(modalModelController)
     }
 }
 

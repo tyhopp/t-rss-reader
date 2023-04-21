@@ -16,13 +16,17 @@ struct ListItemView: View {
                 Text(feed.name)
                     .font(.headline)
                     .padding([.bottom], 1)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
                 
                 Text(feed.url)
                     .font(.subheadline)
                     .opacity(0.75)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
             }
         }
-        .padding([.top, .bottom], 4)
+        .padding(4)
     }
 }
 
