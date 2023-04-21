@@ -18,9 +18,9 @@ struct TRssReaderApp: App {
                     ListDetailsViewController()
                 } else {
                     LoginViewController()
+                        .environmentObject(tokenModelController)
                 }
             }
-            .environmentObject(tokenModelController)
         }
     }
 }

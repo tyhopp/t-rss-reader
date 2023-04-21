@@ -8,9 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct ListDetailsViewController: View {
-    @EnvironmentObject var tokenModelController: TokenModelController
-    
+struct ListDetailsViewController: View {    
     @StateObject var feedsModelController = FeedsModelController()
     @StateObject var selectedFeedModelController = SelectedFeedModelController()
     @StateObject var modalModelController = ModalModelController()
