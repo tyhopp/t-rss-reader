@@ -1,5 +1,5 @@
 //
-//  ActionButtonView.swift
+//  ListActionButtonView.swift
 //  TRssReader
 //
 //  Created by Ty Hopp on 21/4/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ActionButtonView: View {
+struct ListActionButtonView: View {
     enum ButtonType {
         case edit
         case delete
@@ -43,12 +43,12 @@ struct ActionButtonView: View {
     }
 }
 
-struct ActionButtonView_Previews: PreviewProvider {
+struct ListActionButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ActionButtonView(type: .edit, action: {})
+        ListActionButtonView(type: .edit, action: {})
             .previewDisplayName("ActionButtonView - Edit")
         
-        ActionButtonView(type: .delete, action: {})
+        ListActionButtonView(type: .delete, action: {})
             .previewDisplayName("ActionButtonView - Delete")
     }
 }

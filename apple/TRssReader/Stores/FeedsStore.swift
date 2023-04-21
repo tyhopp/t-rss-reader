@@ -1,5 +1,5 @@
 //
-//  FeedsModelController.swift
+//  FeedsStore.swift
 //  TRssReader
 //
 //  Created by Ty Hopp on 17/4/23.
@@ -7,7 +7,19 @@
 
 import Foundation
 
-final class FeedsModelController: ObservableObject {
+protocol FeedsStorable {
+    var feeds: [Feed]? { get set }
+    
+    func getFeedsUrlIndex() -> [String: Feed]
+    
+    func getFeedByUrl(url: String) -> Feed?
+    
+    func deleteFeedByUrl(url: String)
+    
+    func setFeeds(_ newFeeds: [Feed])
+}
+
+final class FeedsStore: FeedsStorable, ObservableObject {
     @Published var feeds: [Feed]?
     
     func getFeedsUrlIndex() -> [String: Feed] {
@@ -29,5 +41,9 @@ final class FeedsModelController: ObservableObject {
     
     func deleteFeedByUrl(url: String) {
         feeds = feeds?.filter { $0.url != url }
+    }
+    
+    func setFeeds(_ newFeeds: [Feed]) {
+        feeds = newFeeds
     }
 }

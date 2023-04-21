@@ -10,10 +10,10 @@ import Keychain
 
 class AuthorizedService {
     let defaultHeaders: [String: String] = ["Content-Type": "application/json"]
-    let tokenModelController: TokenModelControllable
+    let tokenStore: TokenStorable
     
-    init(tokenModelController: TokenModelControllable = TokenModelController.shared) {
-        self.tokenModelController = tokenModelController
+    init(tokenStore: TokenStorable = TokenStore.shared) {
+        self.tokenStore = tokenStore
     }
     
     func url(api: String) throws -> URL {
@@ -27,7 +27,7 @@ class AuthorizedService {
     func headers() throws -> [String: String] {
         var headersInstance = defaultHeaders
         
-        if let token = tokenModelController.store.token {
+        if let token = tokenStore.store.token {
             headersInstance.merge(["Authorization": token.accessToken]) { (current, _) in current }
         } else {
             throw ServiceError.accessToken
