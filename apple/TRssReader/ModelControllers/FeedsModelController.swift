@@ -8,11 +8,7 @@
 import Foundation
 
 final class FeedsModelController: ObservableObject {
-    static let shared = FeedsModelController()
-    
     @Published var feeds: [Feed]?
-    
-    private init() {}
     
     func getFeedsUrlIndex() -> [String: Feed] {
         var feedsByUrl = [String: Feed]()
