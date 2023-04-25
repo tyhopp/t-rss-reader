@@ -74,6 +74,10 @@ struct DetailsView: View {
                     Text("Select a feed to view entries")
                     // TODO: Select random button
                 } else {
+                    #if os(iOS)
+                    Spacer()
+                        .frame(height: 10)
+                    #endif
                     List(entries, id: \.url) { entry in
                         DetailsItemView(entry: entry)
                     }

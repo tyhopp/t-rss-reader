@@ -7,14 +7,29 @@
 
 import Foundation
 
+@MainActor
 final class ModalStore: ObservableObject {
-    @Published var modal: Modal = Modal(isOpen: false, mode: .add)
+    enum Mode {
+        case add
+        case edit
+    }
     
-    func open(mode: Modal.Mode = .add, name: String? = nil, url: String? = nil) {
-        modal = Modal(isOpen: true, mode: mode, name: name, url: url)
+    @Published var isOpen: Bool = false
+    @Published var mode: Mode = .add
+    @Published var name: String = ""
+    @Published var url: String = ""
+    
+    func open(mode: Mode = .add, name: String = "", url: String = "") {
+        self.isOpen = true
+        self.mode = mode
+        self.name = name
+        self.url = url
     }
     
     func close() {
-        modal = Modal(isOpen: false, mode: .add, name: nil, url: nil)
+        self.isOpen = false
+        self.mode = .add
+        self.name = ""
+        self.url = ""
     }
 }
