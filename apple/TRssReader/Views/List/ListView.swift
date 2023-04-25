@@ -60,6 +60,10 @@ struct ListView: View {
                     if feeds.isEmpty {
                         Text("No feeds yet")
                     } else {
+                        #if os(iOS)
+                        Spacer()
+                            .frame(height: 10)
+                        #endif
                         ListActionsView()
                     }
                 } else {

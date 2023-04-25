@@ -26,6 +26,11 @@ struct ListDetailsView: View {
         } detail: {
             DetailsView()
         }
+        .sheet(isPresented: $modalStore.isOpen) {
+            NavigationStack {
+                UpsertFeedModal()
+            }
+        }
         .environmentObject(feedsStore)
         .environmentObject(selectedFeedStore)
         .environmentObject(modalStore)
