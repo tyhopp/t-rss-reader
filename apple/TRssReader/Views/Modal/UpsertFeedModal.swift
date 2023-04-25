@@ -9,15 +9,24 @@ import SwiftUI
 
 struct UpsertFeedModal: View {
     @EnvironmentObject var modalStore: ModalStore
+    @EnvironmentObject var feedsStore: FeedsStore
     
+    @State private var maySubmit: Bool = false
     @State private var loading: Bool = false
+    @State private var validationMessage: String = ""
     @State private var result: Result<Bool, Error>?
     
     @Environment(\.dismiss) private var dismiss
+    @FocusState private var focusedElement: FocusElement?
+    
+    private enum FocusElement {
+        case name
+        case url
+    }
     
     private var feedsService: FeedsService = FeedsService()
     
-    private var title: String {
+    private var titleText: String {
         get {
             modalStore.mode == .edit ? "Edit feed" : "Add feed"
         }
@@ -29,41 +38,94 @@ struct UpsertFeedModal: View {
         }
     }
     
+    private func validate() {
+        if loading || modalStore.url.isEmpty {
+            validationMessage = ""
+            maySubmit = false
+            return
+        }
+        
+        if !modalStore.url.starts(with: /https:\/\//) {
+            validationMessage = "URL must start with https://"
+            maySubmit = false
+            return
+        }
+        
+        if modalStore.mode == .add {
+            if let duplicateUrl = feedsStore.feeds?.contains(where: { feed in
+                return feed.url == modalStore.url
+            }) {
+                if duplicateUrl {
+                    validationMessage = "URL must be unique"
+                    maySubmit = !duplicateUrl
+                    return
+                }
+            }
+        }
+        
+        validationMessage = ""
+        maySubmit = true
+    }
+    
     private func submit() async {
         // TODO: Implement
     }
     
     var body: some View {
-        #if os(iOS)
-        Spacer()
-            .frame(height: 20)
-        #endif
-        
-        ResultMessageView(result: $result)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding([.top], 4)
-        
-        Form {
-            Section {
-                TextField(text: $modalStore.name) {
-                    Text("Name")
+        VStack(alignment: .leading) {
+            Form {
+                Section {
+                    TextField(text: $modalStore.name) {
+                        Text("Name")
+                    }
+                    .focused($focusedElement, equals: .name)
+                    .autocorrectionDisabled(true)
+                    #if os(iOS)
+                    .textInputAutocapitalization(.words)
+                    #endif
+                    .disabled(loading)
+                    
+                    TextField(text: $modalStore.url) {
+                        Text("URL")
+                    }
+                    .focused($focusedElement, equals: .url)
+                    .autocorrectionDisabled(true)
+                    #if os(iOS)
+                    .textInputAutocapitalization(.never)
+                    #endif
+                    .onReceive(modalStore.$url, perform: { _ in
+                        validate()
+                    })
+                    .disabled(modalStore.mode == .edit || loading)
+                } header: {
+                    Text("")
+                } footer: {
+                    Group {
+                        ValidationMessageView(message: validationMessage)
+                        ResultMessageView(result: $result)
+                    }
+                    .foregroundColor(.red)
                 }
-                .disabled(loading)
-                
-                TextField(text: $modalStore.url) {
-                    Text("URL")
-                }
-                .disabled(modalStore.mode == .edit || loading)
+            }
+        }
+        .onAppear {
+            focusedElement = .name
+        }
+        .onSubmit {
+            if focusedElement == .name {
+                focusedElement = .url
+            } else {
+                focusedElement = nil
             }
         }
         #if os(macOS)
         .frame(
-            idealWidth: 300.0,
-            maxWidth: 300.0
+            idealWidth: 300,
+            maxWidth: 300
         )
         .padding()
         #endif
-        .navigationTitle(title)
+        .navigationTitle(titleText)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button(submitButtonText) {
@@ -74,8 +136,7 @@ struct UpsertFeedModal: View {
                         loading = false
                     }
                 }
-                    // TODO: Validation
-                    .disabled(loading)
+                    .disabled(loading || !maySubmit)
             }
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel", role: .cancel) {

@@ -93,8 +93,8 @@ struct LoginView: View {
                 Spacer()
             }
             .frame(
-                idealWidth: 300.0,
-                maxWidth: 300.0
+                idealWidth: 300,
+                maxWidth: 300
             )
             .padding()
             .navigationTitle("Log In")
