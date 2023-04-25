@@ -11,6 +11,7 @@ The project is arranged in three parts:
 
   - [Web](./web/README.md)
   - [iOS, iPadOS, and macOS](./apple/README.md) (WIP)
+  - CLI (TBD)
   - Windows (TBD)
 
 - A [Figma design file](./design/README.md) that you can view or duplicate
@@ -18,4 +19,4 @@ The project is arranged in three parts:
 ## Usage
 
 1. Set up the backend [infrastructure](./infra/README.md). The output will show the invoke URLs for the endpoints.
-2. Run one of the clients, such as the [web client](./web/README.md). Provide the invoke URLs as env vars for each client.
+2. Set up and run one of the clients. Provide the invoke URLs as environment variables to each client you run.
