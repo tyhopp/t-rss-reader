@@ -1,5 +1,5 @@
 //
-//  TokenModelController.swift
+//  TokenStore.swift
 //  TRssReader
 //
 //  Created by Ty Hopp on 13/4/23.
@@ -12,7 +12,7 @@ struct TokenModelStore {
     var token: Token?
 }
 
-protocol TokenModelControllable {
+protocol TokenStorable {
     var store: TokenModelStore { get set }
     
     func getTokenFromKeychain() -> Token?
@@ -20,8 +20,8 @@ protocol TokenModelControllable {
     func setToken(token: Token) throws
 }
 
-final class TokenModelController: TokenModelControllable, ObservableObject {
-    static let shared = TokenModelController()
+final class TokenStore: TokenStorable, ObservableObject {
+    static let shared = TokenStore()
     
     @Published var store = TokenModelStore()
 

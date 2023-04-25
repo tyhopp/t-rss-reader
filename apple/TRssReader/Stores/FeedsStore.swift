@@ -1,5 +1,5 @@
 //
-//  FeedsModelController.swift
+//  FeedsStore.swift
 //  TRssReader
 //
 //  Created by Ty Hopp on 17/4/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class FeedsModelController: ObservableObject {
+final class FeedsStore: ObservableObject {
     @Published var feeds: [Feed]?
     
     func getFeedsUrlIndex() -> [String: Feed] {
