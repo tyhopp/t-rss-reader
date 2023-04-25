@@ -1,5 +1,5 @@
 //
-//  ListActionsViewController.swift
+//  ListActionsView.swift
 //  TRssReader
 //
 //  Created by Ty Hopp on 20/4/23.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ListActionsViewController: View {
-    @EnvironmentObject var feedsModelController: FeedsModelController
-    @EnvironmentObject var selectedFeedModelController: SelectedFeedModelController
-    @EnvironmentObject var modalModelController: ModalModelController
+struct ListActionsView: View {
+    @EnvironmentObject var feedsStore: FeedsStore
+    @EnvironmentObject var selectedFeedStore: SelectedFeedStore
+    @EnvironmentObject var modalStore: ModalStore
     
     @State private var actionInFlight: Bool = false
     @State private var actionFailed: Bool = false
@@ -34,8 +34,8 @@ struct ListActionsViewController: View {
                     return
                 }
                 
-                feedsModelController.deleteFeedByUrl(url: url)
-                selectedFeedModelController.feedUrl = nil
+                feedsStore.deleteFeedByUrl(url: url)
+                selectedFeedStore.feedUrl = nil
                 actionInFlight = false
             } catch {
                 actionInFlight = false
@@ -45,16 +45,16 @@ struct ListActionsViewController: View {
     }
     
     var body: some View {
-        if let feeds = feedsModelController.feeds {
+        if let feeds = feedsStore.feeds {
             if feeds.isEmpty {
                 Text("No feeds yet")
             } else {
-                List(selection: $selectedFeedModelController.feedUrl) {
+                List(selection: $selectedFeedStore.feedUrl) {
                     ForEach(feeds, id: \.url) { feed in
                         ListItemView(feed: feed)
                             .swipeActions(allowsFullSwipe: false) {
                                 ActionButtonView(type: .edit) {
-                                    modalModelController.open(mode: .edit, name: feed.name, url: feed.url)
+                                    modalStore.open(mode: .edit, name: feed.name, url: feed.url)
                                 }
                                 ActionButtonView(type: .delete) {
                                     deleteFeed(url: feed.url)
@@ -62,7 +62,7 @@ struct ListActionsViewController: View {
                             }
                             .contextMenu {
                                 ActionButtonView(type: .edit) {
-                                    modalModelController.open(mode: .edit, name: feed.name, url: feed.url)
+                                    modalStore.open(mode: .edit, name: feed.name, url: feed.url)
                                 }
                                 ActionButtonView(type: .delete) {
                                     deleteFeed(url: feed.url)
@@ -75,7 +75,7 @@ struct ListActionsViewController: View {
                     ToolbarItemGroup {
                         Spacer()
                         Button {
-                            modalModelController.open()
+                            modalStore.open()
                         } label: {
                             Label("Add", systemImage: "plus.circle")
                         }
@@ -93,8 +93,8 @@ struct ListActionsViewController: View {
     }
 }
 
-struct ListActionsViewController_Previews: PreviewProvider {
+struct ListActionsView_Previews: PreviewProvider {
     static var previews: some View {
-        ListActionsViewController()
+        ListActionsView()
     }
 }

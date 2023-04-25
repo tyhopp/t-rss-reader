@@ -1,5 +1,5 @@
 //
-//  DetailsViewController.swift
+//  DetailsView.swift
 //  TRssReader
 //
 //  Created by Ty Hopp on 13/4/23.
@@ -8,16 +8,16 @@
 import Foundation
 import SwiftUI
 
-struct DetailsViewController: View {
-    @EnvironmentObject var feedsModelController: FeedsModelController
-    @EnvironmentObject var selectedFeedModelController: SelectedFeedModelController
+struct DetailsView: View {
+    @EnvironmentObject var feedsStore: FeedsStore
+    @EnvironmentObject var selectedFeedStore: SelectedFeedStore
     
     @State private var task: Task<Void, Error>?
     @State private var result: Result<[Entry], Error>?
     
     var entriesService: EntriesService
     
-    enum DetailsViewControllerError: Error {
+    enum DetailsViewError: Error {
         case entriesRequest
         case entriesDecode
     }
@@ -27,11 +27,11 @@ struct DetailsViewController: View {
     }
     
     func getNavigationTitle() -> String {
-        guard let selectedFeedUrl = selectedFeedModelController.feedUrl else {
+        guard let selectedFeedUrl = selectedFeedStore.feedUrl else {
             return "Entries"
         }
         
-        let selectedFeed = feedsModelController.getFeedByUrl(url: selectedFeedUrl)
+        let selectedFeed = feedsStore.getFeedByUrl(url: selectedFeedUrl)
         
         if let name = selectedFeed?.name {
             return name
@@ -42,16 +42,16 @@ struct DetailsViewController: View {
     
     func getEntries() async {
         task = Task {
-            if let selectedFeedUrl = selectedFeedModelController.feedUrl {
+            if let selectedFeedUrl = selectedFeedStore.feedUrl {
                 let (entriesData, entriesResponse) = try await entriesService.getEntries(url: selectedFeedUrl)
                 
                 guard let entries = try? JSONDecoder().decode([Entry].self, from: entriesData) else {
-                    result = .failure(DetailsViewControllerError.entriesDecode)
+                    result = .failure(DetailsViewError.entriesDecode)
                     return
                 }
                 
                 guard entriesResponse.statusCode() == 200 else {
-                    result = .failure(DetailsViewControllerError.entriesRequest)
+                    result = .failure(DetailsViewError.entriesRequest)
                     return
                 }
                 
@@ -64,7 +64,7 @@ struct DetailsViewController: View {
         Group {
             switch result {
             case .none:
-                if selectedFeedModelController.feedUrl != nil {
+                if selectedFeedStore.feedUrl != nil {
                     ProgressView()
                 }
             case .failure(_):
@@ -81,7 +81,7 @@ struct DetailsViewController: View {
             }
         }
         .navigationTitle(getNavigationTitle())
-        .onChange(of: selectedFeedModelController.feedUrl) { selectedFeedUrl in
+        .onChange(of: selectedFeedStore.feedUrl) { selectedFeedUrl in
             result = .none
             task?.cancel()
             
@@ -92,8 +92,8 @@ struct DetailsViewController: View {
     }
 }
 
-struct DetailsViewController_Previews: PreviewProvider {
+struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsViewController(entriesService: EntriesService())
+        DetailsView(entriesService: EntriesService())
     }
 }

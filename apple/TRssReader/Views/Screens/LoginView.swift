@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  LoginView.swift
 //  TRssReader
 //
 //  Created by Ty Hopp on 13/4/23.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct LoginViewController: View {
+struct LoginView: View {
     @State private var password: String = ""
     @State private var loading: Bool = false
     @State private var result: Result<Bool, Error>?
     
-    @EnvironmentObject private var tokenModelController: TokenModelController
+    @EnvironmentObject private var tokenStore: TokenStore
     
     private var loginService: LoginService = LoginService()
     
@@ -42,7 +42,7 @@ struct LoginViewController: View {
             }
             
             do {
-                try tokenModelController.setToken(token: token)
+                try tokenStore.setToken(token: token)
                 result = .success(true)
             } catch {
                 result = .failure(LoginError.tokenNotSet)
@@ -102,8 +102,8 @@ struct LoginViewController: View {
     }
 }
 
-struct LoginViewController_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginViewController()
+        LoginView()
     }
 }

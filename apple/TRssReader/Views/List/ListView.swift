@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  ListView.swift
 //  TRssReader
 //
 //  Created by Ty Hopp on 13/4/23.
@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct ListViewController: View {
-    @EnvironmentObject var feedsModelController: FeedsModelController
-    @EnvironmentObject var selectedFeedModelController: SelectedFeedModelController
+struct ListView: View {
+    @EnvironmentObject var feedsStore: FeedsStore
+    @EnvironmentObject var selectedFeedStore: SelectedFeedStore
     
     @State private var feedsResult: Result<[Feed], Error>?
     
@@ -39,7 +39,7 @@ struct ListViewController: View {
                 return
             }
             
-            feedsModelController.feeds = feeds
+            feedsStore.feeds = feeds
             
             feedsResult = .success(feeds)
         } catch {
@@ -56,11 +56,11 @@ struct ListViewController: View {
                 Text("Failed to get feeds")
                 // TODO: Retry logic
             case .success(_):
-                if let feeds = feedsModelController.feeds {
+                if let feeds = feedsStore.feeds {
                     if feeds.isEmpty {
                         Text("No feeds yet")
                     } else {
-                        ListActionsViewController()
+                        ListActionsView()
                     }
                 } else {
                     Text("No feeds yet")

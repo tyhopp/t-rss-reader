@@ -34,13 +34,13 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testHeadersNoToken() {
-        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerNoToken())
+        let service = AuthorizedService(tokenStore: MockedTokenStoreNoToken())
         
         XCTAssertErrorType(try service.headers(), throws: ServiceError.accessToken)
     }
     
     func testHeadersWithToken() {
-        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerWithToken())
+        let service = AuthorizedService(tokenStore: MockedTokenStoreWithToken())
         
         var headers: [String: String]
         
@@ -57,13 +57,13 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testRequestNoToken() {
-        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerNoToken())
+        let service = AuthorizedService(tokenStore: MockedTokenStoreNoToken())
         
         XCTAssertErrorType(try service.request(api: api), throws: ServiceError.headers)
     }
     
     func testRequestWithToken() {
-        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerWithToken())
+        let service = AuthorizedService(tokenStore: MockedTokenStoreWithToken())
         
         let request: URLRequest
         
@@ -84,7 +84,7 @@ class AuthorizedServiceTests: XCTestCase {
     }
     
     func testRequestWithQueryItems() {
-        let service = AuthorizedService(tokenModelController: MockedTokenModelControllerWithToken())
+        let service = AuthorizedService(tokenStore: MockedTokenStoreWithToken())
         let queryItems = URLQueryItem(name: "a", value: "b")
         
         let request: URLRequest
@@ -98,7 +98,7 @@ class AuthorizedServiceTests: XCTestCase {
     }
 }
 
-private class MockedTokenModelControllerNoToken: TokenModelControllable {
+private class MockedTokenStoreNoToken: TokenStorable {
     var store = TokenModelStore()
     
     func getTokenFromKeychain() -> Token? {
@@ -108,7 +108,7 @@ private class MockedTokenModelControllerNoToken: TokenModelControllable {
     func setToken(token: Token) throws {}
 }
 
-private class MockedTokenModelControllerWithToken: TokenModelControllable {
+private class MockedTokenStoreWithToken: TokenStorable {
     var store = TokenModelStore(maybeValid: true, token: mockToken)
     
     func getTokenFromKeychain() -> Token? {

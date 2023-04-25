@@ -9,16 +9,16 @@ import SwiftUI
 
 @main
 struct TRssReaderApp: App {
-    @StateObject var tokenModelController = TokenModelController.shared
+    @StateObject var tokenStore = TokenStore.shared
     
     var body: some Scene {
         WindowGroup {
             Group {
-                if (tokenModelController.store.maybeValid) {
-                    ListDetailsViewController()
+                if (tokenStore.store.maybeValid) {
+                    ListDetailsView()
                 } else {
-                    LoginViewController()
-                        .environmentObject(tokenModelController)
+                    LoginView()
+                        .environmentObject(tokenStore)
                 }
             }
         }
