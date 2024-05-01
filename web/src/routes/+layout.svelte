@@ -33,6 +33,8 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#fffbf4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="1f1f22" media="(prefers-color-scheme: dark)">
 </svelte:head>
 
 <Header />

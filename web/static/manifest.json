@@ -2,6 +2,7 @@
   "name": "t-rss-reader",
   "start_url": "/",
   "display": "standalone",
+  "background_color": "#1f1f22",
   "icons": [
     {
       "src": "/favicon-512.jpg",
