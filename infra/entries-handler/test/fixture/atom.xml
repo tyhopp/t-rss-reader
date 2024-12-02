@@ -1,5 +1,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <entry>
+    <title>atom-title</title>
+    <published>atom-published</published>
+    <link rel="alternate" href="atom-url"/>
+  </entry>
+  <entry>
     <id>atom-url</id>
     <title>atom-title</title>
     <published>atom-published</published>

@@ -1,7 +1,8 @@
 import { DOMParser } from 'linkedom';
 import { getFeedFormat } from './get-feed-format';
-import { getFeedEntries } from './get-feed-entries';
-import type { RssFeedEntries } from './types';
+import { getRssEntries } from './get-rss-entries';
+import { getAtomEntries } from './get-atom-entries';
+import { RssFeedFormat, type RssFeedEntries } from './types';
 
 export function parseFeed(url: string, xml: string): RssFeedEntries {
   const parser = new DOMParser();
@@ -18,7 +19,9 @@ export function parseFeed(url: string, xml: string): RssFeedEntries {
     throw new Error(`Unable to determine feed format of RSS feed '${url}'.`);
   }
 
-  let entries: RssFeedEntries = getFeedEntries(doc, format);
+  const entries: RssFeedEntries = format === RssFeedFormat.rss
+    ? getRssEntries(doc)
+    : getAtomEntries(doc);
 
   return entries;
 }
