@@ -85,7 +85,12 @@ struct DetailsView: View {
             }
         }
         .navigationTitle(getNavigationTitle())
-        .onChange(of: selectedFeedStore.feedUrl) { selectedFeedUrl in
+        .onAppear {
+            Task { @MainActor in
+                await getEntries()
+            }
+        }
+        .onChange(of: selectedFeedStore.feedUrl) { _, _ in
             result = .none
             task?.cancel()
             
@@ -96,8 +101,18 @@ struct DetailsView: View {
     }
 }
 
-struct DetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailsView(entriesService: EntriesService())
-    }
+#Preview {
+    let feedsStore = FeedsStore()
+    let selectedFeedStore = SelectedFeedStore()
+    
+    feedsStore.feeds = [
+        Feed(name: "Feed 1", url: "https://example.com/feed1", createdAt: Date().nowInMs),
+        Feed(name: "Feed 2", url: "https://example.com/feed2", createdAt: Date().nowInMs)
+    ]
+    
+    selectedFeedStore.feedUrl = "https://example.com/feed1"
+    
+    return DetailsView(entriesService: MockEntriesService())
+        .environmentObject(feedsStore)
+        .environmentObject(selectedFeedStore)
 }

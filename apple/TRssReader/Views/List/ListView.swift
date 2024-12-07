@@ -78,3 +78,19 @@ struct ListView: View {
         }
     }
 }
+
+#Preview {
+    let feedsStore = FeedsStore()
+    let selectedFeedStore = SelectedFeedStore()
+    
+    feedsStore.feeds = [
+        Feed(name: "Feed 1", url: "https://example.com/feed1", createdAt: Date().nowInMs),
+        Feed(name: "Feed 2", url: "https://example.com/feed2", createdAt: Date().nowInMs)
+    ]
+    
+    selectedFeedStore.feedUrl = "https://example.com/feed1"
+    
+    return ListView(feedsService: MockFeedsService())
+        .environmentObject(feedsStore)
+        .environmentObject(selectedFeedStore)
+}

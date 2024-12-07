@@ -37,8 +37,6 @@ struct ListDetailsView: View {
     }
 }
 
-struct ListDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListDetailsView()
-    }
+#Preview {
+    ListDetailsView()
 }

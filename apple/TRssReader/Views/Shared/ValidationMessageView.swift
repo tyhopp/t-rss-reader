@@ -20,8 +20,6 @@ struct ValidationMessageView: View {
     }
 }
 
-struct ValidationMessageView_Previews: PreviewProvider {
-    static var previews: some View {
-        ValidationMessageView(message: "URL must be unique")
-    }
+#Preview {
+    ValidationMessageView(message: "URL must be unique")
 }

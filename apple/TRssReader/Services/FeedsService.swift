@@ -44,3 +44,31 @@ class FeedsService: AuthorizedService {
         return try await URLSession.shared.data(for: request)
     }
 }
+
+#if DEBUG
+class MockFeedsService: FeedsService {
+    @Sendable override func deleteFeed(url: String) async throws -> (Data, URLResponse) {
+        let data = try JSONEncoder().encode(["success": true])
+        let response = HTTPURLResponse(url: URL(string: Env.FEEDS_API)!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        return (data, response)
+    }
+    
+    @Sendable override func getFeeds() async throws -> (Data, URLResponse) {
+        let sampleFeeds = [
+            Feed(name: "Feed 1", url: "https://example.com/feed1", createdAt: Date().nowInMs),
+            Feed(name: "Feed 2", url: "https://example.com/feed2", createdAt: Date().nowInMs)
+        ]
+        
+        let data = try JSONEncoder().encode(sampleFeeds)
+        let response = HTTPURLResponse(url: URL(string: Env.FEEDS_API)!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        return (data, response)
+    }
+    
+    @Sendable override func putFeed(url: String, name: String) async throws -> (Data, URLResponse) {
+        let feed = Feed(name: name, url: url, createdAt: Date().nowInMs)
+        let data = try JSONEncoder().encode(feed)
+        let response = HTTPURLResponse(url: URL(string: Env.FEEDS_API)!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        return (data, response)
+    }
+}
+#endif

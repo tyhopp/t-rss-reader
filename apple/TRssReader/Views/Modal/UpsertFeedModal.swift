@@ -147,11 +147,9 @@ struct UpsertFeedModal: View {
         }
         .interactiveDismissDisabled(loading)
     }
-    
-    struct UpsertFeedModal_Previews: PreviewProvider {
-        static var previews: some View {
-            UpsertFeedModal()
-                .environmentObject(ModalStore())
-        }
-    }
+}
+
+#Preview {
+    UpsertFeedModal()
+        .environmentObject(ModalStore())
 }
