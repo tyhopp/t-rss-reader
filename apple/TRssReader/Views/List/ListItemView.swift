@@ -30,8 +30,6 @@ struct ListItemView: View {
     }
 }
 
-struct ListItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListItemView(feed: Feed(name: "A feed", url: "https://a.com", createdAt: 0))
-    }
+#Preview {
+    ListItemView(feed: Feed(name: "A feed", url: "https://a.com", createdAt: Date().nowInMs))
 }

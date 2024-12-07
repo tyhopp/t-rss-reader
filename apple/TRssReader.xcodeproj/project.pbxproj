@@ -13,8 +13,6 @@
 		E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559588F29D4125F008D7307 /* TRssReaderApp.swift */; };
 		E559589429D41260008D7307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589329D41260008D7307 /* Assets.xcassets */; };
 		E559589829D41260008D7307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589729D41260008D7307 /* Preview Assets.xcassets */; };
-		E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AB29D41260008D7307 /* TRssReaderUITests.swift */; };
-		E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */; };
 		E56DFE1129E7AE70003C687E /* Keychain in Frameworks */ = {isa = PBXBuildFile; productRef = E56DFE1029E7AE70003C687E /* Keychain */; };
 		E56DFE1429E7B13B003C687E /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DFE1329E7B13B003C687E /* TokenStore.swift */; };
 		E56DFE1629E7B466003C687E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DFE1529E7B466003C687E /* Date.swift */; };
@@ -29,6 +27,8 @@
 		E582AD0429DAA0D70083CCFF /* AuthorizedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */; };
 		E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0529DAA3D70083CCFF /* Constants.swift */; };
 		E582AD0929DAE3250083CCFF /* AuthorizedServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */; };
+		E58F07602D0049EE001FF9CE /* PreviewError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58F075F2D0049EE001FF9CE /* PreviewError.swift */; };
+		E58F07622D004DD0001FF9CE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58F07612D004DCC001FF9CE /* LoginViewModel.swift */; };
 		E59A4A6629DBC0DD0033B09B /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6529DBC0DD0033B09B /* KeychainKey.swift */; };
 		E59A4A6829DE6F680033B09B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6729DE6F680033B09B /* LoginService.swift */; };
 		E59A4A6B29DFB19A0033B09B /* URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59A4A6A29DFB19A0033B09B /* URLResponse.swift */; };
@@ -55,13 +55,6 @@
 			remoteGlobalIDString = E559588B29D4125F008D7307;
 			remoteInfo = TRssReader;
 		};
-		E55958A829D41260008D7307 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E559588429D4125F008D7307 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E559588B29D4125F008D7307;
-			remoteInfo = TRssReader;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -76,9 +69,6 @@
 		E559589529D41260008D7307 /* TRssReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TRssReader.entitlements; sourceTree = "<group>"; };
 		E559589729D41260008D7307 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E559589D29D41260008D7307 /* TRssReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E55958A729D41260008D7307 /* TRssReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E55958AB29D41260008D7307 /* TRssReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITests.swift; sourceTree = "<group>"; };
-		E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E56DFE1329E7B13B003C687E /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		E56DFE1529E7B466003C687E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E56DFE1729E7BCCB003C687E /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
@@ -92,6 +82,8 @@
 		E582AD0329DAA0D70083CCFF /* AuthorizedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedService.swift; sourceTree = "<group>"; };
 		E582AD0529DAA3D70083CCFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E582AD0829DAE3250083CCFF /* AuthorizedServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedServiceTests.swift; sourceTree = "<group>"; };
+		E58F075F2D0049EE001FF9CE /* PreviewError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewError.swift; sourceTree = "<group>"; };
+		E58F07612D004DCC001FF9CE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E59A4A6529DBC0DD0033B09B /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
 		E59A4A6729DE6F680033B09B /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		E59A4A6A29DFB19A0033B09B /* URLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponse.swift; sourceTree = "<group>"; };
@@ -126,13 +118,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E55958A429D41260008D7307 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -141,7 +126,6 @@
 			children = (
 				E559588E29D4125F008D7307 /* TRssReader */,
 				E55958A029D41260008D7307 /* TRssReaderTests */,
-				E55958AA29D41260008D7307 /* TRssReaderUITests */,
 				E559588D29D4125F008D7307 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,7 +135,6 @@
 			children = (
 				E559588C29D4125F008D7307 /* TRssReader.app */,
 				E559589D29D41260008D7307 /* TRssReaderTests.xctest */,
-				E55958A729D41260008D7307 /* TRssReaderUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,15 +177,6 @@
 			path = TRssReaderTests;
 			sourceTree = "<group>";
 		};
-		E55958AA29D41260008D7307 /* TRssReaderUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E55958AB29D41260008D7307 /* TRssReaderUITests.swift */,
-				E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */,
-			);
-			path = TRssReaderUITests;
-			sourceTree = "<group>";
-		};
 		E56DFE1229E7B0FD003C687E /* Stores */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +213,7 @@
 		E582ACEF29DA80270083CCFF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E58F075F2D0049EE001FF9CE /* PreviewError.swift */,
 				E582ACFA29DA8F620083CCFF /* Env.swift */,
 				E59A4A6529DBC0DD0033B09B /* KeychainKey.swift */,
 			);
@@ -316,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				E56DFE1E29E7DE64003C687E /* LoginView.swift */,
+				E58F07612D004DCC001FF9CE /* LoginViewModel.swift */,
 				E56DFE1C29E7C025003C687E /* ListDetailsView.swift */,
 			);
 			path = Screens;
@@ -362,24 +338,6 @@
 			productReference = E559589D29D41260008D7307 /* TRssReaderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E55958A629D41260008D7307 /* TRssReaderUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E55958B729D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReaderUITests" */;
-			buildPhases = (
-				E55958A329D41260008D7307 /* Sources */,
-				E55958A429D41260008D7307 /* Frameworks */,
-				E55958A529D41260008D7307 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E55958A929D41260008D7307 /* PBXTargetDependency */,
-			);
-			name = TRssReaderUITests;
-			productName = TRssReaderUITests;
-			productReference = E55958A729D41260008D7307 /* TRssReaderUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -388,16 +346,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					E559588B29D4125F008D7307 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 					E559589C29D41260008D7307 = {
-						CreatedOnToolsVersion = 14.2;
-						TestTargetID = E559588B29D4125F008D7307;
-					};
-					E55958A629D41260008D7307 = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = E559588B29D4125F008D7307;
 					};
@@ -421,7 +375,6 @@
 			targets = (
 				E559588B29D4125F008D7307 /* TRssReader */,
 				E559589C29D41260008D7307 /* TRssReaderTests */,
-				E55958A629D41260008D7307 /* TRssReaderUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -443,13 +396,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E55958A529D41260008D7307 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -459,6 +405,7 @@
 			files = (
 				E59A4A6B29DFB19A0033B09B /* URLResponse.swift in Sources */,
 				E5C3FA1129F80A7E00BC1AF7 /* ValidationMessageView.swift in Sources */,
+				E58F07622D004DD0001FF9CE /* LoginViewModel.swift in Sources */,
 				E56DFE1829E7BCCB003C687E /* DetailsView.swift in Sources */,
 				E582ACF229DA80980083CCFF /* Feed.swift in Sources */,
 				E5C3FA0B29F7B82300BC1AF7 /* UpsertFeedModal.swift in Sources */,
@@ -482,6 +429,7 @@
 				E56DFE1B29E7BF41003C687E /* ListView.swift in Sources */,
 				E521B76129ECF417007FD06A /* FeedsStore.swift in Sources */,
 				E582ACF629DA836A0083CCFF /* FeedsService.swift in Sources */,
+				E58F07602D0049EE001FF9CE /* PreviewError.swift in Sources */,
 				E56DFE1D29E7C025003C687E /* ListDetailsView.swift in Sources */,
 				E582AD0629DAA3D70083CCFF /* Constants.swift in Sources */,
 				E5D718BA29F18BDF00B4309C /* SelectedFeedStore.swift in Sources */,
@@ -500,15 +448,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E55958A329D41260008D7307 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */,
-				E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -516,11 +455,6 @@
 			isa = PBXTargetDependency;
 			target = E559588B29D4125F008D7307 /* TRssReader */;
 			targetProxy = E559589E29D41260008D7307 /* PBXContainerItemProxy */;
-		};
-		E55958A929D41260008D7307 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E559588B29D4125F008D7307 /* TRssReader */;
-			targetProxy = E55958A829D41260008D7307 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -562,6 +496,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -576,8 +511,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -610,10 +545,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -628,14 +563,13 @@
 		E521B75E29E91817007FD06A /* Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -645,28 +579,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TRssReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TRssReader";
-			};
-			name = Test;
-		};
-		E521B75F29E91817007FD06A /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TRssReader;
 			};
 			name = Test;
 		};
@@ -707,6 +619,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -721,8 +634,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -768,6 +681,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -776,8 +690,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -810,10 +724,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -850,10 +764,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -868,14 +782,13 @@
 		E55958B529D41260008D7307 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -891,14 +804,13 @@
 		E55958B629D41260008D7307 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -908,50 +820,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TRssReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TRssReader";
-			};
-			name = Release;
-		};
-		E55958B829D41260008D7307 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TRssReader;
-			};
-			name = Debug;
-		};
-		E55958B929D41260008D7307 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TRssReader;
 			};
 			name = Release;
 		};
@@ -984,16 +852,6 @@
 				E55958B529D41260008D7307 /* Debug */,
 				E521B75E29E91817007FD06A /* Test */,
 				E55958B629D41260008D7307 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E55958B729D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReaderUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E55958B829D41260008D7307 /* Debug */,
-				E521B75F29E91817007FD06A /* Test */,
-				E55958B929D41260008D7307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

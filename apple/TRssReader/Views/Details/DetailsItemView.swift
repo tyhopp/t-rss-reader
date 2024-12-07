@@ -28,8 +28,6 @@ struct DetailsItemView: View {
     }
 }
 
-struct DetailsItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailsItemView(entry: Entry(url: "https://a.com", title: "An entry", published: "2023-01-11T01:00:00.000Z", isNew: false))
-    }
+#Preview {
+    DetailsItemView(entry: Entry(url: "https://a.com", title: "An entry", published: "2023-01-11T01:00:00.000Z", isNew: false))
 }

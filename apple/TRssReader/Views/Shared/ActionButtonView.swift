@@ -43,12 +43,10 @@ struct ActionButtonView: View {
     }
 }
 
-struct ActionButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActionButtonView(type: .edit, action: {})
-            .previewDisplayName("ActionButtonView - Edit")
-        
-        ActionButtonView(type: .delete, action: {})
-            .previewDisplayName("ActionButtonView - Delete")
-    }
+#Preview("Edit") {
+    ActionButtonView(type: .edit, action: {})
+}
+
+#Preview("Delete") {
+    ActionButtonView(type: .delete, action: {})
 }
