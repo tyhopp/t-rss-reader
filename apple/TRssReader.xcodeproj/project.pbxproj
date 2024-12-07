@@ -13,8 +13,6 @@
 		E559589029D4125F008D7307 /* TRssReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559588F29D4125F008D7307 /* TRssReaderApp.swift */; };
 		E559589429D41260008D7307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589329D41260008D7307 /* Assets.xcassets */; };
 		E559589829D41260008D7307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E559589729D41260008D7307 /* Preview Assets.xcassets */; };
-		E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AB29D41260008D7307 /* TRssReaderUITests.swift */; };
-		E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */; };
 		E56DFE1129E7AE70003C687E /* Keychain in Frameworks */ = {isa = PBXBuildFile; productRef = E56DFE1029E7AE70003C687E /* Keychain */; };
 		E56DFE1429E7B13B003C687E /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DFE1329E7B13B003C687E /* TokenStore.swift */; };
 		E56DFE1629E7B466003C687E /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DFE1529E7B466003C687E /* Date.swift */; };
@@ -57,13 +55,6 @@
 			remoteGlobalIDString = E559588B29D4125F008D7307;
 			remoteInfo = TRssReader;
 		};
-		E55958A829D41260008D7307 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E559588429D4125F008D7307 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E559588B29D4125F008D7307;
-			remoteInfo = TRssReader;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -78,9 +69,6 @@
 		E559589529D41260008D7307 /* TRssReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TRssReader.entitlements; sourceTree = "<group>"; };
 		E559589729D41260008D7307 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E559589D29D41260008D7307 /* TRssReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E55958A729D41260008D7307 /* TRssReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TRssReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E55958AB29D41260008D7307 /* TRssReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITests.swift; sourceTree = "<group>"; };
-		E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRssReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E56DFE1329E7B13B003C687E /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		E56DFE1529E7B466003C687E /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E56DFE1729E7BCCB003C687E /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
@@ -130,13 +118,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E55958A429D41260008D7307 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -145,7 +126,6 @@
 			children = (
 				E559588E29D4125F008D7307 /* TRssReader */,
 				E55958A029D41260008D7307 /* TRssReaderTests */,
-				E55958AA29D41260008D7307 /* TRssReaderUITests */,
 				E559588D29D4125F008D7307 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,7 +135,6 @@
 			children = (
 				E559588C29D4125F008D7307 /* TRssReader.app */,
 				E559589D29D41260008D7307 /* TRssReaderTests.xctest */,
-				E55958A729D41260008D7307 /* TRssReaderUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,15 +175,6 @@
 				E59A4A7229DFC5FF0033B09B /* XCTestCase+XCTAssertErrorType.swift */,
 			);
 			path = TRssReaderTests;
-			sourceTree = "<group>";
-		};
-		E55958AA29D41260008D7307 /* TRssReaderUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E55958AB29D41260008D7307 /* TRssReaderUITests.swift */,
-				E55958AD29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift */,
-			);
-			path = TRssReaderUITests;
 			sourceTree = "<group>";
 		};
 		E56DFE1229E7B0FD003C687E /* Stores */ = {
@@ -368,24 +338,6 @@
 			productReference = E559589D29D41260008D7307 /* TRssReaderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E55958A629D41260008D7307 /* TRssReaderUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E55958B729D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReaderUITests" */;
-			buildPhases = (
-				E55958A329D41260008D7307 /* Sources */,
-				E55958A429D41260008D7307 /* Frameworks */,
-				E55958A529D41260008D7307 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E55958A929D41260008D7307 /* PBXTargetDependency */,
-			);
-			name = TRssReaderUITests;
-			productName = TRssReaderUITests;
-			productReference = E55958A729D41260008D7307 /* TRssReaderUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -400,10 +352,6 @@
 						CreatedOnToolsVersion = 14.2;
 					};
 					E559589C29D41260008D7307 = {
-						CreatedOnToolsVersion = 14.2;
-						TestTargetID = E559588B29D4125F008D7307;
-					};
-					E55958A629D41260008D7307 = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = E559588B29D4125F008D7307;
 					};
@@ -427,7 +375,6 @@
 			targets = (
 				E559588B29D4125F008D7307 /* TRssReader */,
 				E559589C29D41260008D7307 /* TRssReaderTests */,
-				E55958A629D41260008D7307 /* TRssReaderUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -443,13 +390,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E559589B29D41260008D7307 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E55958A529D41260008D7307 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -508,15 +448,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E55958A329D41260008D7307 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E55958AC29D41260008D7307 /* TRssReaderUITests.swift in Sources */,
-				E55958AE29D41260008D7307 /* TRssReaderUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -524,11 +455,6 @@
 			isa = PBXTargetDependency;
 			target = E559588B29D4125F008D7307 /* TRssReader */;
 			targetProxy = E559589E29D41260008D7307 /* PBXContainerItemProxy */;
-		};
-		E55958A929D41260008D7307 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E559588B29D4125F008D7307 /* TRssReader */;
-			targetProxy = E55958A829D41260008D7307 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -653,27 +579,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TRssReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TRssReader";
-			};
-			name = Test;
-		};
-		E521B75F29E91817007FD06A /* Test */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TRssReader;
 			};
 			name = Test;
 		};
@@ -918,48 +823,6 @@
 			};
 			name = Release;
 		};
-		E55958B829D41260008D7307 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TRssReader;
-			};
-			name = Debug;
-		};
-		E55958B929D41260008D7307 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tyhopp.TRssReaderUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TRssReader;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -989,16 +852,6 @@
 				E55958B529D41260008D7307 /* Debug */,
 				E521B75E29E91817007FD06A /* Test */,
 				E55958B629D41260008D7307 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E55958B729D41260008D7307 /* Build configuration list for PBXNativeTarget "TRssReaderUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E55958B829D41260008D7307 /* Debug */,
-				E521B75F29E91817007FD06A /* Test */,
-				E55958B929D41260008D7307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
